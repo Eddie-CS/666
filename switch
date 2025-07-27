@@ -1,0 +1,224 @@
+diff --git a/index.html b/index.html
+index 4de85a58bb3f0c1a3331d58aba030da05c8e2232..23891c3dfdd2778ab3bfda04008ab734eb659eff 100644
+--- a/index.html
++++ b/index.html
+@@ -777,63 +777,71 @@
+       .logo-img { width: 180px; }
+       .countdown-title { font-size: 1.1rem; }
+       .countdown-description { font-size: 1.1rem; }
+       .slogan-image { max-width: 100%; }
+       #countdown { gap: 10px; }
+       .time-block { min-width: 60px; padding: 10px 8px; }
+       .time-block span.number { font-size: 1.8rem; }
+       .time-block .label { font-size: 0.7rem; }
+       .section-title { font-size: 2rem; }
+       .social-btn { padding: 12px 20px; font-size: 1rem; }
+       .fab { width: 45px; height: 45px; font-size: 1.3rem; }
+       .feature-grid {
+         grid-template-columns: 1fr;
+         gap: 10px;
+       }
+       .feature-card {
+         padding: 15px;
+       }
+       #contact-form {
+         padding: 25px;
+       }
+       #chatbot-container {
+         bottom: 85px;
+         right: 15px;
+       }
+-      .chatbot-label, .chatbot-bubble {
+-        display: none;
+-      }
+-    }
++  .chatbot-label, .chatbot-bubble {
++    display: none;
++  }
++}
++
++@media (prefers-reduced-motion: reduce) {
++  * {
++    animation-duration: 0.01ms !important;
++    animation-iteration-count: 1 !important;
++    transition-duration: 0.01ms !important;
++  }
++}
+   </style>
+ </head>
+ <body class="lang-cn"> 
+   <div class="background-icons" id="background-icons"></div>
+ 
+  <header class="bg-image-section" style="--bg-img: url('https://placehold.co/1200x600?text=Background');">
+     <!-- MODIFICATION: Language switcher updated to dropdown -->
+     <div class="language-switcher">
+-        <div class="lang-button" id="lang-button">
++        <div class="lang-button" id="lang-button" aria-label="Switch language" aria-haspopup="true" aria-expanded="false">
+             <i class="fas fa-globe"></i>
+         </div>
+         <div class="lang-dropdown" id="lang-dropdown">
+             <div class="lang-option" data-lang="en">English</div>
+             <div class="lang-option" data-lang="cn">中文</div>
+             <div class="lang-option" data-lang="my">Bahasa Melayu</div>
+         </div>
+     </div>
+     <div class="container">
+       <div class="logo-slogan-wrapper">
+         <img src="Sinnkawa_logo.png" alt="Sinnkawa Logo" class="logo-img" onerror="this.onerror=null;this.src='https://placehold.co/240x135/C6E3F9/3D405B?text=SINNKAWA®';">
+        <img src="https://placehold.co/600x225?text=Family" alt="Sinnkawa Family" class="slogan-image">
+       </div>
+ 
+       <div class="countdown-wrapper">
+         <div class="countdown-description">
+             <p>
+                 <span class="zh"><strong>SINNKAWA®官网很快就可以与大家见面啦 跟我们一起倒数上线～</strong>🎈</span>
+                 <span class="en">✨ <strong>Official Website Launching Soon! Join us for the countdown～</strong>🎈</span>
+                 <span class="ms">✨ <strong>Laman Web Rasmi Akan Dilancarkan! Sertai kami untuk kira detik～</strong>🎈</span>
+             </p>
+         </div>
+         <div id="countdown">
+             <div class="time-block">
+                 <div class="number-container"><span class="number" id="days">00</span></div>
+@@ -858,55 +866,55 @@
+                 <div class="icon"><i class="fas fa-shopping-bag"></i></div>
+                 <h3><span class="en">Convenience</span><span class="zh">便利</span><span class="ms">Kemudahan</span></h3>
+                 <p><span class="en">Order online, pick up in-store</span><span class="zh">线上订购，门店自提</span><span class="ms">Pesan dalam talian, ambil di kedai</span></p>
+             </div>
+             <div class="feature-card">
+                 <div class="icon"><i class="fas fa-star"></i></div>
+                 <h3><span class="en">Exclusive Offers</span><span class="zh">线上独家优惠</span><span class="ms">Tawaran Eksklusif</span></h3>
+                 <p><span class="en">Massive online exclusive discounts are coming!</span><span class="zh">海量线上专属折扣来袭！</span><span class="ms">Diskaun eksklusif dalam talian akan datang!</span></p>
+             </div>
+             <div class="feature-card">
+                 <div class="icon"><i class="fas fa-truck"></i></div>
+                 <h3><span class="en">Worry-Free Delivery</span><span class="zh">配送无忧</span><span class="ms">Penghantaran Tanpa Risau</span></h3>
+                 <p><span class="en">Islandwide home delivery</span><span class="zh">全岛配送，直送到家</span><span class="ms">Penghantaran ke seluruh pulau</span></p>
+             </div>
+         </div>
+       </div>
+     </div>
+   </header>
+ 
+   <main>
+    <section class="social-section fade-in section-bg bg-image-section" style="--bg-img: url('https://placehold.co/1200x600?text=Background');">
+       <div class="container">
+         <h2 class="section-title"><span class="en">Find Us On</span><span class="zh">关注我们</span><span class="ms">Ikuti Kami</span></h2>
+         <p class="section-subtitle"><span class="en">Follow our journey and get the latest updates!</span><span class="zh">关注我们的旅程，获取最新动态！</span><span class="ms">Ikuti perjalanan kami dan dapatkan maklumat terkini!</span></p>
+         <div class="social-btns">
+-          <a class="social-btn xhs" href="https://www.xiaohongshu.com/user/profile/664f08440000000003030e90?xsec_token=YBRqAoXrpd8BnbO2cGTwZHw24jB3u5iigY3BzJh94q3Ms=&xsec_source=app_share&xhsshare=CopyLink&appuid=5a8ded9f4eacab3148139220&apptime=1753039735&share_id=c2b6eba803514ef8b0dbe61670f159f9" target="_blank"><span class="en">RED</span><span class="zh">小红书</span><span class="ms">RED</span></a>
+-          <a class="social-btn xhs" href="http://xhslink.com/m/R8537Wa0uF" target="_blank" title="精选好物抢先得！"><span class="en">RED Mall</span><span class="zh">小红书商城</span><span class="ms">RED Mall</span></a>
+-          <a class="social-btn ig" href="https://www.instagram.com/sinnkawa_official?igsh=c2l2Njhqc3FmMGc4" target="_blank"><span>Instagram</span></a>
+-          <a class="social-btn tt" href="https://www.tiktok.com/@sinnkawasingapore" target="_blank"><span>TikTok</span></a>
+-          <a class="social-btn wa" href="https://wa.me/6597759906" target="_blank"><span>WhatsApp</span></a>
++          <a class="social-btn xhs" href="https://www.xiaohongshu.com/user/profile/664f08440000000003030e90?xsec_token=YBRqAoXrpd8BnbO2cGTwZHw24jB3u5iigY3BzJh94q3Ms=&xsec_source=app_share&xhsshare=CopyLink&appuid=5a8ded9f4eacab3148139220&apptime=1753039735&share_id=c2b6eba803514ef8b0dbe61670f159f9" target="_blank" rel="noopener noreferrer"><span class="en">RED</span><span class="zh">小红书</span><span class="ms">RED</span></a>
++          <a class="social-btn xhs" href="http://xhslink.com/m/R8537Wa0uF" target="_blank" rel="noopener noreferrer" title="精选好物抢先得！"><span class="en">RED Mall</span><span class="zh">小红书商城</span><span class="ms">RED Mall</span></a>
++          <a class="social-btn ig" href="https://www.instagram.com/sinnkawa_official?igsh=c2l2Njhqc3FmMGc4" target="_blank" rel="noopener noreferrer"><span>Instagram</span></a>
++          <a class="social-btn tt" href="https://www.tiktok.com/@sinnkawasingapore" target="_blank" rel="noopener noreferrer"><span>TikTok</span></a>
++          <a class="social-btn wa" href="https://wa.me/6597759906" target="_blank" rel="noopener noreferrer"><span>WhatsApp</span></a>
+         </div>
+       </div>
+     </section>
+ 
+    <section class="store-section section-bg bg-image-section" style="--bg-img: url('https://placehold.co/1200x600?text=Background');">
+       <div class="container">
+         <h2 class="section-title">
+             <span class="en">SINNKAWA® Stores & Café in town</span>
+             <span class="zh">遍布市中心的SINNKAWA®门店以及咖啡厅</span>
+             <span class="ms">Kedai & Kafe SINNKAWA® di Bandar</span>
+         </h2>
+         <p class="section-subtitle">
+             <span class="en">Discover our unique locations in Singapore's most vibrant districts.</span>
+             <span class="zh">探索我们在新加坡最具活力的地区设立的每家独特店铺。</span>
+             <span class="ms">Terokai lokasi unik kami di daerah paling meriah di Singapura.</span>
+         </p>
+         <div class="store-grid">
+           <a href="https://maps.app.goo.gl/AuDRqswjxYYgBVFg8" target="_blank" class="store-card">
+            <img src="https://placehold.co/480x300?text=Store" alt="Chinatown Flagship" class="store-image">
+             <h3 class="store-title"><span class="en">SINNKAWA® Flagship@Chinatown</span><span class="zh">SINNKAWA® 牛车水旗舰店</span><span class="ms">SINNKAWA® Flagship@Chinatown</span></h3>
+             <p class="store-desc"><span class="en">Main flagship store featuring full IP collections and exclusive merchandise.</span><span class="zh">品牌主旗舰店，呈现全系列IP和独家周边。</span><span class="ms">Kedai utama yang menampilkan koleksi IP penuh dan barangan eksklusif.</span></p>
+           </a>
+ 
+           <a href="https://maps.app.goo.gl/AuDRqswjxYYgBVFg8" target="_blank" class="store-card">
+            <img src="https://placehold.co/480x300?text=Cafe" alt="Chinatown Café" class="store-image">
+@@ -1116,66 +1124,79 @@
+       fetchTargetTime();
+ 
+       // --- Floating Buttons & Back to Top ---
+       const backToTopBtn = document.getElementById('backToTop');
+       window.addEventListener('scroll', () => {
+         backToTopBtn.classList.toggle('visible', window.pageYOffset > 300);
+       });
+       backToTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+ 
+       // --- Fade-in Animation on Scroll ---
+       const observer = new IntersectionObserver((entries) => {
+         entries.forEach(entry => {
+           if (entry.isIntersecting) {
+             entry.target.classList.add('visible');
+             observer.unobserve(entry.target);
+           }
+         });
+       }, { threshold: 0.1 });
+       document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+ 
+       // --- Language Switcher Logic ---
+       const langButton = document.getElementById('lang-button');
+       const langDropdown = document.getElementById('lang-dropdown');
+       const langOptions = document.querySelectorAll('.lang-option');
+ 
++      const storedLang = localStorage.getItem('sinnkawa-lang');
++      if (storedLang) {
++          document.body.className = `lang-${storedLang}`;
++      }
++
++      function setLanguage(lang) {
++          document.body.className = `lang-${lang}`;
++          localStorage.setItem('sinnkawa-lang', lang);
++      }
++
+       langButton.addEventListener('click', (e) => {
+           e.stopPropagation();
+-          langDropdown.classList.toggle('show');
++          const expanded = langDropdown.classList.toggle('show');
++          langButton.setAttribute('aria-expanded', expanded);
+       });
+ 
+       langOptions.forEach(option => {
+           option.addEventListener('click', () => {
+               const lang = option.getAttribute('data-lang');
+-              document.body.className = `lang-${lang}`;
++              setLanguage(lang);
+               langDropdown.classList.remove('show');
++              langButton.setAttribute('aria-expanded', 'false');
+           });
+       });
+ 
+       document.addEventListener('click', () => {
+           if (langDropdown.classList.contains('show')) {
+               langDropdown.classList.remove('show');
++              langButton.setAttribute('aria-expanded', 'false');
+           }
+       });
+ 
+ 
+       // --- Page-wide Background Icons ---
+       function createPageBackgroundIcons() {
+         const iconContainer = document.getElementById('background-icons');
+         if (!iconContainer) return;
+        const icons = [
+            'https://placehold.co/100x100?text=Icon1',
+            'https://placehold.co/100x100?text=Icon2',
+            'https://placehold.co/100x100?text=Icon3',
+            'https://placehold.co/100x100?text=Icon4'
+        ];
+         const iconCount = 15;
+         for (let i = 0; i < iconCount; i++) {
+             const iconWrapper = document.createElement('div');
+             iconWrapper.className = 'bg-icon';
+             const iconImg = document.createElement('img');
+             iconImg.src = icons[i % icons.length];
+             const size = Math.random() * 80 + 40;
+             iconWrapper.style.width = `${size}px`;
+             iconWrapper.style.height = `${size}px`;
+             iconWrapper.style.top = `${Math.random() * 100}%`;
+             iconWrapper.style.left = `${Math.random() * 100}%`;
