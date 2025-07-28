@@ -1285,39 +1285,48 @@
           return "抱歉，我暂时无法回答这个问题。您可以试试菜单里的选项，或者在联系我们页面给我们留言哦！/ Sorry, I can't answer that question right now. You can try the menu options or leave us a message on the contact page!";
       };
 
-      const handleUserInput = () => {
-          const userInput = chatbotInput.value.trim();
-          if (!userInput) return;
-
-          appendMessage(userInput, 'user');
-          chatbotInput.value = '';
-          chatbotMenu.style.display = 'none';
-
-          setTimeout(() => {
-              const botResponse = getBotResponse(userInput);
-              appendMessage(botResponse, 'bot');
-          }, 500);
+      // 保存和加载聊天记录
+      const saveChatHistory = () => {
+          const messages = Array.from(chatbotMessages.children).map(el => ({
+              html: el.innerHTML,
+              className: el.className
+          }));
+          localStorage.setItem('chatHistory', JSON.stringify(messages));
       };
-      
-      const handleMenuClick = (question) => {
-          appendMessage(question, 'user');
-          chatbotMenu.style.display = 'none';
-          setTimeout(() => {
-              const botResponse = getBotResponse(question);
-              appendMessage(botResponse, 'bot');
-          }, 500);
+
+      const loadChatHistory = () => {
+          const savedChat = localStorage.getItem('chatHistory');
+          if (savedChat) {
+              const messages = JSON.parse(savedChat);
+              messages.forEach(msg => {
+                  const messageDiv = document.createElement('div');
+                  messageDiv.className = msg.className;
+                  messageDiv.innerHTML = msg.html;
+                  chatbotMessages.appendChild(messageDiv);
+              });
+              chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+              return true;
+          }
+          return false;
       };
-      
+
       const initializeChat = () => {
-          chatbotMessages.innerHTML = '';
-          chatbotMenu.innerHTML = '';
-          appendMessage("你好！我是<span class='en'>MELRIO</span><span class='zh'>莫里奥</span><span class='ms'>MELRIO</span>，很高兴为您服务！<br>Hello! I'm <span class='en'>MELRIO</span><span class='zh'>莫里奥</span><span class='ms'>MELRIO</span>, happy to help!", 'bot');
+          // 尝试加载历史记录
+          const hasHistory = loadChatHistory();
+          
+          if (!hasHistory) {
+              chatbotMessages.innerHTML = '';
+              appendMessage("你好！我是<span class='en'>MELRIO</span><span class='zh'>莫里奥</span><span class='ms'>MELRIO</span>，很高兴为您服务！<br>Hello! I'm <span class='en'>MELRIO</span><span class='zh'>莫里奥</span><span class='ms'>MELRIO</span>, happy to help!", 'bot');
+          }
 
+          chatbotMenu.innerHTML = '';
           const menuItems = [
               { zh: '产品咨询', en: 'Product Info', ms: 'Info Produk' },
               { zh: '订单支付', en: 'Payment', ms: 'Pembayaran' },
               { zh: '配送服务', en: 'Delivery', ms: 'Penghantaran' },
-              { zh: '会员服务', en: 'Membership', ms: 'Keahlian' }
+              { zh: '会员服务', en: 'Membership', ms: 'Keahlian' },
+              { zh: '门店信息', en: 'Store Info', ms: 'Info Kedai' },
+              { zh: '常见问题', en: 'FAQ', ms: 'Soalan Lazim' }
           ];
           
           menuItems.forEach(item => {
@@ -1336,16 +1345,88 @@
               chatbotMenu.appendChild(menuButton);
           });
           chatbotMenu.style.display = 'flex';
+          
+          // 添加自动保存监听
+          chatbotMessages.addEventListener('DOMNodeInserted', saveChatHistory);
       };
 
-      chatbotSendBtn.addEventListener('click', handleUserInput);
+      const handleMenuClick = (question) => {
+          appendMessage(question, 'user');
+          chatbotMenu.style.display = 'none';
+          setTimeout(() => {
+              const botResponse = getBotResponse(question);
+              appendMessage(botResponse, 'bot');
+          }, 500);
+      };
+
+      // 改进的输入处理
+      const enhancedHandleUserInput = () => {
+          const userInput = chatbotInput.value.trim();
+          if (!userInput) return;
+
+          const typingIndicator = document.createElement('div');
+          typingIndicator.className = 'chat-message bot';
+          typingIndicator.innerHTML = '<span class="typing-dots"><span>.</span><span>.</span><span>.</span></span>';
+          chatbotMessages.appendChild(typingIndicator);
+          chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+          
+          appendMessage(userInput, 'user');
+          chatbotInput.value = '';
+          chatbotMenu.style.display = 'none';
+
+          setTimeout(() => {
+              chatbotMessages.removeChild(typingIndicator);
+              try {
+                  const botResponse = getBotResponse(userInput);
+                  appendMessage(botResponse, 'bot');
+              } catch (error) {
+                  console.error('Chatbot error:', error);
+                  appendMessage("抱歉，处理您的请求时出错了。请稍后再试。", 'bot');
+              }
+          }, 800 + Math.random() * 700);
+      };
+
+      chatbotSendBtn.addEventListener('click', enhancedHandleUserInput);
       chatbotInput.addEventListener('keypress', (e) => {
           if (e.key === 'Enter') {
-              handleUserInput();
+              enhancedHandleUserInput();
           }
       });
       
-      openChatbotBtn.addEventListener('click', initializeChat);
+      openChatbotBtn.addEventListener('click', () => {
+          initializeChat();
+          const style = document.createElement('style');
+          style.textContent = `
+              .typing-dots {
+                  display: inline-flex;
+                  align-items: center;
+                  height: 17px;
+              }
+              .typing-dots span {
+                  width: 6px;
+                  height: 6px;
+                  margin: 0 2px;
+                  background-color: var(--text2);
+                  border-radius: 50%;
+                  display: inline-block;
+                  opacity: 0.4;
+              }
+              .typing-dots span:nth-child(1) {
+                  animation: typing 1s infinite;
+              }
+              .typing-dots span:nth-child(2) {
+                  animation: typing 1s infinite 0.2s;
+              }
+              .typing-dots span:nth-child(3) {
+                  animation: typing 1s infinite 0.4s;
+              }
+              @keyframes typing {
+                  0%, 100% { opacity: 0.4; transform: translateY(0); }
+                  50% { opacity: 1; transform: translateY(-3px); }
+              }
+          `;
+          document.head.appendChild(style);
+      });
 
     });
   </script>
