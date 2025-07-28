@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -576,7 +575,7 @@
     }
     
     /* MODIFICATION: Lightning/Shine effect for buttons */
-    .social-btn::before, .store-card::before, .form-submit-btn::before, .fab::before {
+    .social-btn::before, .store-card::before, .form-submit-btn::before, .fab::before, .image-btn::before {
         content: '';
         position: absolute;
         top: 0;
@@ -587,8 +586,22 @@
         transform: skewX(-25deg);
         transition: left 0.7s ease;
     }
-    .social-btn:hover::before, .store-card:hover::before, .form-submit-btn:hover::before, .fab:hover::before {
+    .social-btn:hover::before, .store-card:hover::before, .form-submit-btn:hover::before, .fab:hover::before, .image-btn:hover::before {
         left: 150%;
+    }
+    
+    .image-btn {
+        position: relative;
+        overflow: hidden;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        cursor: pointer;
+    }
+    .image-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    .image-btn:active {
+        transform: scale(0.98);
     }
 
     /* Language Toggle Logic */
@@ -598,6 +611,66 @@
     body.lang-my .en, body.lang-my .zh { display: none; }
     body.lang-my .ms { display: inline; }
 
+
+    /* Splash Screen Styles */
+    .splash-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--gradient-bg);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      opacity: 1;
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+    .splash-content {
+      text-align: center;
+      transform: scale(0.9);
+      transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .splash-logo img {
+      width: 180px;
+      height: auto;
+      animation: bounce 2s infinite;
+    }
+    .splash-loading {
+      display: flex;
+      justify-content: center;
+      margin-top: 30px;
+      gap: 12px;
+    }
+    .loading-dot {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background-color: var(--accent1);
+      animation: pulse 1.5s infinite ease-in-out;
+    }
+    .loading-dot:nth-child(2) {
+      animation-delay: 0.3s;
+    }
+    .loading-dot:nth-child(3) {
+      animation-delay: 0.6s;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(0.8); opacity: 0.5; }
+      50% { transform: scale(1.2); opacity: 1; }
+    }
+    .splash-screen.hide {
+      opacity: 0;
+      pointer-events: none;
+    }
+    .splash-screen.hide .splash-content {
+      transform: scale(1.2);
+    }
 
     .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
     .fade-in.visible { opacity: 1; transform: translateY(0); }
@@ -806,8 +879,83 @@
     }
   </style>
 </head>
-<body class="lang-cn"> 
+<body class="lang-en"> 
+  <!-- Splash Screen Animation -->
+  <div class="splash-screen">
+    <div class="splash-content">
+      <div class="splash-logo">
+        <img src="Sinnkawa_logo.png" alt="Sinnkawa Logo" onerror="this.onerror=null;this.src='https://placehold.co/240x135/C6E3F9/3D405B?text=SINNKAWA®';">
+      </div>
+      <div class="splash-loading">
+        <div class="loading-dot"></div>
+        <div class="loading-dot"></div>
+        <div class="loading-dot"></div>
+      </div>
+    </div>
+  </div>
   <div class="background-icons" id="background-icons"></div>
+  <script>
+    // 页面状态持久化功能
+    // Hide splash screen when page is loaded
+    window.addEventListener('load', function() {
+      setTimeout(function() {
+        document.querySelector('.splash-screen').classList.add('hide');
+        setTimeout(function() {
+          document.querySelector('.splash-screen').style.display = 'none';
+        }, 800);
+      }, 1500);
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+      // 1. 语言设置
+      // 默认设置为英文，除非浏览器语言是非英文且用户未手动选择
+      const browserLang = navigator.language || navigator.userLanguage;
+      const savedLang = localStorage.getItem('language');
+      
+      if (!savedLang) {
+        // 首次访问，设置默认语言为英文
+        localStorage.setItem('language', 'en');
+        document.body.className = 'lang-en';
+      } else {
+        document.body.className = `lang-${savedLang}`;
+      }
+      
+      // 2. 语言切换功能
+      const langButton = document.getElementById('lang-button');
+      const langDropdown = document.getElementById('lang-dropdown');
+      const langOptions = document.querySelectorAll('.lang-option');
+      
+      langButton.addEventListener('click', function() {
+        langDropdown.classList.toggle('show');
+      });
+      
+      langOptions.forEach(option => {
+        option.addEventListener('click', function() {
+          const selectedLang = this.dataset.lang;
+          document.body.className = `lang-${selectedLang}`;
+          localStorage.setItem('language', selectedLang);
+          langDropdown.classList.remove('show');
+        });
+      });
+      
+      // 3. 保存滚动位置
+      const savedScroll = localStorage.getItem('scrollPosition');
+      if (savedScroll) {
+        window.scrollTo(0, parseInt(savedScroll));
+      }
+      
+      window.addEventListener('beforeunload', function() {
+        localStorage.setItem('scrollPosition', window.scrollY);
+      });
+      
+      // 点击页面其他位置关闭语言选择下拉菜单
+      document.addEventListener('click', function(e) {
+        if (!e.target.closest('.language-switcher')) {
+          langDropdown.classList.remove('show');
+        }
+      });
+    });
+  </script>
 
   <header class="bg-image-section" style="--bg-img: url('背景一全家又在礼物店门口.png');">
     <!-- MODIFICATION: Language switcher updated to dropdown -->
@@ -823,8 +971,12 @@
     </div>
     <div class="container">
       <div class="logo-slogan-wrapper">
-        <img src="Sinnkawa_logo.png" alt="Sinnkawa Logo" class="logo-img" onerror="this.onerror=null;this.src='https://placehold.co/240x135/C6E3F9/3D405B?text=SINNKAWA®';">
-        <img src="Sinnkawa_family_pic.png" alt="Sinnkawa Family" class="slogan-image" onerror="this.onerror=null;this.src='https://placehold.co/600x225/C6E3F9/3D405B?text=Sinnkawa+Family';">
+        <div class="image-btn">
+            <img src="Sinnkawa_logo.png" alt="Sinnkawa Logo" class="logo-img" onerror="this.onerror=null;this.src='https://placehold.co/240x135/C6E3F9/3D405B?text=SINNKAWA®';">
+        </div>
+        <div class="image-btn">
+            <img src="Sinnkawa_family_pic.png" alt="Sinnkawa Family" class="slogan-image" onerror="this.onerror=null;this.src='https://placehold.co/600x225/C6E3F9/3D405B?text=Sinnkawa+Family';">
+        </div>
       </div>
 
       <div class="countdown-wrapper">
@@ -1240,51 +1392,103 @@
           chatbotMessages.appendChild(messageDiv);
           chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
       };
-
       const getBotResponse = (userInput) => {
           const lowerInput = userInput.toLowerCase();
           
           const knowledgeBase = {
+              // 产品相关
               '主打 ip': '我们的主打IP是Merlion & Friends，全线独家授权的小狮兄弟系列产品。我们拥有完整的IP商品线，包括毛绒玩具、文创用品、食品等多个类别。',
               'ip': '我们的主打IP是Merlion & Friends，全线独家授权的小狮兄弟系列产品。我们拥有完整的IP商品线，包括毛绒玩具、文创用品、食品等多个类别。',
               'pandan': '斑兰牛油蛋糕整模 S$19.9，单片装 S$2.5。这是我们的招牌新加坡风味甜品，采用优质斑兰叶制作。',
               '蛋糕': '斑兰牛油蛋糕整模 S$19.9，单片装 S$2.5。这是我们的招牌新加坡风味甜品，采用优质斑兰叶制作。',
+              '新品': '我们每月都会推出新品！最新上市的是Merlion & Friends系列限量版盲盒，每盒S$12.9，24盒中会有1只限量闪金版。',
+              
+              // 支付相关
               'grabpay': '我们支持多种支付方式：GrabPay、PayNow、Visa/MasterCard 信用卡、借记卡等。支付过程安全便捷。',
               '支付': '我们支持多种支付方式：GrabPay、PayNow、Visa/MasterCard 信用卡、借记卡等。支付过程安全便捷。',
+              '退款': '如需退款，请提供订单号和退款原因。未拆封商品可在收到后7天内申请退款。',
+              
+              // 配送相关
               '多久送达': '市区范围当日或次日送达，郊区地区1-2个工作日。我们与专业物流公司合作，确保商品安全及时送达。',
               '配送': '市区范围当日或次日送达，郊区地区1-2个工作日。我们与专业物流公司合作，确保商品安全及时送达。',
+              '运费': '订单满S$50免运费，未满S$50收取S$5运费。',
+              
+              // 会员相关
               '积分': '消费 S$1 = 1 积分，累积100积分可抵扣 S$1。积分永久有效，可在下次购物时直接使用。',
               '会员': '消费 S$1 = 1 积分，累积100积分可抵扣 S$1。生日当月享受全场8折优惠，还有专属Merlion生日礼盒赠送。',
               '生日': '生日当月享受全场8折优惠，还有专属Merlion生日礼盒赠送。需要在个人资料中完善生日信息。',
-              '盲盒': '有的！每24盒中会有1只限量闪金版Merlion，是收藏级别的特殊款式，非常受欢迎。',
-              '隐藏款': '有的！每24盒中会有1只限量闪金版Merlion，是收藏级别的特殊款式，非常受欢迎。',
-              '网站很慢': '建议先清除浏览器缓存，或升级到最新版APP。如果问题持续，请联系我们的技术支持团队。',
-              '加载慢': '建议先清除浏览器缓存，或升级到最新版APP。如果问题持续，请联系我们的技术支持团队。',
-              '拉花': '可以的！Merlion主题拉花需要加收S$1服务费。周末期间比较受欢迎，建议提早预订。',
-              '改地址': '登录账户后进入「我的订单」页面，点击「修改配送信息」即可调整地址。注意：只能在订单发货前修改。',
+              
+              // 门店相关
               '旗舰店': 'SINNKAWA® 牛车水旗舰店是我们品牌的主旗舰店，拥有最全的IP系列和独家周边商品。',
               'chinatown': 'Our Chinatown Flagship store is our main hub, featuring the full IP collections and exclusive merchandise.',
               '咖啡': 'SINNKAWA® 咖啡厅位于牛车水旗舰店楼上，是一个温馨的空间，提供季节限定饮品和IP主题装潢。',
               'cafe': 'The SINNKAWA® Café, located upstairs at our Chinatown flagship, is a cozy space with seasonal drinks and IP-themed interiors.',
-              '哈芝巷': '我们在哈芝巷有多家不同主题的店铺！有潮流街头风的22号店、黑白极简风的68号店、互动体验区的43号店，还有艺术生活方式的Soul Art 62号店。',
-              'haji lane': 'We have several themed stores on Haji Lane! There\'s the trendy 22 Haji Lane, the minimalist 68 Haji Lane, the interactive 43 Haji Lane, and the Soul Art lifestyle store at 62 Haji Lane.',
+              '哈芝巷': '我们在哈芝巷有多家不同主题的店铺！有潮流街头风的22号店、黑白極简风的68号店、互动体验区的43号店，还有艺术生活方式的Soul Art 62号店。',
+              'haji lane': 'We have several themed stores on Haji Lane! There's the trendy 22 Haji Lane, the minimalist 68 Haji Lane, the interactive 43 Haji Lane, and the Soul Art lifestyle store at 62 Haji Lane.',
               '营业时间': '我们所有门店的营业时间通常是每天上午11点到晚上9点，但具体时间可能会因节假日调整。',
               'hours': 'All our stores are generally open from 11 AM to 9 PM daily, but hours may vary on public holidays.',
+              
+              // 技术支持
+              '网站很慢': '建议先清除浏览器缓存，或升级到最新版APP。如果问题持续，请联系我们的技术支持团队。',
+              '加载慢': '建议先清除浏览器缓存，或升级到最新版APP。如果问题持续，请联系我们的技术支持团队。',
+              
+              // 其他服务
               '合作': '非常欢迎合作！请通过我们网站上的联系表单，或直接通过WhatsApp联系我们，我们会尽快回复您！',
-              'collaboration': 'We\'d love to collaborate! Please reach out via the contact form on our website or directly through WhatsApp, and we\'ll get back to you soon!',
+              'collaboration': 'We\'d love to collaborate! Please reach out via the contact form on our website or directly through WhatsApp, and we'll get back to you soon!',
               '你好': '你好！有什么可以帮助您的吗？您可以直接问我，或选择下方的菜单选项。',
               'hello': 'Hello! How can I help you? Feel free to ask me a question or choose from the menu options below.',
+              '谢谢': '不客气！很高兴为您服务！如需其他帮助，请随时告诉我。',
+              'thank you': 'You\'re welcome! Happy to help. Let me know if you need anything else.'
           };
 
-          for (const keyword in knowledgeBase) {
-              if (lowerInput.includes(keyword)) {
-                  return knowledgeBase[keyword];
+          // 多关键词匹配
+          const matchedKeywords = Object.keys(knowledgeBase).filter(keyword => 
+              lowerInput.includes(keyword.toLowerCase())
+          );
+
+          if (matchedKeywords.length > 0) {
+              // 优先返回更具体的匹配
+              const exactMatch = matchedKeywords.find(keyword => 
+                  lowerInput === keyword.toLowerCase()
+              );
+              if (exactMatch) {
+                  return knowledgeBase[exactMatch];
               }
+              return knowledgeBase[matchedKeywords[0]];
           }
 
-          return "抱歉，我暂时无法回答这个问题。您可以试试菜单里的选项，或者在联系我们页面给我们留言哦！/ Sorry, I can't answer that question right now. You can try the menu options or leave us a message on the contact page!";
+          // 多语言默认回复
+          if (document.body.classList.contains('lang-cn')) {
+              return "抱歉，我暂时无法回答这个问题。您可以试试菜单里的选项，或者在联系我们页面给我们留言哦！";
+          } else if (document.body.classList.contains('lang-my')) {
+              return "Maaf, saya tidak dapat menjawab soalan itu sekarang. Anda boleh mencuba pilihan menu atau meninggalkan kami mesej di halaman hubungi kami!";
+          }
+          return "Sorry, I can't answer that question right now. You can try the menu options or leave us a message on the contact page!";
       };
 
+      const handleUserInput = () => {
+          const userInput = chatbotInput.value.trim();
+          if (!userInput) return;
+
+          appendMessage(userInput, 'user');
+          chatbotInput.value = '';
+          chatbotMenu.style.display = 'none';
+
+          setTimeout(() => {
+              const botResponse = getBotResponse(userInput);
+              appendMessage(botResponse, 'bot');
+          }, 500);
+      };
+      
+      const handleMenuClick = (question) => {
+          appendMessage(question, 'user');
+          chatbotMenu.style.display = 'none';
+          setTimeout(() => {
+              const botResponse = getBotResponse(question);
+              appendMessage(botResponse, 'bot');
+          }, 500);
+      };
+      
       // 保存和加载聊天记录
       const saveChatHistory = () => {
           const messages = Array.from(chatbotMessages.children).map(el => ({
@@ -1350,20 +1554,12 @@
           chatbotMessages.addEventListener('DOMNodeInserted', saveChatHistory);
       };
 
-      const handleMenuClick = (question) => {
-          appendMessage(question, 'user');
-          chatbotMenu.style.display = 'none';
-          setTimeout(() => {
-              const botResponse = getBotResponse(question);
-              appendMessage(botResponse, 'bot');
-          }, 500);
-      };
-
       // 改进的输入处理
       const enhancedHandleUserInput = () => {
           const userInput = chatbotInput.value.trim();
           if (!userInput) return;
 
+          // 显示正在输入状态
           const typingIndicator = document.createElement('div');
           typingIndicator.className = 'chat-message bot';
           typingIndicator.innerHTML = '<span class="typing-dots"><span>.</span><span>.</span><span>.</span></span>';
@@ -1374,8 +1570,11 @@
           chatbotInput.value = '';
           chatbotMenu.style.display = 'none';
 
+          // 模拟思考时间
           setTimeout(() => {
+              // 移除正在输入状态
               chatbotMessages.removeChild(typingIndicator);
+              
               try {
                   const botResponse = getBotResponse(userInput);
                   appendMessage(botResponse, 'bot');
@@ -1383,7 +1582,7 @@
                   console.error('Chatbot error:', error);
                   appendMessage("抱歉，处理您的请求时出错了。请稍后再试。", 'bot');
               }
-          }, 800 + Math.random() * 700);
+          }, 800 + Math.random() * 700); // 随机延迟0.8-1.5秒
       };
 
       chatbotSendBtn.addEventListener('click', enhancedHandleUserInput);
@@ -1395,6 +1594,7 @@
       
       openChatbotBtn.addEventListener('click', () => {
           initializeChat();
+          // 添加样式到head
           const style = document.createElement('style');
           style.textContent = `
               .typing-dots {
