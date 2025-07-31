@@ -1,1434 +1,1023 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SINNKAWA®- Singapore Meets Cuteness </title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href='https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;700&family=Noto+Sans+SC:wght@400;500;700&family=Fredoka:wght@400;500;700&family=Indie+Flower&family=Orbitron:wght@700&display=swap' rel='stylesheet'>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  <link rel="icon" href="网站缩略图.png">
-  <style>
-    :root {
-      /* Updated color palette */
-      --brand-primary: #c6e3ff;
-      --primary1: #b3d8ff;
-      --primary2: #dff1ff;
-      --accent1: #4a90e2; /* Bright blue accent */
-      --accent2: #6bb7ff;
-      --accent-orange: #ff9a8b;
-      --accent-orange-dark: #ff6a88;
-      --text1: #3D405B;
-      --text2: #5a7d9a;
-      --gray1: #f8f9fa;
-      --gray2: #e9ecef;
-      --success: #28a745;
-      --danger: #dc3545;
-      --shadow: 0 8px 25px rgba(0,0,0,0.06);
-      --shadow-hover: 0 12px 30px rgba(0,0,0,0.1);
-      --border-radius-lg: 35px;
-      --border-radius-md: 20px;
-      --border-radius-sm: 12px;
-      --gradient-bg: linear-gradient(135deg, var(--brand-primary) 0%, #eaf4ff 100%);
-      --gradient-btn: linear-gradient(135deg, var(--primary1) 0%, var(--primary2) 100%);
-      --gradient-accent: linear-gradient(135deg, var(--accent1) 0%, var(--accent2) 100%);
-      --gradient-orange: linear-gradient(135deg, var(--accent-orange) 0%, var(--accent-orange-dark) 100%);
-      --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SINNKAWA® - Singapore</title>
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: 'Fredoka', 'Noto Sans SC', Arial, sans-serif;
-      background: var(--gray1);
-      color: var(--text1);
-      line-height: 1.7;
-      overflow-x: hidden;
-      position: relative;
-    }
-    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
-    section {
-      padding: 60px 0;
-      position: relative;
-      border-bottom: 1px dashed var(--gray2);
-    }
-    section:last-of-type { border-bottom: none; }
-    img { max-width: 100%; height: auto; display: block; }
-    
-    .background-icons {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: -1;
-        overflow: hidden;
-        pointer-events: none;
-    }
-    .bg-icon {
-        position: absolute;
-        display: block;
-        opacity: 0.08;
-        animation: float-bg-icon 60s ease-in-out infinite;
-    }
-    .bg-icon img {
-        width: 100%;
-        height: 100%;
-    }
-    @keyframes float-bg-icon {
-        0% { transform: translateY(0px) rotate(0deg); }
-        25% { transform: translateY(-20px) translateX(20px) rotate(5deg); }
-        50% { transform: translateY(0px) translateX(0) rotate(0deg); }
-        75% { transform: translateY(20px) translateX(-20px) rotate(-5deg); }
-        100% { transform: translateY(0px) rotate(0deg); }
-    }
+    <!-- SEO and Meta Tags -->
+    <meta name="description" content="Explore Singapore with SINNKAWA®, the adorable blue friend! Discover our stores, themed cafe, exclusive merchandise, and the vibrant culture of the Lion City.">
+    <meta name="keywords" content="SINNKAWA, Singapore, travel, gifts, character, IP, Chinatown, Haji Lane, cafe">
+    <meta name="author" content="SINNKAWA®">
 
-    ::-webkit-scrollbar { width: 8px; }
-    ::-webkit-scrollbar-track { background: var(--gray2); }
-    ::-webkit-scrollbar-thumb { background: var(--primary1); border-radius: 10px; }
-    ::-webkit-scrollbar-thumb:hover { background: var(--accent1); }
+    <!-- Favicon -->
+    <link rel="icon" href="网站缩略图.png" type="image/png">
 
-    /* Header & Countdown */
-    header {
-      background: var(--gradient-bg);
-      box-shadow: var(--shadow);
-      border-radius: 0 0 var(--border-radius-lg) var(--border-radius-lg);
-      padding: 60px 0;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-      z-index: 1;
-    }
-    header.bg-image-section::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%;
-      height: 100%;
-      background-image: var(--bg-img);
-      background-size: contain;
-      background-repeat: no-repeat;
-      background-position: top center;
-      opacity: 0.1;
-      pointer-events: none;
-      z-index: -1;
-    }
-    header .container {
-      position: relative;
-      z-index: 2;
-    }
-    
-    .language-switcher {
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        z-index: 1001;
-    }
-    .lang-button {
-        background: rgba(255,255,255,0.5);
-        border: 1px solid rgba(255,255,255,0.8);
-        border-radius: 50%;
-        width: 50px;
-        height: 50px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        transition: var(--transition);
-        font-size: 1.5rem;
-        color: var(--text2);
-    }
-    .lang-button:hover {
-        background: white;
-        box-shadow: var(--shadow);
-    }
-    .lang-dropdown {
-        position: absolute;
-        top: 60px;
-        right: 0;
-        background: white;
-        border-radius: var(--border-radius-sm);
-        box-shadow: var(--shadow-hover);
-        overflow: hidden;
-        display: none;
-        flex-direction: column;
-    }
-    .lang-dropdown.show {
-        display: flex;
-    }
-    .lang-option {
-        padding: 10px 20px;
-        cursor: pointer;
-        font-weight: 500;
-        color: var(--text1);
-        transition: background-color 0.2s;
-    }
-    .lang-option:hover {
-        background-color: var(--gray2);
-    }
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=Poppins:wght@300;400;500;700&display=swap">
 
-    .logo-slogan-wrapper { display: flex; flex-direction: column; align-items: center; gap: 40px; margin-bottom: 50px; }
-    .logo-img { width: 240px; transition: transform 0.4s ease; }
-    .logo-img:hover { transform: rotate(5deg) scale(1.05); }
-    .slogan-image {
-      width: 100%;
-      max-width: 600px;
-      border-radius: var(--border-radius-md);
-      margin: 0 auto 20px;
-      display: block;
-    }
-    .countdown-wrapper {
-      padding: 25px;
-      background: rgba(255, 255, 255, 0.2);
-      border-radius: var(--border-radius-md);
-      backdrop-filter: blur(10px);
-      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-      max-width: 600px;
-      margin: 0 auto;
-      border: 1px solid rgba(255, 255, 255, 0.4);
-    }
-    .countdown-description {
-      text-align: center;
-      font-size: 1.2rem;
-      color: var(--text2);
-      margin-bottom: 20px;
-    }
-    .countdown-title {
-      font-size: 1.3rem;
-      font-weight: 700;
-      color: var(--accent1);
-      margin-bottom: 20px;
-    }
-    
-    #countdown { 
-      display: flex; 
-      justify-content: center; 
-      gap: 20px;
-      margin-bottom: 25px; 
-    }
-    .time-block {
-      text-align: center;
-    }
-    .time-block .number-container {
-      background: linear-gradient(135deg, #e0e0e0, #ffffff);
-      border: 1px solid rgba(255, 255, 255, 0.8);
-      border-radius: var(--border-radius-sm);
-      min-width: 90px;
-      padding: 10px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      position: relative;
-      overflow: hidden;
-      animation: bling-effect 1.5s infinite;
-    }
-    @keyframes bling-effect {
-        0%, 100% { text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px var(--accent2); }
-        50% { text-shadow: 0 0 10px #fff, 0 0 20px var(--accent2), 0 0 30px var(--accent2); }
-    }
-    .time-block span.number {
-      display: block;
-      font-family: 'Orbitron', sans-serif;
-      font-size: 2.8rem;
-      font-weight: 700;
-      color: var(--text1);
-      transition: transform 0.3s ease;
-    }
-    .time-block.tick span.number {
-        animation: heartbeat 0.4s ease;
-    }
-    @keyframes heartbeat {
-        0%, 100% { transform: scale(1); }
-        50% { transform: scale(1.1); }
-    }
-    .time-block .label {
-      font-family: 'Fredoka', 'Noto Sans SC', sans-serif;
-      font-size: 0.8rem;
-      color: var(--text2);
-      margin-top: 10px;
-      font-weight: 500;
-    }
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
 
-    .feature-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 15px;
-        margin-top: 25px;
-        text-align: center;
-    }
-    .feature-card {
-        background: rgba(255, 255, 255, 0.2);
-        padding: 20px 15px;
-        border-radius: var(--border-radius-md);
-        border: 1px solid rgba(255, 255, 255, 0.3);
-        transition: var(--transition);
-    }
-    .feature-card:hover {
-        transform: translateY(-5px);
-        background: rgba(255, 255, 255, 0.4);
-    }
-    .feature-card .icon {
-        font-size: 2rem;
-        color: var(--accent1);
-        margin-bottom: 10px;
-    }
-    .feature-card h3 {
-        font-size: 1.1rem;
-        color: var(--accent1);
-        margin-bottom: 8px;
-        font-weight: 700;
-    }
-    .feature-card p {
-        font-size: 0.9rem;
-        color: var(--text2);
-        font-weight: 500;
-    }
-
-    /* General Section Styling */
-    .section-title {
-      font-size: 2.5rem; font-weight: 700; color: var(--text2);
-      margin-bottom: 12px; text-align: center; position: relative;
-      display: inline-block; left: 50%; transform: translateX(-50%);
-    }
-    .section-title::after {
-      content: ""; position: absolute; bottom: -8px; left: 50%;
-      transform: translateX(-50%); width: 70px; height: 4px;
-      background: var(--accent1); border-radius: 3px;
-    }
-    .section-subtitle {
-      font-size: 1.1rem; color: var(--text1); margin-bottom: 40px;
-      font-weight: 400; max-width: 600px; margin-left: auto;
-      margin-right: auto; text-align: center;
-    }
-
-    .section-bg {
-      position: relative;
-      z-index: 1;
-    }
-    .bg-image-section::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%;
-      height: 100%;
-      background-image: var(--bg-img);
-      background-size: contain;
-      background-repeat: no-repeat;
-      background-position: top center;
-      opacity: 0.1;
-      pointer-events: none;
-      z-index: -1;
-    }
-
-    /* Social Media & Buttons */
-    .social-btns { display: flex; justify-content: center; flex-wrap: wrap; gap: 20px; align-items: center; }
-    .social-btn {
-      display: flex; align-items: center; justify-content: center; gap: 12px; font-size: 1.1rem;
-      font-weight: 500; color: #fff; border-radius: var(--border-radius-md);
-      box-shadow: var(--shadow); padding: 14px 28px; text-decoration: none;
-      transition: var(--transition), background-position 0.5s;
-      border: none; background-size: 200% auto;
-      position: relative;
-      overflow: hidden;
-    }
-    .social-btn.xhs { background: linear-gradient(135deg, #FF2442 0%, #FF607E 100%); }
-    .social-btn.ig { background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045); }
-    .social-btn.tt { background: linear-gradient(135deg, #222 0%, #555 100%); }
-    .social-btn.wa { background: #25D366; }
-
-    /* Company Section Styling */
-    .company-content {
-      background: #fff;
-      padding: 30px;
-      border-radius: var(--border-radius-md);
-      box-shadow: var(--shadow);
-      max-width: 600px;
-      margin: 0 auto;
-      text-align: center;
-    }
-    .about-intro {
-        font-size: 1.3rem;
-        font-weight: 700;
-        color: var(--accent1);
-        margin-bottom: 20px;
-        line-height: 1.4;
-    }
-    .company-content p {
-        margin-bottom: 15px;
-    }
-
-    /* Store Section Styles */
-    .store-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 24px;
-    }
-    .store-card {
-      background: #ffffff;
-      border-radius: 16px;
-      padding: 24px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      transition: var(--transition);
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-      text-decoration: none;
-    }
-    .store-card:hover {
-        transform: translateY(-8px);
-        box-shadow: var(--shadow-hover);
-    }
-    .store-image {
-      width: 100%;
-      height: 220px;
-      object-fit: cover;
-      border-radius: var(--border-radius-md);
-      margin-bottom: 12px;
-    }
-    .store-title {
-      font-family: 'Baloo 2', 'Noto Sans SC', sans-serif;
-      font-size: 1.3rem;
-      font-weight: 700;
-      margin-bottom: 16px;
-      color: var(--text1);
-      transition: var(--transition);
-      position: relative;
-      background: linear-gradient(135deg, #fdfbfb, #ebedee);
-      padding: 8px 15px;
-      border-radius: 30px;
-      text-shadow: 1px 1px 0 #fff, -1px -1px 0 #b3b3b3;
-      box-shadow: inset 0 2px 5px rgba(0,0,0,0.1), 0 2px 5px rgba(255,255,255,0.5);
-    }
-    .store-card:hover .store-title {
-        color: var(--accent1);
-        text-shadow: 1px 1px 0 #fff, -1px -1px 0 #a4c6e9;
-    }
-    .store-desc {
-      font-size: 0.95rem;
-      line-height: 1.6;
-      color: #4a4a4a;
-      flex-grow: 1;
-    }
-    
-    /* Advanced Contact Form Styles */
-    .contact-section {
-        padding: 60px 20px;
-    }
-    #contact-form {
-        max-width: 700px;
-        margin: 0 auto;
-        background: #fff;
-        padding: 40px;
-        border-radius: var(--border-radius-md);
-        box-shadow: var(--shadow);
-        position: relative;
-        overflow: hidden;
-    }
-    .form-group {
-        margin-bottom: 20px;
-        position: relative;
-    }
-    .form-group label {
-        display: block;
-        font-weight: 500;
-        margin-bottom: 8px;
-        color: var(--text2);
-    }
-    .form-group input,
-    .form-group textarea {
-        width: 100%;
-        padding: 15px;
-        border: 1px solid var(--gray2);
-        border-radius: var(--border-radius-sm);
-        font-family: 'Fredoka', sans-serif;
-        font-size: 1rem;
-        color: var(--text1);
-        transition: border-color 0.3s, box-shadow 0.3s;
-    }
-    .form-group input:focus,
-    .form-group textarea:focus {
-        outline: none;
-        border-color: var(--accent1);
-        box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2);
-    }
-    .form-group textarea {
-        resize: vertical;
-        min-height: 120px;
-    }
-    .form-submit-btn {
-        width: 100%;
-        padding: 16px;
-        font-size: 1.2rem;
-        font-weight: 700;
-        color: #fff;
-        background: var(--gradient-accent);
-        border: none;
-        border-radius: var(--border-radius-sm);
-        cursor: pointer;
-        transition: var(--transition);
-        box-shadow: 0 4px 15px rgba(74, 144, 226, 0.3);
-        position: relative;
-        overflow: hidden;
-    }
-    .form-submit-btn:disabled {
-        background: var(--gray2);
-        cursor: not-allowed;
-        box-shadow: none;
-        transform: none;
-    }
-    .hidden-field {
-        opacity: 0;
-        position: absolute;
-        top: 0;
-        left: 0;
-        height: 0;
-        width: 0;
-        z-index: -1;
-    }
-    #form-status {
-        margin-top: 20px;
-        padding: 15px;
-        border-radius: var(--border-radius-sm);
-        text-align: center;
-        font-weight: 500;
-        display: none;
-        opacity: 0;
-        transform: translateY(10px);
-        transition: opacity 0.5s, transform 0.5s;
-    }
-    #form-status.visible {
-        display: block;
-        opacity: 1;
-        transform: translateY(0);
-    }
-    #form-status.success {
-        background-color: #d4edda;
-        color: #155724;
-        border: 1px solid #c3e6cb;
-    }
-    #form-status.error {
-        background-color: #f8d7da;
-        color: #721c24;
-        border: 1px solid #f5c6cb;
-    }
-
-    /* Footer */
-    footer {
-      background: linear-gradient(135deg, #e0f2fe 0%, #c6e3f9 100%);
-      text-align: center; padding: 60px 0 30px 0;
-      border-radius: var(--border-radius-lg) var(--border-radius-lg) 0 0;
-      margin-top: 60px; position: relative;
-    }
-    .footer-mascot {
-       max-width: 240px; /* Control size */
-       height: auto;
-       margin: 0 auto 30px auto;
-     }
-    .footer-links { display: flex; gap: 24px; justify-content: center; margin-bottom: 20px; flex-wrap: wrap; }
-    .footer-link {
-      color: var(--accent1);
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      transition: var(--transition);
-      font-weight: 500;
-    }
-    .footer-link:hover {
-      color: var(--accent2);
-      transform: scale(1.1);
-    }
-    .copyright { color: var(--text2); font-size: 0.9rem; margin-top: 20px; opacity: 0.8; }
-    .legal-notice {
-        color: var(--text2);
-        font-size: 0.8rem;
-        margin-top: 20px;
-        opacity: 0.7;
-        max-width: 800px;
-        padding: 0 15px;
-        margin-left: auto;
-        margin-right: auto;
-        line-height: 1.5;
-    }
-
-    /* Floating & Modal */
-    .floating-buttons { position: fixed; bottom: 30px; right: 30px; display: flex; flex-direction: column-reverse; gap: 15px; z-index: 99; align-items: flex-end;}
-    .fab {
-      width: 50px; height: 50px; color: white; border-radius: 50%; display: flex;
-      align-items: center; justify-content: center; font-size: 1.5rem;
-      box-shadow: var(--shadow); cursor: pointer; transition: var(--transition), background-position 0.5s; text-decoration: none;
-      background-size: 200% auto;
-      position: relative;
-      overflow: hidden;
-    }
-    .fab-whatsapp { background: #25D366; }
-    .fab-top { background: var(--gradient-accent); opacity: 0; visibility: hidden; transform: translateY(10px); }
-    .fab-top.visible { opacity: 1; visibility: visible; transform: translateY(0); }
-
-    /* Animations */
-    @keyframes shake {
-      0%, 100% { transform: translateX(0); }
-      20%, 60% { transform: translateX(-3px); }
-      40%, 80% { transform: translateX(3px); }
-    }
-    
-    /* MODIFICATION: Lightning/Shine effect for buttons */
-    .social-btn::before, .store-card::before, .form-submit-btn::before, .fab::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 50%;
-        height: 100%;
-        background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0) 100%);
-        transform: skewX(-25deg);
-        transition: left 0.7s ease;
-    }
-    .social-btn:hover::before, .store-card:hover::before, .form-submit-btn:hover::before, .fab:hover::before {
-        left: 150%;
-    }
-
-    /* Language Toggle Logic */
-    .zh, .ms { display: none; }
-    body.lang-cn .en, body.lang-cn .ms { display: none; }
-    body.lang-cn .zh { display: inline; }
-    body.lang-my .en, body.lang-my .zh { display: none; }
-    body.lang-my .ms { display: inline; }
-
-
-    .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
-    .fade-in.visible { opacity: 1; transform: translateY(0); }
-
-    /* Chatbot Styles */
-    #chatbot-widget-container {
-        position: relative;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-    }
-    .chatbot-label {
-        background: rgba(255, 255, 255, 0.8);
-        padding: 5px 12px;
-        border-radius: 15px;
-        font-size: 0.9rem;
-        font-weight: 500;
-        color: var(--text1);
-        box-shadow: var(--shadow);
-    }
-    .chatbot-bubble {
-        position: absolute;
-        bottom: 60px;
-        right: 0;
-        background: #fff;
-        padding: 8px 12px;
-        border-radius: var(--border-radius-sm);
-        box-shadow: var(--shadow);
-        font-size: 0.85rem;
-        width: max-content;
-        opacity: 0;
-        visibility: hidden;
-        transform: translateY(10px);
-        animation: bubble-fade 8s 2s infinite;
-    }
-    .chatbot-bubble::after {
-        content: '';
-        position: absolute;
-        bottom: -5px;
-        right: 15px;
-        width: 0;
-        height: 0;
-        border-left: 5px solid transparent;
-        border-right: 5px solid transparent;
-        border-top: 5px solid #fff;
-    }
-    @keyframes bubble-fade {
-        0%, 100% { opacity: 0; visibility: hidden; transform: translateY(10px); }
-        10%, 60% { opacity: 1; visibility: visible; transform: translateY(0); }
-        70% { opacity: 0; visibility: hidden; transform: translateY(10px); }
-    }
-
-    .fab-chatbot {
-        background: #fff;
-        padding: 5px;
-        overflow: hidden;
-        position: relative; /* For the lightning effect */
-    }
-    .fab-chatbot img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        border-radius: 50%;
-    }
-    #chatbot-container {
-        position: fixed;
-        bottom: 95px;
-        right: 30px;
-        width: 350px;
-        max-width: calc(100% - 40px);
-        height: 500px;
-        max-height: calc(100% - 110px);
-        background: #fff;
-        border-radius: var(--border-radius-md);
-        box-shadow: var(--shadow-hover);
-        display: flex;
-        flex-direction: column;
-        overflow: hidden;
-        z-index: 100;
-        opacity: 0;
-        transform: translateY(20px) scale(0.95);
-        transition: transform 0.3s ease, opacity 0.3s ease;
-        visibility: hidden;
-    }
-    #chatbot-container.visible {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-        visibility: visible;
-    }
-    .chatbot-header {
-        background: var(--gradient-accent);
-        color: white;
-        padding: 15px;
-        font-weight: 700;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        font-size: 1.1rem;
-    }
-    .chatbot-header .close-btn {
-        background: none;
-        border: none;
-        color: white;
-        font-size: 1.4rem;
-        cursor: pointer;
-    }
-    #chatbot-messages {
-        flex-grow: 1;
-        padding: 15px;
-        overflow-y: auto;
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-    }
-    .chat-message {
-        padding: 10px 15px;
-        border-radius: var(--border-radius-sm);
-        max-width: 80%;
-        line-height: 1.5;
-    }
-    .chat-message.bot {
-        background: var(--gray2);
-        color: var(--text1);
-        align-self: flex-start;
-        border-bottom-left-radius: 4px;
-    }
-    .chat-message.user {
-        background: var(--accent1);
-        color: white;
-        align-self: flex-end;
-        border-bottom-right-radius: 4px;
-    }
-    .chatbot-menu {
-        padding: 10px 15px 0;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px;
-    }
-    .menu-option {
-        background: none;
-        border: 1px solid var(--accent1);
-        color: var(--accent1);
-        border-radius: 20px;
-        padding: 5px 12px;
-        font-size: 0.8rem;
-        cursor: pointer;
-        transition: var(--transition);
-    }
-    .menu-option:hover {
-        background: var(--accent1);
-        color: white;
-    }
-    .chatbot-input-container {
-        border-top: 1px solid var(--gray2);
-        display: flex;
-        padding: 10px;
-    }
-    #chatbot-input {
-        flex-grow: 1;
-        border: none;
-        padding: 10px;
-        font-family: inherit;
-        font-size: 0.95rem;
-        outline: none;
-    }
-    #chatbot-send {
-        background: none;
-        border: none;
-        color: var(--accent1);
-        font-size: 1.4rem;
-        cursor: pointer;
-        padding: 0 10px;
-    }
-
-    @media (max-width: 767px) {
-      section { padding: 40px 0; }
-      .container { padding: 0 16px; }
-      .logo-img { width: 180px; }
-      .countdown-title { font-size: 1.1rem; }
-      .countdown-description { font-size: 1.1rem; }
-      .slogan-image { max-width: 100%; }
-      #countdown { gap: 10px; }
-      .time-block { min-width: 60px; padding: 10px 8px; }
-      .time-block span.number { font-size: 1.8rem; }
-      .time-block .label { font-size: 0.7rem; }
-      .section-title { font-size: 2rem; }
-      .social-btn { padding: 12px 20px; font-size: 1rem; }
-      .fab { width: 45px; height: 45px; font-size: 1.3rem; }
-      .feature-grid {
-        grid-template-columns: 1fr;
-        gap: 10px;
-      }
-      .feature-card {
-        padding: 15px;
-      }
-      #contact-form {
-        padding: 25px;
-      }
-      #chatbot-container {
-        bottom: 85px;
-        right: 15px;
-      }
-      .chatbot-label, .chatbot-bubble {
-        display: none;
-      }
-    }
-  </style>
-</head>
-<body class="lang-cn"> 
-  <div class="background-icons" id="background-icons"></div>
-
-  <header class="bg-image-section" style="--bg-img: url('背景一全家又在礼物店门口.png');">
-    <!-- MODIFICATION: Language switcher updated to dropdown -->
-    <div class="language-switcher">
-        <div class="lang-button" id="lang-button">
-            <i class="fas fa-globe"></i>
-        </div>
-        <div class="lang-dropdown" id="lang-dropdown">
-            <div class="lang-option" data-lang="en">English</div>
-            <div class="lang-option" data-lang="cn">中文</div>
-            <div class="lang-option" data-lang="my">Bahasa Melayu</div>
-        </div>
-    </div>
-    <div class="container">
-      <div class="logo-slogan-wrapper">
-        <img src="Sinnkawa_logo.png" alt="Sinnkawa Logo" class="logo-img" onerror="this.onerror=null;this.src='https://placehold.co/240x135/C6E3F9/3D405B?text=SINNKAWA®';">
-        <img src="Sinnkawa_family_pic.png" alt="Sinnkawa Family" class="slogan-image" onerror="this.onerror=null;this.src='https://placehold.co/600x225/C6E3F9/3D405B?text=Sinnkawa+Family';">
-      </div>
-
-      <div class="countdown-wrapper">
-        <div class="countdown-description">
-            <p>
-                <span class="zh"><strong>SINNKAWA®官网很快就可以与大家见面啦 跟我们一起倒数上线～</strong>🎈</span>
-                <span class="en">✨ <strong>Official Website Launching Soon! Join us for the countdown～</strong>🎈</span>
-                <span class="ms">✨ <strong>Laman Web Rasmi Akan Dilancarkan! Sertai kami untuk kira detik～</strong>🎈</span>
-            </p>
-        </div>
-        <div id="countdown">
-            <div class="time-block">
-                <div class="number-container"><span class="number" id="days">00</span></div>
-                <span class="label en">Days</span><span class="label zh">天</span><span class="label ms">Hari</span>
-            </div>
-            <div class="time-block">
-                <div class="number-container"><span class="number" id="hours">00</span></div>
-                <span class="label en">Hours</span><span class="label zh">小时</span><span class="label ms">Jam</span>
-            </div>
-            <div class="time-block">
-                <div class="number-container"><span class="number" id="minutes">00</span></div>
-                <span class="label en">Mins</span><span class="label zh">分钟</span><span class="label ms">Minit</span>
-            </div>
-            <div class="time-block">
-                <div class="number-container"><span class="number" id="seconds">00</span></div>
-                <span class="label en">Secs</span><span class="label zh">秒</span><span class="label ms">Saat</span>
-            </div>
-        </div>
-
-        <div class="feature-grid">
-            <div class="feature-card">
-                <div class="icon"><i class="fas fa-shopping-bag"></i></div>
-                <h3><span class="en">Convenience</span><span class="zh">便利</span><span class="ms">Kemudahan</span></h3>
-                <p><span class="en">Order online, pick up in-store</span><span class="zh">线上订购，门店自提</span><span class="ms">Pesan dalam talian, ambil di kedai</span></p>
-            </div>
-            <div class="feature-card">
-                <div class="icon"><i class="fas fa-star"></i></div>
-                <h3><span class="en">Exclusive Offers</span><span class="zh">线上独家优惠</span><span class="ms">Tawaran Eksklusif</span></h3>
-                <p><span class="en">Massive online exclusive discounts are coming!</span><span class="zh">海量线上专属折扣来袭！</span><span class="ms">Diskaun eksklusif dalam talian akan datang!</span></p>
-            </div>
-            <div class="feature-card">
-                <div class="icon"><i class="fas fa-truck"></i></div>
-                <h3><span class="en">Worry-Free Delivery</span><span class="zh">配送无忧</span><span class="ms">Penghantaran Tanpa Risau</span></h3>
-                <p><span class="en">Islandwide home delivery</span><span class="zh">全岛配送，直送到家</span><span class="ms">Penghantaran ke seluruh pulau</span></p>
-            </div>
-        </div>
-      </div>
-    </div>
-  </header>
-
-  <main>
-    <section class="social-section fade-in section-bg bg-image-section" style="--bg-img: url('背景一全家又在礼物店门口.png');">
-      <div class="container">
-        <h2 class="section-title"><span class="en">Find Us On</span><span class="zh">关注我们</span><span class="ms">Ikuti Kami</span></h2>
-        <p class="section-subtitle"><span class="en">Follow our journey and get the latest updates!</span><span class="zh">关注我们的旅程，获取最新动态！</span><span class="ms">Ikuti perjalanan kami dan dapatkan maklumat terkini!</span></p>
-        <div class="social-btns">
-          <a class="social-btn xhs" href="https://www.xiaohongshu.com/user/profile/664f08440000000003030e90?xsec_token=YBRqAoXrpd8BnbO2cGTwZHw24jB3u5iigY3BzJh94q3Ms=&xsec_source=app_share&xhsshare=CopyLink&appuid=5a8ded9f4eacab3148139220&apptime=1753039735&share_id=c2b6eba803514ef8b0dbe61670f159f9" target="_blank"><span class="en">RED</span><span class="zh">小红书</span><span class="ms">RED</span></a>
-          <a class="social-btn xhs" href="http://xhslink.com/m/R8537Wa0uF" target="_blank" title="精选好物抢先得！"><span class="en">RED Mall</span><span class="zh">小红书商城</span><span class="ms">RED Mall</span></a>
-          <a class="social-btn ig" href="https://www.instagram.com/sinnkawa_official?igsh=c2l2Njhqc3FmMGc4" target="_blank"><span>Instagram</span></a>
-          <a class="social-btn tt" href="https://www.tiktok.com/@sinnkawasingapore" target="_blank"><span>TikTok</span></a>
-          <a class="social-btn wa" href="https://wa.me/6597759906" target="_blank"><span>WhatsApp</span></a>
-        </div>
-      </div>
-    </section>
-
-    <section class="store-section section-bg bg-image-section" style="--bg-img: url('背景三全家在新加坡.png');">
-      <div class="container">
-        <h2 class="section-title">
-            <span class="en">SINNKAWA® Stores & Café in town</span>
-            <span class="zh">遍布市中心的SINNKAWA®门店以及咖啡厅</span>
-            <span class="ms">Kedai & Kafe SINNKAWA® di Bandar</span>
-        </h2>
-        <p class="section-subtitle">
-            <span class="en">Discover our unique locations in Singapore's most vibrant districts.</span>
-            <span class="zh">探索我们在新加坡最具活力的地区设立的每家独特店铺。</span>
-            <span class="ms">Terokai lokasi unik kami di daerah paling meriah di Singapura.</span>
-        </p>
-        <div class="store-grid">
-          <a href="https://maps.app.goo.gl/AuDRqswjxYYgBVFg8" target="_blank" class="store-card">
-            <img src="Sinnkawa_Gift_Store_Chinatown.png" alt="Chinatown Flagship" class="store-image">
-            <h3 class="store-title"><span class="en">SINNKAWA® Flagship@Chinatown</span><span class="zh">SINNKAWA® 牛车水旗舰店</span><span class="ms">SINNKAWA® Flagship@Chinatown</span></h3>
-            <p class="store-desc"><span class="en">Main flagship store featuring full IP collections and exclusive merchandise.</span><span class="zh">品牌主旗舰店，呈现全系列IP和独家周边。</span><span class="ms">Kedai utama yang menampilkan koleksi IP penuh dan barangan eksklusif.</span></p>
-          </a>
-
-          <a href="https://maps.app.goo.gl/AuDRqswjxYYgBVFg8" target="_blank" class="store-card">
-            <img src="Sinnkawa_THEME_Cafe_Chinatown1.png" alt="Chinatown Café" class="store-image">
-            <h3 class="store-title"><span class="en">SINNKAWA® Café@Chinatown</span><span class="zh">SINNKAWA® 咖啡厅@牛车水</span><span class="ms">SINNKAWA® Kafe@Chinatown</span></h3>
-            <p class="store-desc"><span class="en">Cozy upstairs café with seasonal drinks and IP-themed interiors.</span><span class="zh">位于楼上的温馨咖啡空间，提供季节限定饮品及IP主题装潢。</span><span class="ms">Kafe selesa di tingkat atas dengan minuman bermusim dan hiasan dalaman bertema IP.</span></p>
-          </a>
-
-          <a href="https://maps.app.goo.gl/NgZPfmMp2egFZhAQ7" target="_blank" class="store-card">
-            <img src="Sinnkawa_Gift_Store_22_Haji_Lane.png" alt="22 Haji Lane" class="store-image">
-            <h3 class="store-title"><span class="en">SINNKAWA®@22 Haji Lane</span><span class="zh">SINNKAWA®@22 哈芝巷</span><span class="ms">SINNKAWA®@22 Haji Lane</span></h3>
-            <p class="store-desc"><span class="en">Trendy street-style gift shop with graffiti wall and youth-focused collectibles.</span><span class="zh">潮流街头风礼品店，拥有涂鸦墙和面向年轻人的收藏品。</span><span class="ms">Kedai cenderamata gaya jalanan yang bergaya dengan dinding grafiti dan koleksi berfokuskan belia.</span></p>
-          </a>
-
-          <a href="https://maps.app.goo.gl/cPchyEaSGGsMjbg99" target="_blank" class="store-card">
-            <img src="Sinnkawa_Gift_Store_68_BW_Theme..png" alt="68 Haji Lane" class="store-image">
-            <h3 class="store-title"><span class="en">SINNKAWA®@68 Haji Lane</span><span class="zh">SINNKAWA®@68 哈芝巷</span><span class="ms">SINNKAWA®@68 Haji Lane</span></h3>
-            <p class="store-desc"><span class="en">Minimalist black-and-white concept store featuring curated premium items.</span><span class="zh">黑白极简概念店，精选优质商品。</span><span class="ms">Kedai konsep hitam-putih minimalis yang menampilkan barangan premium terpilih.</span></p>
-          </a>
-
-          <a href="https://maps.app.goo.gl/4CJjL2YQxG5aYm2u6" target="_blank" class="store-card">
-            <img src="Sinnkawa_43_Haji_Lane_Megastore_Experience_Zone..png" alt="43 Haji Lane" class="store-image">
-            <h3 class="store-title"><span class="en">SINNKAWA®@43 Haji Lane</span><span class="zh">SINNKAWA®@43 哈芝巷</span><span class="ms">SINNKAWA®@43 Haji Lane</span></h3>
-            <p class="store-desc"><span class="en">Interactive experience zone with large format displays and blue-themed design.</span><span class="zh">互动体验区，配备大幅展示和蓝色主题设计。</span><span class="ms">Zon pengalaman interaktif dengan paparan format besar dan reka bentuk bertema biru.</span></p>
-          </a>
-
-          <a href="https://maps.app.goo.gl/QHbdCKU81UJwMuX27" target="_blank" class="store-card">
-            <img src="Soul_Art_Art_IP_62_Haji.png" alt="Soul Art 62 Haji Lane" class="store-image">
-            <h3 class="store-title"><span class="en">Soul Art@62 Haji Lane</span><span class="zh">Soul Art@62 哈芝巷</span><span class="ms">Soul Art@62 Haji Lane</span></h3>
-            <p class="store-desc"><span class="en">Art & lifestyle concept store showcasing original IP artwork and creative merch.</span><span class="zh">艺术与生活方式概念店，展出原创IP艺术及创意周边。</span><span class="ms">Kedai konsep seni & gaya hidup yang mempamerkan karya seni IP asli dan barangan kreatif.</span></p>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <section class="company-section fade-in section-bg bg-image-section" style="--bg-img: url('背景二全家在礼物店.png');">
-      <div class="container">
-        <h2 class="section-title"><span class="en">About Us</span><span class="zh">关于我们</span><span class="ms">Tentang Kami</span></h2>
-        <div class="company-content">
-              <p class="about-intro">
-                  <span class="en">SINNKAWA®— where Singapore Meets Cuteness!</span>
-                  <span class="zh">SINNKAWA®— 新加坡遇见可爱的地方！</span>
-                  <span class="ms">SINNKAWA®— di mana Singapura Bertemu Kecomelan!</span>
-              </p>
-              <p>
-                  <span class="en">Born in the heart of Singapore, SINNKAWA® reimagines local culture through a playful lens. Our original characters – from the crown-wearing Merlion to the bubbly Otata – each tell a story inspired by the city’s spirit.</span>
-                  <span class="zh">SINNKAWA®诞生于新加坡，以充满玩味的视角重新诠释本地文化。我们的原创角色——头戴皇冠的鱼尾狮和活力四射的Otata——都讲述着这座城市的精神故事。</span>
-                  <span class="ms">Dilahirkan di tengah-tengah Singapura, SINNKAWA® membayangkan semula budaya tempatan melalui lensa yang suka bermain. Watak-watak asli kami – daripada Merlion yang memakai mahkota kepada Otata yang ceria – masing-masing menceritakan kisah yang diilhamkan oleh semangat bandar.</span>
-              </p>
-              <p>
-                  <span class="en">More than a brand, SINNKAWA® is a feel-good lifestyle infused with charm and imagination. We don’t just make souvenirs; we bring smiles and spark joy through every design, story, and product.</span>
-                  <span class="zh">SINNKAWA®不仅仅是一个品牌，更是一种注入魅力与想象力的美好生活方式。我们不只制作纪念品，更希望通过每个设计、故事和产品带来笑容和喜悦。</span>
-                  <span class="ms">Lebih daripada jenama, SINNKAWA® ialah gaya hidup yang menyeronokkan yang diselitkan dengan daya tarikan dan imaginasi. Kami bukan sahaja membuat cenderamata; kami membawa senyuman dan mencetuskan kegembiraan melalui setiap reka bentuk, cerita dan produk.</span>
-              </p>
-        </div>
-      </div>
-    </section>
-    
-    <section class="contact-section fade-in section-bg bg-image-section" style="--bg-img: url('背景一全家又在礼物店门口.png');">
-      <div class="container">
-        <h2 class="section-title"><span class="en">Contact Us</span><span class="zh">联系我们</span><span class="ms">Hubungi Kami</span></h2>
-        <p class="section-subtitle">
-            <span class="en">Have questions or collaboration ideas? Drop us a message!</span>
-            <span class="zh">有任何问题或合作想法？给我们留言吧！</span>
-            <span class="ms">Ada soalan atau idea kerjasama? Hantarkan mesej kepada kami!</span>
-        </p>
-        <form id="contact-form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" data-netlify-recaptcha="true">
-            <input type="hidden" name="form-name" value="contact" />
-            <p class="hidden-field">
-                <label>Don’t fill this out if you’re human: <input name="bot-field" /></label>
-            </p>
-            
-            <div class="form-group">
-                <label for="name"><span class="en">Name</span><span class="zh">您的称呼</span><span class="ms">Nama</span></label>
-                <input type="text" id="name" name="name" required>
-            </div>
-            <div class="form-group">
-                <label for="email"><span class="en">Email</span><span class="zh">电子邮箱</span><span class="ms">E-mel</span></label>
-                <input type="email" id="email" name="email" required>
-            </div>
-            <div class="form-group">
-                <label for="message"><span class="en">Message</span><span class="zh">您的留言</span><span class="ms">Mesej</span></label>
-                <textarea id="message" name="message" required></textarea>
-            </div>
-            <div data-netlify-recaptcha="true"></div>
-            <button type="submit" class="form-submit-btn" id="submit-button">
-                <span class="en">Send Message</span><span class="zh">发送</span><span class="ms">Hantar Mesej</span>
-            </button>
-        </form>
-        <div id="form-status"></div>
-      </div>
-    </section>
-
-  </main>
-
-  <footer>
-    <img src="footer举牌.jpg" alt="Footer Mascot" class="footer-mascot" onerror="this.onerror=null;this.src='https://placehold.co/240x240/C6E3F9/3D405B?text=SINNKAWA®';">
-    <div class="footer-links">
-        <a class="footer-link" href="https://www.xiaohongshu.com/user/profile/664f08440000000003030e90" target="_blank">小红书</a>
-        <a class="footer-link" href="https://www.tiktok.com/@sinnkawasingapore" target="_blank">TikTok</a>
-        <a class="footer-link" href="https://www.instagram.com/sinnkawa_official?igsh=c2l2Njhqc3FmMGc4" target="_blank">Instagram</a>
-        <a class="footer-link" href="https://www.threads.net/@sinnkawa_official" target="_blank">Threads</a>
-    </div>
-    <div class="copyright"><span class="en">© 2025 SINGAPORE SINNKAWA® PTE.LTD. All rights reserved.</span><span class="zh">© 2025 SINGAPORE SINNKAWA® PTE.LTD. 保留所有权利。</span><span class="ms">© 2025 SINGAPORE SINNKAWA® PTE.LTD. Hak cipta terpelihara.</span></div>
-    <div class="legal-notice">
-        <span class="zh">本品牌（SINNKAWA®）所有内容（图像、角色、文案、设计等）均依法受版权与商标法保护。我们严正声明：对任何擅自使用、仿冒、转载本品牌内容的行为，将采取法律手段维权，必要时移交司法机关处理，绝不姑息。</span>
-        <span class="en">All content of this brand (SINNKAWA®), including images, characters, copy, designs, etc., is protected by copyright and trademark law. We solemnly declare that we will take legal action to protect our rights against any unauthorized use, imitation, or reproduction of our brand content. If necessary, the matter will be referred to judicial authorities for prosecution to the fullest extent of the law.</span>
-        <span class="ms">Semua kandungan jenama ini (SINNKAWA®), termasuk imej, watak, salinan, reka bentuk, dan lain-lain, dilindungi oleh undang-undang hak cipta dan tanda dagangan. Kami dengan sesungguhnya mengisytiharkan bahawa kami akan mengambil tindakan undang-undang untuk melindungi hak kami terhadap sebarang penggunaan, peniruan, atau pengeluaran semula kandungan jenama kami tanpa kebenaran. Jika perlu, perkara itu akan dirujuk kepada pihak berkuasa kehakiman untuk pendakwaan sepenuhnya mengikut undang-undang.</span>
-    </div>
-  </footer>
-
-  <div class="floating-buttons">
-      <div id="chatbot-widget-container">
-          <div class="chatbot-label"><span class="en">MELRIO</span><span class="zh">莫里奥</span><span class="ms">MELRIO</span></div>
-          <div class="chatbot-bubble"><span class="en">Anything I can help with?</span><span class="zh">有什么可以问我哦</span><span class="ms">Ada apa-apa yang boleh saya bantu?</span></div>
-          <div class="fab fab-chatbot" id="open-chatbot">
-              <img src="小机机.png" alt="Chatbot Icon">
-          </div>
-      </div>
-    <a href="https://wa.me/6597759906" target="_blank" class="fab fab-whatsapp"><i class="fab fa-whatsapp"></i></a>
-    <div class="fab fab-top" id="backToTop"><i class="fas fa-arrow-up"></i></div>
-  </div>
-
-  <div id="chatbot-container">
-      <div class="chatbot-header">
-          <span><span class="en">MELRIO</span><span class="zh">莫里奥</span><span class="ms">MELRIO</span></span>
-          <button class="close-btn" id="close-chatbot">&times;</button>
-      </div>
-      <div id="chatbot-messages"></div>
-      <div class="chatbot-menu" id="chatbot-menu"></div>
-      <div class="chatbot-input-container">
-          <input type="text" id="chatbot-input" placeholder="Type your message...">
-          <button id="chatbot-send"><i class="fas fa-paper-plane"></i></button>
-      </div>
-  </div>
-
-
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      
-      // --- Real-time Countdown Timer ---
-      const daysEl = document.getElementById("days");
-      const hoursEl = document.getElementById("hours");
-      const minutesEl = document.getElementById("minutes");
-      const secondsEl = document.getElementById("seconds");
-      const secondsBlock = secondsEl.closest('.time-block');
-      const countdownContainer = document.getElementById("countdown");
-      let targetTime;
-      let animationFrameId;
-
-      async function fetchTargetTime() {
-          try {
-              const mockServerResponse = {
-                  target_time: '2025-08-20T00:00:00.000Z' 
-              };
-              targetTime = new Date(mockServerResponse.target_time);
-              startCountdown();
-          } catch (error) {
-              console.error('获取倒计时目标时间失败:', error);
-              countdownContainer.innerHTML `<div class="countdown-title" style="animation: none;"><span class="en">Countdown failed to load</span><span class="zh">倒计时加载失败</span></div>`;
-          }
-      }
-
-      function updateCountdown() {
-          const now = new Date();
-          const remainingTime = targetTime - now;
-
-          if (remainingTime <= 0) {
-              countdownContainer.innerHTML = `<div class="countdown-title" style="animation: none;"><span class="en">Our Website is Live!</span><span class="zh">官网已上线!</span></div>`;
-              if (animationFrameId) {
-                  cancelAnimationFrame(animationFrameId);
-              }
-              return;
-          }
-
-          const d = Math.floor(remainingTime / (1000 * 60 * 60 * 24));
-          const h = Math.floor((remainingTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-          const m = Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60));
-          const s = Math.floor((remainingTime % (1000 * 60)) / 1000);
-
-          if (daysEl.textContent !== String(d).padStart(2, '0')) daysEl.textContent = String(d).padStart(2, '0');
-          if (hoursEl.textContent !== String(h).padStart(2, '0')) hoursEl.textContent = String(h).padStart(2, '0');
-          if (minutesEl.textContent !== String(m).padStart(2, '0')) minutesEl.textContent = String(m).padStart(2, '0');
-          
-          const secondsStr = String(s).padStart(2, '0');
-          if (secondsEl.textContent !== secondsStr) {
-              secondsEl.textContent = secondsStr;
-              secondsBlock.classList.add('tick');
-              setTimeout(() => secondsBlock.classList.remove('tick'), 400);
-          }
-
-          animationFrameId = requestAnimationFrame(updateCountdown);
-      }
-      
-      function startCountdown() {
-          if (animationFrameId) {
-              cancelAnimationFrame(animationFrameId);
-          }
-          updateCountdown();
-      }
-
-      document.addEventListener('visibilitychange', () => {
-          if (document.visibilityState === 'visible') {
-              console.log("页面可见，自动校准倒计时。");
-          }
-      });
-
-      fetchTargetTime();
-
-      // --- Floating Buttons & Back to Top ---
-      const backToTopBtn = document.getElementById('backToTop');
-      window.addEventListener('scroll', () => {
-        backToTopBtn.classList.toggle('visible', window.pageYOffset > 300);
-      });
-      backToTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-
-      // --- Fade-in Animation on Scroll ---
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            observer.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.1 });
-      document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-
-      // --- Language Switcher Logic ---
-      const langButton = document.getElementById('lang-button');
-      const langDropdown = document.getElementById('lang-dropdown');
-      const langOptions = document.querySelectorAll('.lang-option');
-
-      langButton.addEventListener('click', (e) => {
-          e.stopPropagation();
-          langDropdown.classList.toggle('show');
-      });
-
-      langOptions.forEach(option => {
-          option.addEventListener('click', () => {
-              const lang = option.getAttribute('data-lang');
-              document.body.className = `lang-${lang}`;
-              langDropdown.classList.remove('show');
-          });
-      });
-
-      document.addEventListener('click', () => {
-          if (langDropdown.classList.contains('show')) {
-              langDropdown.classList.remove('show');
-          }
-      });
-
-
-      // --- Page-wide Background Icons ---
-      function createPageBackgroundIcons() {
-        const iconContainer = document.getElementById('background-icons');
-        if (!iconContainer) return;
-        const icons = [
-            'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiM1YTdkOWEiIHN0cm9rZS13aWR0aD0iMyIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBkPSJNNzUgMzBoNUExMCAxMCAwIDAgMSA5MCA0MHYyMEE1IDUgMCAwIDEgODUgNjVoLTcwQTUgNSAwIDAgMSAxMCA2MFY0MEExMCAxMCAwIDAgMSAyMCAzMGg1TTUwIDY1Vjg1TTMwIDg1aDQwTTUwIDMwYTQgNCAwIDEgMCAwLTguNEwzNSA1bC01IDEwTTUwIDMwYTQgNCAwIDEgMCAwLTguNEw2NSA1bDUtMTBNNTAgMzBhNCA0IDAgMSAwIDAtOC40TDUwIDUiLz48L3N2Zz4=', // MBS
-            'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48Y2lyY2xlIGN4PSI1MCIgY3k9IjUwIiByPSI0MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNWE3ZDlhIiBzdHJva2Utd2lkdGg9IjMiLz48Y2lyY2xlIGN4PSI1MCIgY3k9IjUwIiByPSI1IiBmaWxsPSIjNWE3ZDlhIi8+PHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNWE3ZDlhIiBzdHJva2Utd2lkdGg9IjMiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgZD0iTTUwIDEwdjgwTTI0IDc2bDUyLTUyTTMwIDUwaDQwTTIIVFIDI0bDUyIDUyIi8+PC9zdmc+', // Flyer
-            'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiM1YTdkOWEiIHN0cm9rZS13aWR0aD0iMyIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBkPSJNMjUgODVWMzBBMjUgMjUgMCAxIDEgNzUgMzB2NTVNNDAgODVoMjBNMjAgODVoNjBNMzUgMTVIMjVhNSA1IDAgMCAwLTUgNXY1MEE1IDUgMCAwIDAgMjUgNzBoMTBNNjUgMTVINDVhNSA1IDAgMCAwLTUgNXY1MEE1IDUgMCAwIDAgNDUgNzBoMjBNODAgMjV2NDVhNSA1IDAgMCAxLTUgNUg3MCIvPjwvc3ZnPg==', // Supertree
-            'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiM1YTdkOWEiIHN0cm9rZS13aWR0aD0iMyIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBkPSJNMjAgODBoNjBNMzAgODBWNTBhMTAgMTAgMCAwIDEgMTAtMTBoMjBhMTAgMTAgMCAwIDEgMTAgMTB2MzBNNTAgNDBWMTVhNSA1IDAgMCAxIDUtNUg2MCIvPjxwYXRoIGZpbGw9IiM1YTdkOWEiIGQ9Ik01MCAxMEExMCAxMCAwIDEgMCA1MCAzMEExMCAxMCAwIDEgMCA1MCAxMFoiLz48L3N2Zz4=' // Changi Tower
-        ];
-        const iconCount = 15;
-        for (let i = 0; i < iconCount; i++) {
-            const iconWrapper = document.createElement('div');
-            iconWrapper.className = 'bg-icon';
-            const iconImg = document.createElement('img');
-            iconImg.src = icons[i % icons.length];
-            const size = Math.random() * 80 + 40;
-            iconWrapper.style.width = `${size}px`;
-            iconWrapper.style.height = `${size}px`;
-            iconWrapper.style.top = `${Math.random() * 100}%`;
-            iconWrapper.style.left = `${Math.random() * 100}%`;
-            iconWrapper.style.animationDuration = `${Math.random() * 40 + 30}s`;
-            iconWrapper.style.animationDelay = `-${Math.random() * 70}s`;
-            iconWrapper.appendChild(iconImg);
-            iconContainer.appendChild(iconWrapper);
+    <!-- Custom Styles and Tailwind Configuration -->
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto { content-visibility: auto; }
+            .text-shadow { text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); }
+            .animate-float { animation: float 4s ease-in-out infinite; }
+            .animate-bounce-slow { animation: bounce 3s infinite; }
+            .animate-pulse-slow { animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+            .fade-in {
+                opacity: 0;
+                transform: translateY(20px);
+                transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+            }
+            .fade-in.visible {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            .news-ticker {
+                width: 100%;
+                max-width: 600px;
+            }
+            .ticker-container {
+                animation: ticker 15s linear infinite;
+                display: flex;
+                flex-direction: column;
+            }
+            .ticker-item {
+                height: 24px;
+                display: flex;
+                align-items: center;
+                white-space: nowrap;
+            }
+            .countdown-digit {
+                animation: countdown-pulse 1.5s ease-in-out infinite;
+            }
         }
-      }
-      createPageBackgroundIcons();
 
-      // --- Advanced Netlify Form Submission (AJAX) ---
-      const contactForm = document.getElementById('contact-form');
-      const formStatus = document.getElementById('form-status');
-      const submitButton = document.getElementById('submit-button');
-      
-      contactForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-
-        const formData = new FormData(contactForm);
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
         
-        submitButton.disabled = true;
-        submitButton.innerHTML = `<span class="en">Sending...</span><span class="zh">发送中...</span>`;
+        @keyframes ticker {
+            0%   { transform: translateY(0); }
+            28%  { transform: translateY(0); }
+            33%  { transform: translateY(-24px); }
+            61%  { transform: translateY(-24px); }
+            66%  { transform: translateY(-48px); }
+            94%  { transform: translateY(-48px); }
+            100% { transform: translateY(-72px); } /* Loop back */
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: .5; }
+        }
 
-        fetch('/', {
-          method: 'POST',
-          headers: { "Content-Type": "application/x-www-form-urlencoded" },
-          body: new URLSearchParams(formData).toString()
-        })
-        .then(() => {
-            contactForm.style.display = 'none';
-            formStatus.innerHTML = `<span class="en">🎉 Thank you! Your message has been sent successfully. We'll get back to you soon.</span><span class="zh">🎉 感谢您！您的留言已成功发送，我们会尽快与您联系。</span>`;
-            formStatus.className = 'success visible';
-        })
-        .catch((error) => {
-            console.error('Form submission error:', error);
-            contactForm.style.display = 'none';
-            formStatus.innerHTML = `<span class="en">Oops! Something went wrong submitting the form. Please contact us via WhatsApp.</span><span class="zh">糟糕！提交表单时出错了，请通过 WhatsApp 联系我们。</span>`;
-            formStatus.className = 'error visible';
+        @keyframes countdown-pulse {
+            0% { transform: scale(1); text-shadow: 0 0 5px rgba(135, 206, 235, 0); }
+            50% { transform: scale(1.05); text-shadow: 0 0 15px rgba(135, 206, 235, 0.7); }
+            100% { transform: scale(1); text-shadow: 0 0 5px rgba(135, 206, 235, 0); }
+        }
+
+        /* Splash Screen Styles */
+        #splash-screen {
+            transition: opacity 0.7s ease-out, transform 0.7s ease-in-out;
+        }
+        #splash-screen.zoom-out {
+            transform: scale(5);
+            opacity: 0;
+        }
+        #splash-logo {
+            animation: splash-zoom 2.8s ease-in-out forwards;
+        }
+        #splash-text {
+            animation: splash-text-fade 2.8s ease-in-out forwards;
+        }
+        @keyframes splash-zoom {
+            0% { transform: scale(0.8); opacity: 0; }
+            40% { transform: scale(1.1); opacity: 1; }
+            80% { transform: scale(1); opacity: 1; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        @keyframes splash-text-fade {
+            0%, 50% { opacity: 0; }
+            70% { opacity: 1; }
+            100% { opacity: 1; }
+        }
+        
+        /* Parallax Background Elements */
+        .parallax-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+        .sg-icon {
+            position: absolute;
+            opacity: 0.1;
+            transition: transform 0.3s ease-out;
+        }
+    </style>
+    <script>
+        // Tailwind CSS Configuration
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#87CEEB', // New Sky Blue
+                        secondary: '#F0F8FF', // AliceBlue, complements Sky Blue
+                        accent: '#EC4899', // Less used pink
+                        dark: '#1F2937', // Darker text for better contrast
+                        light: '#F9FAFB'
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', '"Noto Sans SC"', 'sans-serif'],
+                        display: ['Poppins', '"Noto Sans SC"', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-secondary text-dark font-sans antialiased">
+    
+    <!-- Parallax Background -->
+    <div class="parallax-bg">
+        <div id="parallax-1" class="sg-icon" style="width: 30%; top: 10%; left: 5%;"><img src="背景一全家又在礼物店门口.png" class="w-full"></div>
+        <div id="parallax-2" class="sg-icon" style="width: 25%; top: 50%; right: 10%;"><img src="背景二全家在礼物店.png" class="w-full"></div>
+        <div id="parallax-3" class="sg-icon" style="width: 35%; bottom: 5%; left: 15%;"><img src="背景三全家在新加坡.png" class="w-full"></div>
+    </div>
+
+    <!-- Splash Screen -->
+    <div id="splash-screen" class="fixed inset-0 bg-secondary flex items-center justify-center z-[100]">
+        <img id="splash-logo" src="LOGO无R.png" alt="SINNKAWA® Logo" class="h-40">
+        <p id="splash-text" class="absolute bottom-20 text-2xl font-bold text-primary opacity-0" data-i18n-key="splash_text">Let's explore the SINNKAWA® Family!</p>
+    </div>
+
+    <!-- Top Floating Countdown Bar -->
+    <div class="fixed top-0 left-0 w-full bg-primary/30 backdrop-blur-sm text-dark py-1 z-50 overflow-hidden border-b border-primary/20">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <div class="flex-1 flex items-center">
+                <div class="news-ticker relative h-6 overflow-hidden">
+                    <div class="ticker-container">
+                        <div class="ticker-item flex items-center">
+                            <span class="font-medium mr-2" data-i18n-key="top_countdown_label">Official Website Launch Countdown:</span>
+                            <span class="flex items-center countdown-digit">
+                                <span class="font-medium top-days">20</span><span data-i18n-key="time_days_short">d</span>
+                                <span class="font-medium ml-1 top-hours">00</span><span data-i18n-key="time_hours_short">h</span>
+                                <span class="font-medium ml-1 top-minutes">00</span><span data-i18n-key="time_minutes_short">m</span>
+                                <span class="font-medium ml-1 top-seconds">00</span><span data-i18n-key="time_seconds_short">s</span>
+                            </span>
+                        </div>
+                        <div class="ticker-item flex items-center">
+                            <span data-i18n-key="top_promo_1">Explore the charm of Singapore with SINNKAWA®</span>
+                        </div>
+                        <div class="ticker-item flex items-center">
+                            <span data-i18n-key="top_promo_2">Follow our social media for the latest updates</span>
+                        </div>
+                        <div class="ticker-item flex items-center">
+                            <span class="font-medium mr-2" data-i18n-key="top_countdown_label">Official Website Launch Countdown:</span>
+                            <span class="flex items-center countdown-digit">
+                                <span class="font-medium top-days">20</span><span data-i18n-key="time_days_short">d</span>
+                                <span class="font-medium ml-1 top-hours">00</span><span data-i18n-key="time_hours_short">h</span>
+                                <span class="font-medium ml-1 top-minutes">00</span><span data-i18n-key="time_minutes_short">m</span>
+                                <span class="font-medium ml-1 top-seconds">00</span><span data-i18n-key="time_seconds_short">s</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a href="https://wa.me/6597759906" target="_blank" rel="noopener noreferrer" class="flex items-center text-green-600 hover:text-green-700 transition-colors duration-200 whitespace-nowrap">
+                <i class="fa fa-whatsapp mr-1" aria-hidden="true"></i>
+                <span class="text-sm font-medium" data-i18n-key="contact_us_short">Contact Us</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Floating Action Buttons -->
+    <div class="fixed bottom-6 right-6 z-50 flex flex-col gap-3">
+        <button id="back-to-top" aria-label="Back to Top" class="bg-primary hover:bg-sky-400 text-white w-12 h-12 rounded-full shadow-lg flex items-center justify-center transition-all duration-200 opacity-0 invisible">
+            <i class="fa fa-chevron-up" aria-hidden="true"></i>
+        </button>
+        <a href="https://wa.me/6597759906" target="_blank" rel="noopener noreferrer" aria-label="Contact us on WhatsApp" class="bg-green-500 hover:bg-green-600 text-white w-12 h-12 rounded-full shadow-lg flex items-center justify-center transition-all duration-200">
+            <i class="fa fa-whatsapp" aria-hidden="true"></i>
+        </a>
+    </div>
+
+    <!-- Header & Navigation -->
+    <header class="sticky top-10 w-full bg-white/80 backdrop-blur-sm shadow-sm z-40 transition-all duration-200">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16 md:h-20">
+                <a href="#" class="flex-shrink-0 flex items-center">
+                    <img src="LOGO无R.png" alt="SINNKAWA® Logo" class="h-20 md:h-24">
+                </a>
+
+                <nav class="hidden md:flex space-x-8" aria-label="Main Navigation">
+                    <div class="relative group">
+                        <a href="#stores" class="text-dark hover:text-primary font-medium flex items-center transition-all duration-200">
+                            <span data-i18n-key="nav_stores">Stores</span>
+                            <i class="fa fa-chevron-down ml-1 text-xs transition-transform duration-200 group-hover:rotate-180"></i>
+                        </a>
+                        <div class="absolute left-0 mt-2 w-56 bg-white shadow-lg rounded-md overflow-hidden opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform origin-top scale-95 group-hover:scale-100 z-50">
+                            <a href="#chinatown" class="block px-4 py-2 text-sm hover:bg-sky-100 hover:text-primary transition-all duration-200" data-i18n-key="nav_store_chinatown">Chinatown Flagship</a>
+                            <a href="#hajilane" class="block px-4 py-2 text-sm hover:bg-sky-100 hover:text-primary transition-all duration-200" data-i18n-key="nav_store_haji">Haji Lane Stores</a>
+                            <a href="#cafe" class="block px-4 py-2 text-sm hover:bg-sky-100 hover:text-primary transition-all duration-200" data-i18n-key="nav_store_cafe">SINNKAWA® Café</a>
+                        </div>
+                    </div>
+                    <a href="#about" class="text-dark hover:text-primary font-medium transition-all duration-200" data-i18n-key="nav_about">About Us</a>
+                    <a href="#social" class="text-dark hover:text-primary font-medium transition-all duration-200" data-i18n-key="nav_social">Social Media</a>
+                    <a href="#contact" class="text-dark hover:text-primary font-medium transition-all duration-200" data-i18n-key="nav_contact">Contact</a>
+                </nav>
+
+                <div class="flex items-center space-x-4">
+                    <div class="relative group">
+                        <button id="language-selector" aria-label="Select Language" class="flex items-center text-sm font-medium hover:text-primary transition-all duration-200 bg-sky-100 px-3 py-1 rounded-full">
+                            <i class="fa fa-globe text-lg" aria-hidden="true"></i>
+                        </button>
+                        <div class="absolute right-0 mt-2 w-36 bg-white shadow-lg rounded-md overflow-hidden opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                            <a href="#" class="language-option block px-4 py-2 text-sm hover:bg-sky-100 hover:text-primary transition-all duration-200 flex items-center" data-lang="en">
+                                <span class="w-6 inline-block" aria-hidden="true">🇬🇧</span> English
+                            </a>
+                            <a href="#" class="language-option block px-4 py-2 text-sm hover:bg-sky-100 hover:text-primary transition-all duration-200 flex items-center" data-lang="zh">
+                                <span class="w-6 inline-block" aria-hidden="true">🇨🇳</span> 中文
+                            </a>
+                        </div>
+                    </div>
+
+                    <button id="mobile-menu-button" class="md:hidden text-dark hover:text-primary transition-all duration-200" aria-controls="mobile-menu" aria-expanded="false">
+                        <span class="sr-only">Open Menu</span>
+                        <i class="fa fa-bars text-xl" aria-hidden="true"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="md:hidden hidden bg-white border-t">
+            <nav class="container mx-auto px-4 py-3 space-y-3" aria-label="Mobile Navigation">
+                <div class="mobile-dropdown">
+                    <button class="mobile-dropdown-button w-full text-left flex justify-between items-center py-2 text-dark hover:text-primary font-medium" aria-expanded="false">
+                        <span data-i18n-key="nav_stores">Stores</span>
+                        <i class="fa fa-chevron-down text-xs transition-transform duration-200"></i>
+                    </button>
+                    <div class="mobile-dropdown-menu hidden pl-4 space-y-2 py-1">
+                        <a href="#chinatown" class="block py-2 text-sm hover:text-primary" data-i18n-key="nav_store_chinatown">Chinatown Flagship</a>
+                        <a href="#hajilane" class="block py-2 text-sm hover:text-primary" data-i18n-key="nav_store_haji">Haji Lane Stores</a>
+                        <a href="#cafe" class="block py-2 text-sm hover:text-primary" data-i18n-key="nav_store_cafe">SINNKAWA® Café</a>
+                    </div>
+                </div>
+                <a href="#about" class="block py-2 text-dark hover:text-primary font-medium" data-i18n-key="nav_about">About Us</a>
+                <a href="#social" class="block py-2 text-dark hover:text-primary font-medium" data-i18n-key="nav_social">Social Media</a>
+                <a href="#contact" class="block py-2 text-dark hover:text-primary font-medium" data-i18n-key="nav_contact">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="hero" class="bg-white pt-20 md:pt-24 relative min-h-screen flex items-center justify-center overflow-hidden">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="flex flex-col lg:flex-row items-center">
+                    <div class="lg:w-1/2 text-center lg:text-left mb-10 lg:mb-0 fade-in">
+                        <div class="inline-block bg-sky-100 text-dark px-4 py-2 rounded-full mb-6 animate-pulse-slow">
+                            <span class="font-medium" data-i18n-key="hero_badge">Official Website Launching Soon!</span>
+                        </div>
+                        <h1 class="text-[clamp(2.5rem,6vw,4rem)] font-display font-bold text-dark leading-tight mb-6" data-i18n-key="hero_title">Explore Singapore with <span class="text-primary">SINNKAWA®</span></h1>
+                        <p class="text-[clamp(1rem,2vw,1.25rem)] text-gray-600 max-w-xl mx-auto lg:mx-0 mb-8" data-i18n-key="hero_subtitle">Join SINNKAWA® Family to discover the Lion City's iconic sights, delicious food, and vibrant culture!</p>
+                        
+                        <div class="flex flex-col sm:flex-row justify-center lg:justify-start gap-4">
+                            <a href="#stores" class="inline-block bg-primary hover:bg-sky-400 text-white font-semibold px-8 py-3 rounded-full transition-all duration-200 transform hover:scale-105 hover:shadow-lg" data-i18n-key="hero_cta_explore">Explore Stores</a>
+                            <a href="#about" class="inline-block bg-white hover:bg-gray-50 text-dark border border-primary font-semibold px-8 py-3 rounded-full transition-all duration-200 transform hover:scale-105" data-i18n-key="hero_cta_story">Brand Story</a>
+                        </div>
+                    </div>
+                    <div class="lg:w-1/2 relative fade-in">
+                        <div class="relative z-10 animate-float">
+                            <img src="Sinnkawa_family_pic.png" alt="SINNKAWA® family photo" class="w-full max-w-md mx-auto rounded-3xl shadow-2xl">
+                        </div>
+                    </div>
+                </div>
+                <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-dark/60 animate-bounce">
+                    <i class="fa fa-chevron-down text-2xl"></i>
+                </div>
+            </div>
+        </section>
+
+        <!-- Social Media Section -->
+        <section id="social" class="py-20 bg-secondary relative overflow-hidden">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16 fade-in">
+                    <h2 class="text-[clamp(1.75rem,4vw,2.5rem)] font-display font-bold mb-4" data-i18n-key="social_title">Follow Our Social Media</h2>
+                    <p class="text-gray-600 max-w-2xl mx-auto" data-i18n-key="social_subtitle">Get the latest event info, cute merchandise, and Singapore travel tips</p>
+                </div>
+
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 fade-in">
+                    <a href="https://www.xiaohongshu.com/user/profile/664f084400000000003030e90" target="_blank" rel="noopener noreferrer" class="bg-[#FE2C55] hover:bg-[#FE2C55]/90 text-white rounded-2xl p-6 text-center transition-all duration-200 transform hover:-translate-y-2 hover:shadow-lg">
+                        <i class="fa fa-book text-4xl mb-4"></i>
+                        <h3 class="font-bold text-lg" data-i18n-key="social_xhs_name">RED (Xiaohongshu)</h3>
+                        <p class="text-sm opacity-90 mt-2" data-i18n-key="social_xhs_desc">Explore Singapore with SINNKAWA®</p>
+                    </a>
+                    <a href="https://www.instagram.com/sinnkawa_official?igsh=c2l2Njhqc3FmMGc4" target="_blank" rel="noopener noreferrer" class="bg-gradient-to-br from-[#405DE6] to-[#E1306C] hover:opacity-90 text-white rounded-2xl p-6 text-center transition-all duration-200 transform hover:-translate-y-2 hover:shadow-lg">
+                        <i class="fa fa-instagram text-4xl mb-4"></i>
+                        <h3 class="font-bold text-lg">Instagram</h3>
+                        <p class="text-sm opacity-90 mt-2" data-i18n-key="social_ig_desc">SINNKAWA®'s travel photo wall</p>
+                    </a>
+                    <a href="https://www.tiktok.com/@sinnkawa?_t=ZS-8y61mOEdMhd&_r=1" target="_blank" rel="noopener noreferrer" class="bg-black hover:bg-gray-900 text-white rounded-2xl p-6 text-center transition-all duration-200 transform hover:-translate-y-2 hover:shadow-lg flex flex-col items-center justify-center">
+                        <img src="tiktok.png" alt="TikTok Logo" class="w-10 h-10 mb-4 filter invert">
+                        <h3 class="font-bold text-lg">TikTok</h3>
+                        <p class="text-sm opacity-90 mt-2" data-i18n-key="social_tt_desc">SINNKAWA®'s fun adventure videos</p>
+                    </a>
+                    <a href="https://wa.me/6597759906" target="_blank" rel="noopener noreferrer" class="bg-[#25D366] hover:bg-[#25D366]/90 text-white rounded-2xl p-6 text-center transition-all duration-200 transform hover:-translate-y-2 hover:shadow-lg">
+                        <i class="fa fa-whatsapp text-4xl mb-4"></i>
+                        <h3 class="font-bold text-lg">WhatsApp</h3>
+                        <p class="text-sm opacity-90 mt-2" data-i18n-key="social_wa_desc">Chat directly with the SINNKAWA® team</p>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Latest News Section -->
+        <section id="latest-news" class="py-20 bg-white">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="bg-sky-50 rounded-2xl shadow-lg overflow-hidden lg:grid lg:grid-cols-2 lg:gap-4 items-center fade-in">
+                    <div class="p-8 lg:p-12">
+                        <h2 class="text-3xl font-bold font-display text-dark mb-3" data-i18n-key="news_title">Latest News: Our Café is Open!</h2>
+                        <p class="text-gray-600 mb-6" data-i18n-key="news_subtitle">The SINNKAWA® Café is now officially open! Enjoy themed drinks and desserts in a world of cuteness.</p>
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            <a href="#cafe" class="inline-block bg-accent hover:bg-pink-600 text-white font-semibold px-6 py-3 rounded-full transition-all duration-200 transform hover:scale-105" data-i18n-key="news_cta_unlock">Unlock Exclusive Gifts</a>
+                            <a href="#" class="inline-block bg-white hover:bg-gray-100 text-dark font-semibold px-6 py-3 rounded-full transition-all duration-200 transform hover:scale-105" data-i18n-key="news_cta_menu">View Menu</a>
+                        </div>
+                    </div>
+                    <div class="h-64 lg:h-full">
+                        <img src="图片.png" alt="SINNKAWA® Themed Cafe Interior" class="w-full h-full object-cover">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stores Section -->
+        <section id="stores" class="py-20 bg-secondary relative overflow-hidden">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16 fade-in">
+                    <h2 class="text-[clamp(1.75rem,4vw,2.5rem)] font-display font-bold mb-4" data-i18n-key="stores_title">SINNKAWA® Stores</h2>
+                    <p class="text-gray-600 max-w-2xl mx-auto" data-i18n-key="stores_subtitle">Welcome to visit our stores and experience the world of SINNKAWA®</p>
+                </div>
+
+                <!-- Chinatown & Cafe Combined -->
+                <div id="chinatown" class="mb-20 fade-in">
+                    <div class="flex flex-col lg:flex-row gap-8 items-center">
+                        <div class="lg:w-1/2">
+                            <div class="rounded-2xl overflow-hidden shadow-lg">
+                                <img src="Sinnkawa_Gift_Store_Chinatown.png" alt="Chinatown Flagship Store" class="w-full h-auto" loading="lazy">
+                            </div>
+                        </div>
+                        <div class="lg:w-1/2">
+                            <h3 class="text-2xl font-bold mb-3" data-i18n-key="store_chinatown_title">Chinatown Flagship Store</h3>
+                            <p class="text-gray-600 mb-6" data-i18n-key="store_chinatown_desc">Located in Singapore's famous Chinatown, our flagship store offers the most complete range of SINNKAWA® merchandise.</p>
+                            <div class="space-y-4 mb-6">
+                                <div class="flex items-start gap-3">
+                                    <div class="mt-1 bg-sky-100 p-2 rounded-full"><i class="fa fa-map-marker text-primary"></i></div>
+                                    <div>
+                                        <h4 class="font-bold" data-i18n-key="address">Address</h4>
+                                        <p class="text-gray-600">15 Trengganu St, #01-01, Singapore 058469</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start gap-3">
+                                    <div class="mt-1 bg-sky-100 p-2 rounded-full"><i class="fa fa-clock-o text-primary"></i></div>
+                                    <div>
+                                        <h4 class="font-bold" data-i18n-key="hours">Opening Hours</h4>
+                                        <p class="text-gray-600" data-i18n-key="store_chinatown_hours">10:00 - 22:00 (Daily)</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="https://maps.app.goo.gl/AuDRqswjxYYgBVFg8" target="_blank" rel="noopener noreferrer" class="inline-flex items-center bg-primary hover:bg-sky-400 text-white font-semibold px-6 py-3 rounded-full transition-all duration-200">
+                                <i class="fa fa-map mr-2"></i> <span data-i18n-key="view_on_map">View on Map</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="cafe" class="mb-20 fade-in">
+                    <div class="flex flex-col lg:flex-row-reverse gap-8 items-center">
+                        <div class="lg:w-1/2">
+                            <div class="rounded-2xl overflow-hidden shadow-lg">
+                                <img src="哈芝巷#43.png" alt="SINNKAWA® Themed Cafe" class="w-full h-auto" loading="lazy">
+                            </div>
+                        </div>
+                        <div class="lg:w-1/2">
+                            <h3 class="text-2xl font-bold mb-3" data-i18n-key="store_cafe_title">SINNKAWA® Café @ Chinatown｜Singapore's Cutest Themed Café</h3>
+                            <p class="text-gray-600 mb-6" data-i18n-key="store_cafe_desc">Enjoy specialty drinks and desserts in our themed cafe, filled with cute decorations perfect for photos.</p>
+                             <div class="space-y-4 mb-6">
+                                <div class="flex items-start gap-3">
+                                    <div class="mt-1 bg-sky-100 p-2 rounded-full"><i class="fa fa-map-marker text-primary"></i></div>
+                                    <div>
+                                        <h4 class="font-bold" data-i18n-key="address">Address</h4>
+                                        <p class="text-gray-600">15 Trengganu St, #01-02, Singapore 058469</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start gap-3">
+                                    <div class="mt-1 bg-sky-100 p-2 rounded-full"><i class="fa fa-clock-o text-primary"></i></div>
+                                    <div>
+                                        <h4 class="font-bold" data-i18n-key="hours">Opening Hours</h4>
+                                        <p class="text-gray-600" data-i18n-key="store_cafe_hours">12:00 - 20:00 (Daily)</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="https://maps.app.goo.gl/AuDRqswjxYYgBVFg8" target="_blank" rel="noopener noreferrer" class="inline-flex items-center bg-primary hover:bg-sky-400 text-white font-semibold px-6 py-3 rounded-full transition-all duration-200">
+                                <i class="fa fa-map mr-2"></i> <span data-i18n-key="view_on_map">View on Map</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Haji Lane Stores -->
+                <div id="hajilane" class="fade-in">
+                    <h3 class="text-2xl font-bold mb-8 text-center" data-i18n-key="store_haji_title">Haji Lane Stores</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                        <div class="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-200">
+                            <img src="Soul_Art_Art_IP_62_Haji.png" alt="Soul Art 62 Haji Lane" class="w-full h-60 object-cover" loading="lazy">
+                            <div class="p-6">
+                                <h4 class="font-bold text-lg mb-2" data-i18n-key="store_haji_62_name">Soul Art 62 Haji Lane</h4>
+                                <p class="text-gray-600 text-sm mb-4" data-i18n-key="store_haji_62_desc">A special store in collaboration with local artists, showcasing artworks integrating SINNKAWA® elements.</p>
+                                <a href="https://maps.app.goo.gl/QHbdCKU81UJwMuX27" target="_blank" rel="noopener noreferrer" class="text-primary font-medium hover:underline flex items-center text-sm">
+                                    <span data-i18n-key="map_navigation">Map Navigation</span> <i class="fa fa-arrow-right ml-1"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-200">
+                            <img src="Sinnkawa_Gift_Store_22_Haji_Lane.png" alt="22 Haji Lane" class="w-full h-60 object-cover" loading="lazy">
+                            <div class="p-6">
+                                <h4 class="font-bold text-lg mb-2" data-i18n-key="store_haji_22_name">22 Haji Lane</h4>
+                                <p class="text-gray-600 text-sm mb-4" data-i18n-key="store_haji_22_desc">Located in the trendy Haji Lane, this store offers limited edition SINNKAWA® merchandise.</p>
+                                <a href="https://maps.app.goo.gl/NgZPfmMp2egFZhAQ7" target="_blank" rel="noopener noreferrer" class="text-primary font-medium hover:underline flex items-center text-sm">
+                                    <span data-i18n-key="map_navigation">Map Navigation</span> <i class="fa fa-arrow-right ml-1"></i>
+                                </a>
+                            </div>
+                        </div>
+                         <div class="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-200">
+                           <img src="Sinnkawa_Gift_Store_68_BW_Theme..png" alt="68 Haji Lane" class="w-full h-60 object-cover" loading="lazy">
+                            <div class="p-6">
+                                <h4 class="font-bold text-lg mb-2" data-i18n-key="store_haji_68_name">68 Haji Lane</h4>
+                                <p class="text-gray-600 text-sm mb-4" data-i18n-key="store_haji_68_desc">A black and white themed store with a unique decor style, perfect for photo opportunities.</p>
+                                <a href="https://maps.app.goo.gl/cPchyEaSGGsMjbg99" target="_blank" rel="noopener noreferrer" class="text-primary font-medium hover:underline flex items-center text-sm">
+                                    <span data-i18n-key="map_navigation">Map Navigation</span> <i class="fa fa-arrow-right ml-1"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-200">
+                           <img src="哈芝巷#43.png" alt="43 Haji Lane" class="w-full h-60 object-cover" loading="lazy">
+                            <div class="p-6">
+                                <h4 class="font-bold text-lg mb-2" data-i18n-key="store_haji_43_name">43# Megastore & Zone</h4>
+                                <p class="text-gray-600 text-sm mb-4" data-i18n-key="store_haji_43_desc">Discover exclusive collections and interactive displays at our newest Haji Lane location.</p>
+                                <a href="#" class="text-gray-400 font-medium flex items-center text-sm cursor-not-allowed">
+                                    <span data-i18n-key="coming_soon">Coming Soon</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="py-20 bg-white relative overflow-hidden">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="text-center mb-16 fade-in">
+                    <h2 class="text-[clamp(1.75rem,4vw,2.5rem)] font-display font-bold mb-4" data-i18n-key="about_title">About SINNKAWA®</h2>
+                    <p class="text-gray-600 max-w-2xl mx-auto" data-i18n-key="about_subtitle">Our brand story, philosophy, and culture</p>
+                </div>
+                <div class="flex flex-col lg:flex-row items-center gap-12 mb-20">
+                    <div class="lg:w-1/2 relative fade-in">
+                        <img src="背景三全家在新加坡.png" alt="SINNKAWA® family in Singapore" class="w-full max-w-md mx-auto rounded-3xl shadow-xl" loading="lazy">
+                    </div>
+                    <div class="lg:w-1/2 fade-in">
+                        <h3 class="text-2xl md:text-3xl font-display font-bold mb-6" data-i18n-key="about_story_title">Our Story</h3>
+                        <p class="text-gray-600 mb-6 text-lg" data-i18n-key="about_story_desc">Born in Singapore, SINNKAWA® is an original IP full of love and adventure. We hope to bring joy and warmth to people through cute characters and stories, while showcasing the charm of Singapore's multiculturalism.</p>
+                    </div>
+                </div>
+                
+                <!-- Brand Milestones -->
+                <div class="fade-in">
+                    <h3 class="text-2xl font-bold mb-10 text-center" data-i18n-key="about_milestones_title">Brand Milestones</h3>
+                    <div class="relative max-w-2xl mx-auto">
+                        <div class="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-sky-200 hidden md:block"></div>
+                        
+                        <div class="space-y-8 relative">
+                            <!-- 2020 -->
+                            <div class="md:flex items-center md:space-x-8">
+                                <div class="md:w-1/2 md:text-right">
+                                    <div class="bg-secondary p-4 rounded-lg shadow-md mb-4 md:mb-0">
+                                        <h4 class="font-bold text-lg mb-1" data-i18n-key="milestone_2020_title">Brand Foundation</h4>
+                                        <p class="text-gray-600 text-sm" data-i18n-key="milestone_2020_desc">The SINNKAWA® character was born, initially as a cute illustration.</p>
+                                    </div>
+                                </div>
+                                <div class="z-10 bg-primary text-white rounded-full w-10 h-10 flex items-center justify-center font-bold shadow-md mx-auto md:mx-0">2020</div>
+                                <div class="md:w-1/2"></div>
+                            </div>
+                            
+                            <!-- 2021 -->
+                            <div class="md:flex flex-row-reverse items-center md:space-x-8 md:space-x-reverse">
+                                <div class="md:w-1/2 md:text-left">
+                                     <div class="bg-secondary p-4 rounded-lg shadow-md mb-4 md:mb-0">
+                                        <h4 class="font-bold text-lg mb-1" data-i18n-key="milestone_2021_title">First Merchandise Release</h4>
+                                        <p class="text-gray-600 text-sm" data-i18n-key="milestone_2021_desc">Launched the first batch of SINNKAWA® merchandise, warmly welcomed by fans.</p>
+                                    </div>
+                                </div>
+                                <div class="z-10 bg-primary text-white rounded-full w-10 h-10 flex items-center justify-center font-bold shadow-md mx-auto md:mx-0">2021</div>
+                                <div class="md:w-1/2"></div>
+                            </div>
+                            
+                            <!-- 2022 -->
+                            <div class="md:flex items-center md:space-x-8">
+                                <div class="md:w-1/2 md:text-right">
+                                    <div class="bg-secondary p-4 rounded-lg shadow-md mb-4 md:mb-0">
+                                        <h4 class="font-bold text-lg mb-1" data-i18n-key="milestone_2022_title">First Store Opening</h4>
+                                        <p class="text-gray-600 text-sm" data-i18n-key="milestone_2022_desc">Opened the first SINNKAWA® themed store in Chinatown.</p>
+                                    </div>
+                                </div>
+                                <div class="z-10 bg-primary text-white rounded-full w-10 h-10 flex items-center justify-center font-bold shadow-md mx-auto md:mx-0">2022</div>
+                                <div class="md:w-1/2"></div>
+                            </div>
+                            
+                            <!-- 2023 -->
+                            <div class="md:flex flex-row-reverse items-center md:space-x-8 md:space-x-reverse">
+                                <div class="md:w-1/2 md:text-left">
+                                    <div class="bg-secondary p-4 rounded-lg shadow-md mb-4 md:mb-0">
+                                        <h4 class="font-bold text-lg mb-1" data-i18n-key="milestone_2023_title">Expansion to Haji Lane</h4>
+                                        <p class="text-gray-600 text-sm" data-i18n-key="milestone_2023_desc">Opened several specialty stores in the trendy Haji Lane district.</p>
+                                    </div>
+                                </div>
+                                <div class="z-10 bg-primary text-white rounded-full w-10 h-10 flex items-center justify-center font-bold shadow-md mx-auto md:mx-0">2023</div>
+                                <div class="md:w-1/2"></div>
+                            </div>
+                            
+                            <!-- 2025 -->
+                            <div class="md:flex items-center md:space-x-8">
+                                <div class="md:w-1/2 md:text-right">
+                                    <div class="bg-secondary p-4 rounded-lg shadow-md mb-4 md:mb-0">
+                                        <h4 class="font-bold text-lg mb-1" data-i18n-key="milestone_2025_title">Website Launch</h4>
+                                        <p class="text-gray-600 text-sm" data-i18n-key="milestone_2025_desc">The official website is about to launch, offering more online services.</p>
+                                    </div>
+                                </div>
+                                <div class="z-10 bg-accent text-white rounded-full w-10 h-10 flex items-center justify-center font-bold shadow-md animate-pulse-slow mx-auto md:mx-0">2025</div>
+                                <div class="md:w-1/2"></div>
+                            </div>
+
+                             <!-- Future -->
+                            <div class="md:flex flex-row-reverse items-center md:space-x-8 md:space-x-reverse">
+                                <div class="md:w-1/2 md:text-left">
+                                     <div class="bg-secondary p-4 rounded-lg shadow-md mb-4 md:mb-0">
+                                        <h4 class="font-bold text-lg mb-1" data-i18n-key="milestone_future_title">The Adventure Continues...</h4>
+                                        <p class="text-gray-600 text-sm" data-i18n-key="milestone_future_desc">The SINNKAWA® family is growing! More fun IPs are coming soon. Stay tuned!</p>
+                                    </div>
+                                </div>
+                                <div class="z-10 bg-accent text-white rounded-full w-10 h-10 flex items-center justify-center font-bold shadow-md mx-auto md:mx-0">
+                                    <i class="fa fa-rocket"></i>
+                                </div>
+                                <div class="md:w-1/2"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-20 bg-secondary relative overflow-hidden">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="max-w-4xl mx-auto">
+                    <div class="text-center mb-16 fade-in">
+                        <h2 class="text-[clamp(1.75rem,4vw,2.5rem)] font-display font-bold mb-4" data-i18n-key="contact_title">Contact Us</h2>
+                        <p class="text-gray-600 max-w-2xl mx-auto" data-i18n-key="contact_subtitle">Have any questions or suggestions? Please feel free to contact us</p>
+                    </div>
+                    <div class="bg-white rounded-2xl shadow-lg overflow-hidden fade-in p-8 md:p-10">
+                        <form name="contact" method="POST" data-netlify="true" data-netlify-recaptcha="true" class="space-y-6">
+                            <input type="hidden" name="form-name" value="contact">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label for="name" class="block text-sm font-medium text-dark/80 mb-2" data-i18n-key="form_name">Name</label>
+                                    <input type="text" id="name" name="name" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary transition-all duration-200">
+                                </div>
+                                <div>
+                                    <label for="email" class="block text-sm font-medium text-dark/80 mb-2" data-i18n-key="form_email">Email</label>
+                                    <input type="email" id="email" name="email" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary transition-all duration-200">
+                                </div>
+                            </div>
+                            <div>
+                                <label for="subject" class="block text-sm font-medium text-dark/80 mb-2" data-i18n-key="form_subject">Subject</label>
+                                <select id="subject" name="subject" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary transition-all duration-200">
+                                    <option value="" disabled selected data-i18n-key="form_select_subject">Please select...</option>
+                                    <option value="store" data-i18n-key="form_subject_store">Store Inquiry</option>
+                                    <option value="product" data-i18n-key="form_subject_product">Product Inquiry</option>
+                                    <option value="collaboration" data-i18n-key="form_subject_collab">Collaboration</option>
+                                    <option value="other" data-i18n-key="form_subject_other">Other</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="message" class="block text-sm font-medium text-dark/80 mb-2" data-i18n-key="form_message">Message</label>
+                                <textarea id="message" name="message" rows="5" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary transition-all duration-200"></textarea>
+                            </div>
+                            <div data-netlify-recaptcha="true"></div>
+                            <div class="text-center">
+                                <button type="submit" class="inline-block bg-primary hover:bg-sky-400 text-white font-semibold px-8 py-3 rounded-full transition-all duration-200 transform hover:scale-105">
+                                    <span data-i18n-key="form_submit">Submit Message</span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-primary text-white pt-16 pb-8">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                <div>
+                    <div class="mb-6"><img src="大头logo有R.png" alt="SINNKAWA® Logo" class="h-32"></div>
+                    <p class="text-white/80 mb-6" data-i18n-key="footer_tagline">Singapore meet Cuteness</p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-6 text-white" data-i18n-key="footer_links">Quick Links</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#about" class="text-white/80 hover:text-white transition-all duration-200" data-i18n-key="nav_about">About Us</a></li>
+                        <li><a href="#stores" class="text-white/80 hover:text-white transition-all duration-200" data-i18n-key="nav_stores">Stores</a></li>
+                        <li><a href="#social" class="text-white/80 hover:text-white transition-all duration-200" data-i18n-key="nav_social">Social Media</a></li>
+                        <li><a href="#contact" class="text-white/80 hover:text-white transition-all duration-200" data-i18n-key="nav_contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-6 text-white" data-i18n-key="hours">Opening Hours</h4>
+                    <ul class="space-y-3 text-white/80">
+                        <li class="flex justify-between"><span data-i18n-key="nav_store_chinatown">Chinatown Flagship</span><span>10:00 - 22:00</span></li>
+                        <li class="flex justify-between"><span data-i18n-key="nav_store_haji">Haji Lane Stores</span><span>10:00 - 22:00</span></li>
+                        <li class="flex justify-between"><span data-i18n-key="nav_store_cafe">SINNKAWA® Café</span><span>12:00 - 20:00</span></li>
+                    </ul>
+                </div>
+                <div class="flex justify-center md:justify-end">
+                    <img src="Sinnkawa_footer.png" alt="SINNKAWA® holding a sign" class="w-32 h-auto rounded-xl shadow-lg" loading="lazy">
+                </div>
+            </div>
+            <div class="border-t border-white/20 pt-8 text-center text-white/80">
+                <p class="font-bold text-white" data-i18n-key="footer_rights_bold">©2025 SINGAPORE SINNKAWA PTE.LTD. All rights reserved.</p>
+                <p class="text-xs mt-2 max-w-3xl mx-auto" data-i18n-key="footer_rights_legal">All content of this brand (SINNKAWA®), including images, characters, copy, designs, etc., is protected by copyright and trademark law. We solemnly declare that we will take legal action to protect our rights against any unauthorized use, imitation, or reproduction of our brand content. If necessary, the matter will be referred to judicial authorities for prosecution to the fullest extent of the law.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // --- Page Load & Splash Screen ---
+        window.scrollTo(0, 0); // Ensure page starts at the top
+        const splashScreen = document.getElementById('splash-screen');
+        if (splashScreen) {
+            setTimeout(() => {
+                splashScreen.classList.add('zoom-out');
+                setTimeout(() => {
+                    splashScreen.style.display = 'none';
+                }, 700);
+            }, 2800); // Splash screen visible for 2.8 seconds
+        }
+
+        // --- Parallax Scrolling ---
+        const parallaxElements = {
+            'parallax-1': 30,
+            'parallax-2': 50,
+            'parallax-3': 20
+        };
+        window.addEventListener('scroll', () => {
+            let scrollPosition = window.pageYOffset;
+            for (const id in parallaxElements) {
+                const el = document.getElementById(id);
+                if(el) {
+                    const speed = parallaxElements[id];
+                    el.style.transform = `translateY(${scrollPosition / speed}%)`;
+                }
+            }
         });
-      });
 
-      // --- Chatbot Logic ---
-      const chatbotContainer = document.getElementById('chatbot-container');
-      const openChatbotBtn = document.getElementById('open-chatbot');
-      const closeChatbotBtn = document.getElementById('close-chatbot');
-      const chatbotMessages = document.getElementById('chatbot-messages');
-      const chatbotInput = document.getElementById('chatbot-input');
-      const chatbotSendBtn = document.getElementById('chatbot-send');
-      const chatbotMenu = document.getElementById('chatbot-menu');
+        // --- Internationalization (i18n) ---
+        const translations = {
+            en: {
+                splash_text: "Let's explore the SINNKAWA® Family!",
+                // Top Bar & Countdown
+                top_countdown_label: "Official Website Launch Countdown:",
+                time_days_short: "d", time_hours_short: "h", time_minutes_short: "m", time_seconds_short: "s",
+                top_promo_1: "Explore the charm of Singapore with SINNKAWA®",
+                top_promo_2: "Follow our social media for the latest updates",
+                contact_us_short: "Contact Us",
 
-      const toggleChatbot = () => chatbotContainer.classList.toggle('visible');
+                // Header
+                nav_stores: "Stores",
+                nav_store_chinatown: "Chinatown Flagship",
+                nav_store_haji: "Haji Lane Stores",
+                nav_store_cafe: "SINNKAWA® Café",
+                nav_about: "About Us",
+                nav_social: "Social Media",
+                nav_contact: "Contact",
 
-      openChatbotBtn.addEventListener('click', toggleChatbot);
-      closeChatbotBtn.addEventListener('click', toggleChatbot);
+                // Hero Section
+                hero_badge: "Official Website Launching Soon!",
+                hero_title: "Explore Singapore with <span class='text-primary'>SINNKAWA®</span>",
+                hero_subtitle: "Join SINNKAWA® Family to discover the Lion City's iconic sights, delicious food, and vibrant culture!",
+                hero_cta_explore: "Explore Stores",
+                hero_cta_story: "Brand Story",
+                
+                // Social Section
+                social_title: "Follow Our Social Media",
+                social_subtitle: "Get the latest event info, cute merchandise, and Singapore travel tips",
+                social_xhs_name: "RED (Xiaohongshu)",
+                social_xhs_desc: "Explore Singapore with SINNKAWA®",
+                social_ig_desc: "SINNKAWA®'s travel photo wall",
+                social_tt_desc: "SINNKAWA®'s fun adventure videos",
+                social_wa_desc: "Chat directly with the SINNKAWA® team",
 
-      const appendMessage = (text, sender) => {
-          const messageDiv = document.createElement('div');
-          messageDiv.classList.add('chat-message', sender);
-          messageDiv.innerHTML = text; // Use innerHTML to render line breaks
-          chatbotMessages.appendChild(messageDiv);
-          chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
-      };
+                // News Section
+                news_title: "Latest News: Our Café is Open!",
+                news_subtitle: "The SINNKAWA® Café is now officially open! Enjoy themed drinks and desserts in a world of cuteness.",
+                news_cta_unlock: "Unlock Exclusive Gifts",
+                news_cta_menu: "View Menu",
 
-      const getBotResponse = (userInput) => {
-          const lowerInput = userInput.toLowerCase();
-          
-          const knowledgeBase = {
-              '主打 ip': '我们的主打IP是Merlion & Friends，全线独家授权的小狮兄弟系列产品。我们拥有完整的IP商品线，包括毛绒玩具、文创用品、食品等多个类别。',
-              'ip': '我们的主打IP是Merlion & Friends，全线独家授权的小狮兄弟系列产品。我们拥有完整的IP商品线，包括毛绒玩具、文创用品、食品等多个类别。',
-              'pandan': '斑兰牛油蛋糕整模 S$19.9，单片装 S$2.5。这是我们的招牌新加坡风味甜品，采用优质斑兰叶制作。',
-              '蛋糕': '斑兰牛油蛋糕整模 S$19.9，单片装 S$2.5。这是我们的招牌新加坡风味甜品，采用优质斑兰叶制作。',
-              'grabpay': '我们支持多种支付方式：GrabPay、PayNow、Visa/MasterCard 信用卡、借记卡等。支付过程安全便捷。',
-              '支付': '我们支持多种支付方式：GrabPay、PayNow、Visa/MasterCard 信用卡、借记卡等。支付过程安全便捷。',
-              '多久送达': '市区范围当日或次日送达，郊区地区1-2个工作日。我们与专业物流公司合作，确保商品安全及时送达。',
-              '配送': '市区范围当日或次日送达，郊区地区1-2个工作日。我们与专业物流公司合作，确保商品安全及时送达。',
-              '积分': '消费 S$1 = 1 积分，累积100积分可抵扣 S$1。积分永久有效，可在下次购物时直接使用。',
-              '会员': '消费 S$1 = 1 积分，累积100积分可抵扣 S$1。生日当月享受全场8折优惠，还有专属Merlion生日礼盒赠送。',
-              '生日': '生日当月享受全场8折优惠，还有专属Merlion生日礼盒赠送。需要在个人资料中完善生日信息。',
-              '盲盒': '有的！每24盒中会有1只限量闪金版Merlion，是收藏级别的特殊款式，非常受欢迎。',
-              '隐藏款': '有的！每24盒中会有1只限量闪金版Merlion，是收藏级别的特殊款式，非常受欢迎。',
-              '网站很慢': '建议先清除浏览器缓存，或升级到最新版APP。如果问题持续，请联系我们的技术支持团队。',
-              '加载慢': '建议先清除浏览器缓存，或升级到最新版APP。如果问题持续，请联系我们的技术支持团队。',
-              '拉花': '可以的！Merlion主题拉花需要加收S$1服务费。周末期间比较受欢迎，建议提早预订。',
-              '改地址': '登录账户后进入「我的订单」页面，点击「修改配送信息」即可调整地址。注意：只能在订单发货前修改。',
-              '旗舰店': 'SINNKAWA® 牛车水旗舰店是我们品牌的主旗舰店，拥有最全的IP系列和独家周边商品。',
-              'chinatown': 'Our Chinatown Flagship store is our main hub, featuring the full IP collections and exclusive merchandise.',
-              '咖啡': 'SINNKAWA® 咖啡厅位于牛车水旗舰店楼上，是一个温馨的空间，提供季节限定饮品和IP主题装潢。',
-              'cafe': 'The SINNKAWA® Café, located upstairs at our Chinatown flagship, is a cozy space with seasonal drinks and IP-themed interiors.',
-              '哈芝巷': '我们在哈芝巷有多家不同主题的店铺！有潮流街头风的22号店、黑白极简风的68号店、互动体验区的43号店，还有艺术生活方式的Soul Art 62号店。',
-              'haji lane': 'We have several themed stores on Haji Lane! There\'s the trendy 22 Haji Lane, the minimalist 68 Haji Lane, the interactive 43 Haji Lane, and the Soul Art lifestyle store at 62 Haji Lane.',
-              '营业时间': '我们所有门店的营业时间通常是每天上午11点到晚上9点，但具体时间可能会因节假日调整。',
-              'hours': 'All our stores are generally open from 11 AM to 9 PM daily, but hours may vary on public holidays.',
-              '合作': '非常欢迎合作！请通过我们网站上的联系表单，或直接通过WhatsApp联系我们，我们会尽快回复您！',
-              'collaboration': 'We\'d love to collaborate! Please reach out via the contact form on our website or directly through WhatsApp, and we\'ll get back to you soon!',
-              '你好': '你好！有什么可以帮助您的吗？您可以直接问我，或选择下方的菜单选项。',
-              'hello': 'Hello! How can I help you? Feel free to ask me a question or choose from the menu options below.',
-          };
+                // Stores Section
+                stores_title: "SINNKAWA® Stores",
+                stores_subtitle: "Welcome to visit our stores and experience the world of SINNKAWA®",
+                store_chinatown_title: "Chinatown Flagship Store",
+                store_chinatown_desc: "Located in Singapore's famous Chinatown, our flagship store offers the most complete range of SINNKAWA® merchandise.",
+                address: "Address",
+                hours: "Opening Hours",
+                store_chinatown_hours: "10:00 - 22:00 (Daily)",
+                view_on_map: "View on Map",
+                store_cafe_title: "SINNKAWA® Café @ Chinatown｜Singapore's Cutest Themed Café",
+                store_cafe_desc: "Enjoy specialty drinks and desserts in our themed cafe, filled with cute decorations perfect for photos.",
+                store_cafe_hours: "12:00 - 20:00 (Daily)",
+                store_haji_title: "Haji Lane Stores",
+                store_haji_62_name: "Soul Art 62 Haji Lane",
+                store_haji_62_desc: "A special store in collaboration with local artists, showcasing artworks integrating SINNKAWA® elements.",
+                store_haji_22_name: "22 Haji Lane",
+                store_haji_22_desc: "Located in the trendy Haji Lane, this store offers limited edition SINNKAWA® merchandise.",
+                store_haji_68_name: "68 Haji Lane",
+                store_haji_68_desc: "A black and white themed store with a unique decor style, perfect for photo opportunities.",
+                store_haji_43_name: "43# Megastore & Zone",
+                store_haji_43_desc: "Discover exclusive collections and interactive displays at our newest Haji Lane location.",
+                map_navigation: "Map Navigation",
+                coming_soon: "Coming Soon",
 
-          for (const keyword in knowledgeBase) {
-              if (lowerInput.includes(keyword)) {
-                  return knowledgeBase[keyword];
-              }
-          }
+                // About Section
+                about_title: "About SINNKAWA®",
+                about_subtitle: "Our brand story, philosophy, and culture",
+                about_story_title: "Our Story",
+                about_story_desc: "Born in Singapore, SINNKAWA® is an original IP full of love and adventure. We hope to bring joy and warmth to people through cute characters and stories, while showcasing the charm of Singapore's multiculturalism.",
+                about_milestones_title: "Brand Milestones",
+                milestone_2020_title: "Brand Foundation",
+                milestone_2020_desc: "The SINNKAWA® character was born, initially as a cute illustration.",
+                milestone_2021_title: "First Merchandise Release",
+                milestone_2021_desc: "Launched the first batch of SINNKAWA® merchandise, warmly welcomed by fans.",
+                milestone_2022_title: "First Store Opening",
+                milestone_2022_desc: "Opened the first SINNKAWA® themed store in Chinatown.",
+                milestone_2023_title: "Expansion to Haji Lane",
+                milestone_2023_desc: "Opened several specialty stores in the trendy Haji Lane district.",
+                milestone_2025_title: "Website Launch",
+                milestone_2025_desc: "The official website is about to launch, offering more online services.",
+                milestone_future_title: "The Adventure Continues...",
+                milestone_future_desc: "The SINNKAWA® family is growing! More fun IPs are coming soon. Stay tuned!",
 
-          return "抱歉，我暂时无法回答这个问题。您可以试试菜单里的选项，或者在联系我们页面给我们留言哦！/ Sorry, I can't answer that question right now. You can try the menu options or leave us a message on the contact page!";
-      };
+                // Contact Section
+                contact_title: "Contact Us",
+                contact_subtitle: "Have any questions or suggestions? Please feel free to contact us",
+                form_name: "Name",
+                form_email: "Email",
+                form_subject: "Subject",
+                form_select_subject: "Please select...",
+                form_subject_store: "Store Inquiry",
+                form_subject_product: "Product Inquiry",
+                form_subject_collab: "Collaboration",
+                form_subject_other: "Other",
+                form_message: "Message",
+                form_submit: "Submit Message",
+                
+                // Footer
+                footer_tagline: "Singapore meet Cuteness",
+                footer_links: "Quick Links",
+                footer_rights_bold: "©2025 SINGAPORE SINNKAWA PTE.LTD. All rights reserved.",
+                footer_rights_legal: "All content of this brand (SINNKAWA®), including images, characters, copy, designs, etc., is protected by copyright and trademark law. We solemnly declare that we will take legal action to protect our rights against any unauthorized use, imitation, or reproduction of our brand content. If necessary, the matter will be referred to judicial authorities for prosecution to the fullest extent of the law.",
+            },
+            zh: {
+                splash_text: "一起来探索SINNKAWA®Family吧",
+                // Top Bar & Countdown
+                top_countdown_label: "官网发布倒计时:",
+                time_days_short: "天", time_hours_short: "时", time_minutes_short: "分", time_seconds_short: "秒",
+                top_promo_1: "与SINNKAWA®一起探索新加坡的魅力",
+                top_promo_2: "关注我们的社交媒体获取最新动态",
+                contact_us_short: "联系我们",
 
-      // 保存和加载聊天记录
-      const saveChatHistory = () => {
-          const messages = Array.from(chatbotMessages.children).map(el => ({
-              html: el.innerHTML,
-              className: el.className
-          }));
-          localStorage.setItem('chatHistory', JSON.stringify(messages));
-      };
+                // Header
+                nav_stores: "门店",
+                nav_store_chinatown: "牛车水旗舰店",
+                nav_store_haji: "哈芝巷门店",
+                nav_store_cafe: "SINNKAWA® 主题咖啡厅",
+                nav_about: "品牌介绍",
+                nav_social: "社交媒体",
+                nav_contact: "联系我们",
 
-      const loadChatHistory = () => {
-          const savedChat = localStorage.getItem('chatHistory');
-          if (savedChat) {
-              const messages = JSON.parse(savedChat);
-              messages.forEach(msg => {
-                  const messageDiv = document.createElement('div');
-                  messageDiv.className = msg.className;
-                  messageDiv.innerHTML = msg.html;
-                  chatbotMessages.appendChild(messageDiv);
-              });
-              chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
-              return true;
-          }
-          return false;
-      };
+                // Hero Section
+                hero_badge: "官网即将上线，敬请期待！",
+                hero_title: "与 <span class='text-primary'>SINNKAWA®</span> 一起探索新加坡",
+                hero_subtitle: "加入 SINNKAWA® Family，一起探索狮城的标志性景点、美味食物和充满活力的文化！",
+                hero_cta_explore: "探索门店",
+                hero_cta_story: "品牌故事",
+                
+                // Social Section
+                social_title: "关注我们的社交媒体",
+                social_subtitle: "获取最新活动信息、可爱周边和新加坡旅行小贴士",
+                social_xhs_name: "RED (小红书)",
+                social_xhs_desc: "跟随SINNKAWA®探索新加坡美食与文化",
+                social_ig_desc: "SINNKAWA®的环球旅行照片墙",
+                social_tt_desc: "SINNKAWA®的趣味冒险短视频",
+                social_wa_desc: "与SINNKAWA®团队直接交流",
 
-      const initializeChat = () => {
-          // 尝试加载历史记录
-          const hasHistory = loadChatHistory();
-          
-          if (!hasHistory) {
-              chatbotMessages.innerHTML = '';
-              appendMessage("你好！我是<span class='en'>MELRIO</span><span class='zh'>莫里奥</span><span class='ms'>MELRIO</span>，很高兴为您服务！<br>Hello! I'm <span class='en'>MELRIO</span><span class='zh'>莫里奥</span><span class='ms'>MELRIO</span>, happy to help!", 'bot');
-          }
+                // News Section
+                news_title: "最新消息：我们的咖啡厅开业啦！",
+                news_subtitle: "SINNKAWA®主题咖啡厅现已正式营业！快来沉浸在可爱的世界里，享受主题饮品和甜点。",
+                news_cta_unlock: "立马解锁赢独家好礼",
+                news_cta_menu: "查看菜单",
 
-          chatbotMenu.innerHTML = '';
-          const menuItems = [
-              { zh: '产品咨询', en: 'Product Info', ms: 'Info Produk' },
-              { zh: '订单支付', en: 'Payment', ms: 'Pembayaran' },
-              { zh: '配送服务', en: 'Delivery', ms: 'Penghantaran' },
-              { zh: '会员服务', en: 'Membership', ms: 'Keahlian' },
-              { zh: '门店信息', en: 'Store Info', ms: 'Info Kedai' },
-              { zh: '常见问题', en: 'FAQ', ms: 'Soalan Lazim' }
-          ];
-          
-          menuItems.forEach(item => {
-              const menuButton = document.createElement('button');
-              menuButton.classList.add('menu-option');
-              menuButton.innerHTML = `<span class="zh">${item.zh}</span><span class="en">${item.en}</span><span class="ms">${item.ms}</span>`;
-              menuButton.onclick = () => {
-                  let question = item.en;
-                  if (document.body.classList.contains('lang-cn')) {
-                      question = item.zh;
-                  } else if (document.body.classList.contains('lang-my')) {
-                      question = item.ms;
-                  }
-                  handleMenuClick(question);
-              }
-              chatbotMenu.appendChild(menuButton);
-          });
-          chatbotMenu.style.display = 'flex';
-          
-          // 添加自动保存监听
-          chatbotMessages.addEventListener('DOMNodeInserted', saveChatHistory);
-      };
+                // Stores Section
+                stores_title: "SINNKAWA® 门店",
+                stores_subtitle: "欢迎来我们的门店参观，体验SINNKAWA®的世界",
+                store_chinatown_title: "牛车水旗舰店",
+                store_chinatown_desc: "位于新加坡著名的牛车水区，我们的旗舰店提供最完整的SINNKAWA®周边产品，是粉丝必访的打卡点。",
+                address: "地址",
+                hours: "营业时间",
+                store_chinatown_hours: "10:00 - 22:00（每日）",
+                view_on_map: "在地图上查看",
+                store_cafe_title: "SINNKAWA® Café @ Chinatown｜新加坡最萌主题Café",
+                store_cafe_desc: "享受以SINNKAWA®为主题的特色饮品和甜点，店内装饰充满可爱元素，是拍照和放松的绝佳场所。",
+                store_cafe_hours: "12:00 - 20:00（每日）",
+                store_haji_title: "哈芝巷门店",
+                store_haji_62_name: "Soul Art 62 哈芝巷",
+                store_haji_62_desc: "与当地艺术家合作的特色门店，展示融合SINNKAWA®元素的艺术作品。",
+                store_haji_22_name: "22 哈芝巷",
+                store_haji_22_desc: "位于时尚潮流的哈芝巷，这家门店提供限量版SINNKAWA®商品。",
+                store_haji_68_name: "68 哈芝巷",
+                store_haji_68_desc: "黑白主题门店，独特的装修风格，适合拍照打卡。",
+                store_haji_43_name: "43# 旗舰店 & 体验区",
+                store_haji_43_desc: "在我们最新的哈芝巷分店探索独家系列和互动展示。",
+                map_navigation: "地图导航",
+                coming_soon: "敬请期待",
 
-      const handleMenuClick = (question) => {
-          appendMessage(question, 'user');
-          chatbotMenu.style.display = 'none';
-          setTimeout(() => {
-              const botResponse = getBotResponse(question);
-              appendMessage(botResponse, 'bot');
-          }, 500);
-      };
+                // About Section
+                about_title: "关于 SINNKAWA®",
+                about_subtitle: "我们的品牌故事、理念和文化",
+                about_story_title: "我们的故事",
+                about_story_desc: "SINNKAWA®诞生于新加坡，是一个充满爱与冒险精神的原创IP。我们希望通过可爱的角色和故事，带给人们快乐和温暖，同时展示新加坡多元文化的魅力。",
+                about_milestones_title: "品牌里程碑",
+                milestone_2020_title: "品牌创立",
+                milestone_2020_desc: "SINNKAWA®角色诞生，最初只是一个可爱的插画形象。",
+                milestone_2021_title: "首次周边发布",
+                milestone_2021_desc: "推出首批SINNKAWA®周边产品，受到粉丝热烈欢迎。",
+                milestone_2022_title: "首家门店开业",
+                milestone_2022_desc: "在牛车水开设第一家SINNKAWA®主题门店。",
+                milestone_2023_title: "扩展至哈芝巷",
+                milestone_2023_desc: "在潮流街区哈芝巷开设多家特色门店。",
+                milestone_2025_title: "网站上线",
+                milestone_2025_desc: "官方网站即将上线，提供更多线上服务。",
+                milestone_future_title: "冒险仍在继续...",
+                milestone_future_desc: "SINNKAWA®家族正在日渐变大，更多有趣的IP即将到来，敬请期待！",
 
-      // 改进的输入处理
-      const enhancedHandleUserInput = () => {
-          const userInput = chatbotInput.value.trim();
-          if (!userInput) return;
+                // Contact Section
+                contact_title: "联系我们",
+                contact_subtitle: "有任何问题或建议？请随时与我们联系",
+                form_name: "姓名",
+                form_email: "邮箱",
+                form_subject: "主题",
+                form_select_subject: "请选择...",
+                form_subject_store: "门店咨询",
+                form_subject_product: "产品咨询",
+                form_subject_collab: "合作洽谈",
+                form_subject_other: "其他问题",
+                form_message: "留言",
+                form_submit: "提交留言",
 
-          const typingIndicator = document.createElement('div');
-          typingIndicator.className = 'chat-message bot';
-          typingIndicator.innerHTML = '<span class="typing-dots"><span>.</span><span>.</span><span>.</span></span>';
-          chatbotMessages.appendChild(typingIndicator);
-          chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
-          
-          appendMessage(userInput, 'user');
-          chatbotInput.value = '';
-          chatbotMenu.style.display = 'none';
+                // Footer
+                footer_tagline: "新加坡遇见萌物",
+                footer_links: "快速链接",
+                footer_rights_bold: "©2025 新加坡 SINNKAWA 私人有限公司. 保留所有权利。",
+                footer_rights_legal: "本品牌（SINNKAWA®）所有内容（图像、角色、文案、设计等）均依法受版权与商标法保护。我们严正声明：对任何擅自使用、仿冒、转载本品牌内容的行为，将采取法律手段维权，必要时移交司法机关处理，绝不姑息。",
+            }
+        };
 
-          setTimeout(() => {
-              chatbotMessages.removeChild(typingIndicator);
-              try {
-                  const botResponse = getBotResponse(userInput);
-                  appendMessage(botResponse, 'bot');
-              } catch (error) {
-                  console.error('Chatbot error:', error);
-                  appendMessage("抱歉，处理您的请求时出错了。请稍后再试。", 'bot');
-              }
-          }, 800 + Math.random() * 700);
-      };
+        const setLanguage = (lang) => {
+            if (!['en', 'zh'].includes(lang)) {
+                lang = 'en'; // Default to English
+            }
+            document.documentElement.lang = lang;
+            localStorage.setItem('sinnkawa-lang', lang);
 
-      chatbotSendBtn.addEventListener('click', enhancedHandleUserInput);
-      chatbotInput.addEventListener('keypress', (e) => {
-          if (e.key === 'Enter') {
-              enhancedHandleUserInput();
-          }
-      });
-      
-      openChatbotBtn.addEventListener('click', () => {
-          initializeChat();
-          const style = document.createElement('style');
-          style.textContent = `
-              .typing-dots {
-                  display: inline-flex;
-                  align-items: center;
-                  height: 17px;
-              }
-              .typing-dots span {
-                  width: 6px;
-                  height: 6px;
-                  margin: 0 2px;
-                  background-color: var(--text2);
-                  border-radius: 50%;
-                  display: inline-block;
-                  opacity: 0.4;
-              }
-              .typing-dots span:nth-child(1) {
-                  animation: typing 1s infinite;
-              }
-              .typing-dots span:nth-child(2) {
-                  animation: typing 1s infinite 0.2s;
-              }
-              .typing-dots span:nth-child(3) {
-                  animation: typing 1s infinite 0.4s;
-              }
-              @keyframes typing {
-                  0%, 100% { opacity: 0.4; transform: translateY(0); }
-                  50% { opacity: 1; transform: translateY(-3px); }
-              }
-          `;
-          document.head.appendChild(style);
-      });
+            document.querySelectorAll('[data-i18n-key]').forEach(el => {
+                const key = el.getAttribute('data-i18n-key');
+                const translation = translations[lang][key];
+                if (translation !== undefined) {
+                    if (el.hasAttribute('placeholder')) {
+                        el.setAttribute('placeholder', translation);
+                    } else {
+                        el.innerHTML = translation;
+                    }
+                }
+            });
+        };
 
+        document.querySelectorAll('.language-option').forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
+                const lang = e.currentTarget.getAttribute('data-lang');
+                setLanguage(lang);
+            });
+        });
+
+        // Set initial language to English, ignoring localStorage
+        setLanguage('en');
+
+
+        // --- Countdown Timer ---
+        const countdownDate = new Date("2025-08-20T23:59:59").getTime();
+        const updateCountdown = () => {
+            const now = new Date().getTime();
+            const distance = countdownDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            
+            const format = (num) => num.toString().padStart(2, '0');
+
+            document.querySelectorAll('.top-days, .main-days').forEach(el => el.textContent = format(days));
+            document.querySelectorAll('.top-hours, .main-hours').forEach(el => el.textContent = format(hours));
+            document.querySelectorAll('.top-minutes, .main-minutes').forEach(el => el.textContent = format(minutes));
+            document.querySelectorAll('.top-seconds, .main-seconds').forEach(el => el.textContent = format(seconds));
+
+            if (distance < 0) {
+                // Handle countdown finished state if needed
+            }
+        };
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+
+        // --- Mobile Menu ---
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => {
+            const isExpanded = mobileMenuButton.getAttribute('aria-expanded') === 'true';
+            mobileMenuButton.setAttribute('aria-expanded', !isExpanded);
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        document.querySelectorAll('.mobile-dropdown-button').forEach(button => {
+            button.addEventListener('click', () => {
+                const isExpanded = button.getAttribute('aria-expanded') === 'true';
+                button.setAttribute('aria-expanded', !isExpanded);
+                button.nextElementSibling.classList.toggle('hidden');
+                button.querySelector('.fa-chevron-down').classList.toggle('rotate-180');
+            });
+        });
+
+        // --- Back to Top Button ---
+        const backToTopButton = document.getElementById('back-to-top');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTopButton.classList.remove('opacity-0', 'invisible');
+            } else {
+                backToTopButton.classList.add('opacity-0', 'invisible');
+            }
+        });
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+        
+        // --- Intersection Observer for Fade-in Animations ---
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
     });
-  </script>
+    </script>
 </body>
 </html>
