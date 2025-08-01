@@ -2,8 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SINNKAWA® - Singapore</title>
+    <title data-i18n-key="page_title">SINNKAWA® - Singapore Meet Cuteness!</title>
+
 
     <!-- SEO and Meta Tags -->
     <meta name="description" content="Explore Singapore with SINNKAWA®, the adorable blue friend! Discover our stores, themed cafe, exclusive merchandise, and the vibrant culture of the Lion City.">
@@ -132,7 +134,7 @@
             theme: {
                 extend: {
                     colors: {
-                        primary: '#87CEEB', // New Sky Blue
+                        primary: '#B3EEED', // Updated Theme Color
                         secondary: '#F0F8FF', // AliceBlue, complements Sky Blue
                         accent: '#EC4899', // Less used pink
                         dark: '#1F2937', // Darker text for better contrast
@@ -146,15 +148,16 @@
             }
         }
     </script>
+    <script src="https://unpkg.com/i18next@22.4.9/i18next.min.js"></script>
 </head>
 
 <body class="bg-secondary text-dark font-sans antialiased">
     
     <!-- Parallax Background -->
-    <div class="parallax-bg">
-        <div id="parallax-1" class="sg-icon" style="width: 30%; top: 10%; left: 5%;"><img src="背景一全家又在礼物店门口.png" class="w-full"></div>
-        <div id="parallax-2" class="sg-icon" style="width: 25%; top: 50%; right: 10%;"><img src="背景二全家在礼物店.png" class="w-full"></div>
-        <div id="parallax-3" class="sg-icon" style="width: 35%; bottom: 5%; left: 15%;"><img src="背景三全家在新加坡.png" class="w-full"></div>
+    <div class="parallax-bg hidden md:block">
+        <div id="parallax-1" class="sg-icon" style="width: 30%; top: 10%; left: 5%;"><img src="背景一全家又在礼物店门口.png" class="w-full" loading="lazy"></div>
+        <div id="parallax-2" class="sg-icon" style="width: 25%; top: 50%; right: 10%;"><img src="背景二全家在礼物店.png" class="w-full" loading="lazy"></div>
+        <div id="parallax-3" class="sg-icon" style="width: 35%; bottom: 5%; left: 15%;"><img src="背景三全家在新加坡.png" class="w-full" loading="lazy"></div>
     </div>
 
     <!-- Splash Screen -->
@@ -301,7 +304,7 @@
                     </div>
                     <div class="lg:w-1/2 relative fade-in">
                         <div class="relative z-10 animate-float">
-                            <img src="Sinnkawa_family_pic.png" alt="SINNKAWA® family photo" class="w-full max-w-md mx-auto rounded-3xl shadow-2xl">
+                            <img src="Sinnkawa_family_pic.png" alt="SINNKAWA® family photo" class="w-full max-w-md mx-auto rounded-3xl shadow-2xl" loading="lazy">
                         </div>
                     </div>
                 </div>
@@ -331,7 +334,7 @@
                         <p class="text-sm opacity-90 mt-2" data-i18n-key="social_ig_desc">SINNKAWA®'s travel photo wall</p>
                     </a>
                     <a href="https://www.tiktok.com/@sinnkawa_singapore" target="_blank" rel="noopener noreferrer" class="bg-black hover:bg-gray-900 text-white rounded-2xl p-6 text-center transition-all duration-200 transform hover:-translate-y-2 hover:shadow-lg flex flex-col items-center justify-center">
-                        <img src="tiktok.png" alt="TikTok Logo" class="w-10 h-10 mb-4 filter invert">
+                        <img src="tiktok.png" alt="TikTok Logo" class="w-10 h-10 mb-4 filter invert" loading="lazy">
                         <h3 class="font-bold text-lg">TikTok</h3>
                         <p class="text-sm opacity-90 mt-2" data-i18n-key="social_tt_desc">SINNKAWA®'s fun adventure videos</p>
                     </a>
@@ -357,7 +360,7 @@
                         </div>
                     </div>
                     <div class="h-64 lg:h-full">
-                        <img src="图片.png" alt="SINNKAWA® Themed Cafe Interior" class="w-full h-full object-cover">
+                        <img src="图片.png.svg" alt="SINNKAWA® Themed Cafe Interior" class="w-full h-full object-cover">
                     </div>
                 </div>
             </div>
@@ -644,7 +647,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
                 <div>
                     <div class="mb-6"><img src="大头logo有R.png" alt="SINNKAWA® Logo" class="h-32"></div>
-                    <p class="text-white/80 mb-6" data-i18n-key="footer_tagline">Singapore meet Cuteness</p>
+                    <p class="text-white/80 mb-6" data-i18n-key="footer_tagline">Singapore Meet Cuteness!</p>
                 </div>
                 <div>
                     <h4 class="text-lg font-semibold mb-6 text-white" data-i18n-key="footer_links">Quick Links</h4>
@@ -709,6 +712,7 @@
         // --- Internationalization (i18n) ---
         const translations = {
             en: {
+                page_title: "SINNKAWA® - Singapore Meet Cuteness!",
                 splash_text: "Let's explore the SINNKAWA® Family!",
                 // Top Bar & Countdown
                 top_countdown_label: "Official Website Launch Countdown:",
@@ -806,12 +810,13 @@
                 form_submit: "Submit Message",
                 
                 // Footer
-                footer_tagline: "Singapore meet Cuteness",
+                footer_tagline: "Singapore Meet Cuteness!",
                 footer_links: "Quick Links",
                 footer_rights_bold: "©2025 SINGAPORE SINNKAWA PTE.LTD. All rights reserved.",
                 footer_rights_legal: "All content of this brand (SINNKAWA®), including images, characters, copy, designs, etc., is protected by copyright and trademark law. We solemnly declare that we will take legal action to protect our rights against any unauthorized use, imitation, or reproduction of our brand content. If necessary, the matter will be referred to judicial authorities for prosecution to the fullest extent of the law.",
             },
             zh: {
+                page_title: "SINNKAWA® - 让新加坡萌起来！",
                 splash_text: "一起来探索SINNKAWA®Family吧",
                 // Top Bar & Countdown
                 top_countdown_label: "官网发布倒计时:",
@@ -909,23 +914,19 @@
                 form_submit: "提交留言",
 
                 // Footer
-                footer_tagline: "新加坡遇见萌物",
+                footer_tagline: "让新加坡萌起来！",
                 footer_links: "快速链接",
                 footer_rights_bold: "©2025 新加坡 SINNKAWA 私人有限公司. 保留所有权利。",
                 footer_rights_legal: "本品牌（SINNKAWA®）所有内容（图像、角色、文案、设计等）均依法受版权与商标法保护。我们严正声明：对任何擅自使用、仿冒、转载本品牌内容的行为，将采取法律手段维权，必要时移交司法机关处理，绝不姑息。",
             }
         };
 
-        const setLanguage = (lang) => {
-            if (!['en', 'zh'].includes(lang)) {
-                lang = 'en'; // Default to English
-            }
-            document.documentElement.lang = lang;
-            localStorage.setItem('sinnkawa-lang', lang);
+        const resources = { en: { translation: translations.en }, zh: { translation: translations.zh } };
 
+        function updateContent() {
             document.querySelectorAll('[data-i18n-key]').forEach(el => {
                 const key = el.getAttribute('data-i18n-key');
-                const translation = translations[lang][key];
+                const translation = i18next.t(key);
                 if (translation !== undefined) {
                     if (el.hasAttribute('placeholder')) {
                         el.setAttribute('placeholder', translation);
@@ -934,15 +935,31 @@
                     }
                 }
             });
-        };
+        }
+
+        i18next.init({
+            resources,
+            fallbackLng: 'en',
+            lng: localStorage.getItem('sinnkawa-lang') || (navigator.language.toLowerCase().startsWith('zh') ? 'zh' : 'en')
+        }).then(() => {
+            document.documentElement.lang = i18next.language;
+            updateContent();
+        });
+
+        i18next.on('languageChanged', (lng) => {
+            document.documentElement.lang = lng;
+            updateContent();
+            localStorage.setItem('sinnkawa-lang', lng);
+        });
 
         document.querySelectorAll('.language-option').forEach(button => {
             button.addEventListener('click', (e) => {
                 e.preventDefault();
                 const lang = e.currentTarget.getAttribute('data-lang');
-                setLanguage(lang);
+                i18next.changeLanguage(lang);
             });
         });
+
 
         // Detect preferred language
         const savedLang = localStorage.getItem('sinnkawa-lang');
@@ -952,6 +969,7 @@
             // Default to English when no language preference is stored
             setLanguage('en');
         }
+
 
 
         // --- Countdown Timer ---
