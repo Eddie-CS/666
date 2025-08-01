@@ -961,6 +961,17 @@
         });
 
 
+        // Detect preferred language
+        const savedLang = localStorage.getItem('sinnkawa-lang');
+        if (savedLang) {
+            setLanguage(savedLang);
+        } else {
+            // Default to English when no language preference is stored
+            setLanguage('en');
+        }
+
+
+
         // --- Countdown Timer ---
         const countdownDate = new Date("2025-08-20T23:59:59").getTime();
         const updateCountdown = () => {
