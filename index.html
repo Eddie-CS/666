@@ -473,7 +473,7 @@
                             </div>
                         </div>
                         <div class="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-200">
-                           <img src="哈芝巷43.HEIC" alt="43 Haji Lane" class="w-full h-60 object-cover" loading="lazy">
+                           <img src="Sinnkawa_43_Haji_Lane_Megastore_Experience_Zone.png" alt="43 Haji Lane" class="w-full h-60 object-cover" loading="lazy">
                             <div class="p-6">
                                 <h4 class="font-bold text-lg mb-2" data-i18n-key="store_haji_43_name">43 Haji Lane</h4>
                                 <p class="text-gray-600 text-sm mb-4" data-i18n-key="store_haji_43_desc">Discover exclusive collections and interactive displays at our newest Haji Lane location.</p>
@@ -944,8 +944,14 @@
             });
         });
 
-        // Set initial language to English, ignoring localStorage
-        setLanguage('en');
+        // Detect preferred language
+        const savedLang = localStorage.getItem('sinnkawa-lang');
+        if (savedLang) {
+            setLanguage(savedLang);
+        } else {
+            const browserLang = navigator.language.toLowerCase();
+            setLanguage(browserLang.startsWith('zh') ? 'zh' : 'en');
+        }
 
 
         // --- Countdown Timer ---
@@ -1006,18 +1012,23 @@
         });
         
         // --- Intersection Observer for Fade-in Animations ---
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    observer.unobserve(entry.target);
-                }
+        if ('IntersectionObserver' in window) {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+            document.querySelectorAll('.fade-in').forEach(el => {
+                observer.observe(el);
             });
-        }, { threshold: 0.1 });
-
-        document.querySelectorAll('.fade-in').forEach(el => {
-            observer.observe(el);
-        });
+        } else {
+            document.querySelectorAll('.fade-in').forEach(el => {
+                el.classList.add('visible');
+            });
+        }
     });
     </script>
 </body>
