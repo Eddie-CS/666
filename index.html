@@ -949,6 +949,7 @@
         if (savedLang) {
             setLanguage(savedLang);
         } else {
+            // Use browser preference if available, defaulting to English
             const browserLang = navigator.language.toLowerCase();
             setLanguage(browserLang.startsWith('zh') ? 'zh' : 'en');
         }
