@@ -146,6 +146,7 @@
             }
         }
     </script>
+    <script src="https://unpkg.com/i18next@22.4.9/i18next.min.js"></script>
 </head>
 
 <body class="bg-secondary text-dark font-sans antialiased">
@@ -916,16 +917,12 @@
             }
         };
 
-        const setLanguage = (lang) => {
-            if (!['en', 'zh'].includes(lang)) {
-                lang = 'en'; // Default to English
-            }
-            document.documentElement.lang = lang;
-            localStorage.setItem('sinnkawa-lang', lang);
+        const resources = { en: { translation: translations.en }, zh: { translation: translations.zh } };
 
+        function updateContent() {
             document.querySelectorAll('[data-i18n-key]').forEach(el => {
                 const key = el.getAttribute('data-i18n-key');
-                const translation = translations[lang][key];
+                const translation = i18next.t(key);
                 if (translation !== undefined) {
                     if (el.hasAttribute('placeholder')) {
                         el.setAttribute('placeholder', translation);
@@ -934,24 +931,30 @@
                     }
                 }
             });
-        };
+        }
+
+        i18next.init({
+            resources,
+            fallbackLng: 'en',
+            lng: localStorage.getItem('sinnkawa-lang') || (navigator.language.toLowerCase().startsWith('zh') ? 'zh' : 'en')
+        }).then(() => {
+            document.documentElement.lang = i18next.language;
+            updateContent();
+        });
+
+        i18next.on('languageChanged', (lng) => {
+            document.documentElement.lang = lng;
+            updateContent();
+            localStorage.setItem('sinnkawa-lang', lng);
+        });
 
         document.querySelectorAll('.language-option').forEach(button => {
             button.addEventListener('click', (e) => {
                 e.preventDefault();
                 const lang = e.currentTarget.getAttribute('data-lang');
-                setLanguage(lang);
+                i18next.changeLanguage(lang);
             });
         });
-
-        // Detect preferred language
-        const savedLang = localStorage.getItem('sinnkawa-lang');
-        if (savedLang) {
-            setLanguage(savedLang);
-        } else {
-            const browserLang = navigator.language.toLowerCase();
-            setLanguage(browserLang.startsWith('zh') ? 'zh' : 'en');
-        }
 
 
         // --- Countdown Timer ---
