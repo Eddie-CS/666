@@ -817,7 +817,7 @@
             },
             zh: {
                 page_title: "SINNKAWA® - 让新加坡萌起来！",
-                splash_text: "一起来探索SINNKAWA®Family吧",
+                splash_text: "一起探索SINNKAWA®家族吧",
                 // Top Bar & Countdown
                 top_countdown_label: "官网发布倒计时:",
                 time_days_short: "天", time_hours_short: "时", time_minutes_short: "分", time_seconds_short: "秒",
@@ -837,7 +837,7 @@
                 // Hero Section
                 hero_badge: "官网即将上线，敬请期待！",
                 hero_title: "与 <span class='text-primary'>SINNKAWA®</span> 一起探索新加坡",
-                hero_subtitle: "加入 SINNKAWA® Family，一起探索狮城的标志性景点、美味食物和充满活力的文化！",
+                hero_subtitle: "加入 SINNKAWA® 家族，一起探索狮城的标志性景点、美味佳肴和多元文化！",
                 hero_cta_explore: "探索门店",
                 hero_cta_story: "品牌故事",
                 
@@ -853,7 +853,7 @@
                 // News Section
                 news_title: "最新消息：我们的咖啡厅开业啦！",
                 news_subtitle: "SINNKAWA®主题咖啡厅现已正式营业！快来沉浸在可爱的世界里，享受主题饮品和甜点。",
-                news_cta_unlock: "立马解锁赢独家好礼",
+                news_cta_unlock: "立即解锁获取独家好礼",
                 news_cta_menu: "查看菜单",
 
                 // Stores Section
@@ -937,10 +937,14 @@
             });
         }
 
+        function setLanguage(lang) {
+            i18next.changeLanguage(lang);
+        }
+
         i18next.init({
             resources,
             fallbackLng: 'en',
-            lng: localStorage.getItem('sinnkawa-lang') || (navigator.language.toLowerCase().startsWith('zh') ? 'zh' : 'en')
+            lng: localStorage.getItem('sinnkawa-lang') || 'en'
         }).then(() => {
             document.documentElement.lang = i18next.language;
             updateContent();
@@ -956,7 +960,7 @@
             button.addEventListener('click', (e) => {
                 e.preventDefault();
                 const lang = e.currentTarget.getAttribute('data-lang');
-                i18next.changeLanguage(lang);
+                setLanguage(lang);
             });
         });
 
