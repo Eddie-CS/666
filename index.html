@@ -7,9 +7,9 @@
 
     <!-- SEO and Meta Tags -->
     <meta name="description" content="Explore Singapore with SINNKAWA®, the adorable blue friend! Discover our stores, themed cafe, exclusive merchandise, and the vibrant culture of the Lion City.">
-    <meta name="keywords" content="SINNKAWA, Singapore, travel, gifts, character, IP, Chinatown, Haji Lane, cafe">
+    <meta name="keywords" content="SINNKAWA, Singapore, travel, gifts, character, IP, Chinatown, Haji Lane, cafe, Merlion, Otata">
     <meta name="author" content="SINNKAWA®">
-    <!-- Favicon: 已替换为 GitHub 仓库链接 -->
+    <!-- Favicon -->
     <link rel="icon" href="https://raw.githubusercontent.com/Eddie-CS/666/main/favicon.png" type="image/png">
 
     <!-- Stylesheets -->
@@ -19,7 +19,6 @@
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     
     <!-- Google Analytics 4 (GA4) - Placeholder -->
-    <!-- 请将 'G-XXXXXXXXXX' 替换为您的 GA4 Measurement ID -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -125,63 +124,160 @@
         .swiper-pagination-bullet-active {
             background: #89d6d5;
         }
-        #store-modal-backdrop {
+        /* Custom styles for character carousel arrows */
+        .character-next, .character-prev {
+            color: #7f9595; /* muted color */
+            top: 40%;
+        }
+        .character-next:after, .character-prev:after {
+            font-size: 24px;
+        }
+        #store-modal-backdrop, #cafe-modal-backdrop {
             transition: opacity 0.3s ease-in-out;
         }
-        #store-modal-content {
+        #store-modal-content, #cafe-modal-content {
             transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
-        }
-        /* Horizontal Timeline Style */
-        .timeline-container {
-            display: flex;
-            justify-content: space-between;
-            position: relative;
-            padding: 20px 0;
-        }
-        .timeline-container::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background-color: #eafaf9;
-            transform: translateY(-50%);
-        }
-        .timeline-item {
-            position: relative;
-            flex: 1;
-            text-align: center;
-        }
-        .timeline-dot {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            border: 4px solid #f0fcfc;
-            background-color: #89d6d5;
-        }
-        .timeline-dot.is-accent {
-            background-color: #ffb8b8;
-        }
-        .timeline-content {
-            padding-top: 30px;
-        }
-        .timeline-year {
-            font-weight: bold;
-            font-size: 1.25rem;
-            color: #4a5c5c;
-        }
-        .timeline-desc {
-            font-size: 0.875rem;
-            color: #7f9595;
         }
         /* Hide scrollbar for mobile horizontal scroll */
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        /* Character Detail Styles */
+        .character-detail-card {
+            display: none;
+        }
+        .character-detail-card.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .avatar-item.active img {
+            border-color: #89d6d5; /* primary color */
+            transform: scale(1.1);
+        }
+        /* Character Detail Section */
+        #character-details {
+            background-color: #fff;
+            border-radius: 24px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            padding: 2rem;
+            margin-top: 2rem;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* Product Categories Section */
+        .products-section {
+            margin: 100px 0;
+            padding: 60px 0;
+            background-color: #f0fcfc;
+            border-radius: 24px;
+            position: relative;
+            overflow: hidden;
+        }
+        .products-section::before {
+            content: "";
+            position: absolute;
+            top: -20%;
+            right: -10%;
+            width: 40%;
+            height: 40%;
+            background-color: rgba(137, 214, 213, 0.1);
+            border-radius: 50%;
+            z-index: 0;
+        }
+        .products-section::after {
+            content: "";
+            position: absolute;
+            bottom: -15%;
+            left: -5%;
+            width: 30%;
+            height: 30%;
+            background-color: rgba(255, 184, 184, 0.1);
+            border-radius: 50%;
+            z-index: 0;
+        }
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* 每行固定3个产品 */
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+        .product-card {
+            background: #fff;
+            border-radius: 20px;
+            padding: 25px 20px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .product-icon {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 20px;
+            background-color: rgba(137, 214, 213, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #89d6d5;
+            font-size: 28px;
+        }
+        .product-title {
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: #4a5c5c;
+            font-size: 18px;
+        }
+        .product-desc {
+            font-size: 14px;
+            color: #7f9595;
+            line-height: 1.6;
+            flex-grow: 1;
+        }
+        
+        /* 移动端自适应样式 */
+        @media (max-width: 768px) {
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr); /* 移动端每行2个产品 */
+                gap: 20px;
+            }
+            .product-card {
+                padding: 20px 15px;
+            }
+            .product-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 24px;
+            }
+            .product-title {
+                font-size: 16px;
+            }
+            .product-desc {
+                font-size: 13px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .products-grid {
+                grid-template-columns: 1fr; /* 超小屏幕每行1个产品 */
+            }
+        }
     </style>
     <script>
         tailwind.config = {
@@ -191,12 +287,12 @@
                         'primary': '#89d6d5',       // 主题色 (Theme Color)
                         'primary-hover': '#76c4c3',  // 主题悬浮色 (Theme Hover)
                         'secondary': '#f0fcfc',     // 背景色 (Background)
-                        'accent': '#ffb8b8',        // 强调色 (Accent)
+                        'accent': '#ffb8b8',       // 强调色 (Accent)
                         'accent-hover': '#ffa9a9',   // 强调悬浮色 (Accent Hover)
-                        'dark': '#4a5c5c',          // 深色文字 (Dark Text)
-                        'muted': '#7f9595',         // 浅色文字 (Muted Text)
-                        'light': '#FFFFFF',         // 卡片背景 (Card Background)
-                        'light-border': '#eafaf9',  // 边框色 (Border)
+                        'dark': '#4a5c5c',         // 深色文字 (Dark Text)
+                        'muted': '#7f9595',        // 浅色文字 (Muted Text)
+                        'light': '#FFFFFF',        // 卡片背景 (Card Background)
+                        'light-border': '#eafaf9', // 边框色 (Border)
                     },
                     fontFamily: {
                         sans: ['Poppins', '"Noto Sans SC"', 'sans-serif'],
@@ -210,14 +306,14 @@
 
 <body class="bg-secondary text-dark font-sans antialiased pb-20 md:pb-0">
     
-    <!-- Parallax Background: 图片已替换为 GitHub 仓库链接 -->
+    <!-- Parallax Background -->
     <div class="parallax-bg hidden md:block">
         <div id="parallax-1" class="sg-icon" style="width: 30%; top: 10%; left: 5%;"><img src="https://raw.githubusercontent.com/Eddie-CS/666/main/%E8%83%8C%E6%99%AF%E4%B8%80%E5%85%A8%E5%AE%B6%E5%8F%88%E5%9C%A8%E7%A4%BC%E7%89%A9%E5%BA%97%E9%97%A8%E5%8F%A3.png" loading="lazy" alt="Parallax background image 1"></div>
         <div id="parallax-2" class="sg-icon" style="width: 25%; top: 50%; right: 10%;"><img src="https://raw.githubusercontent.com/Eddie-CS/666/main/%E8%83%8C%E6%99%AF%E4%BA%8C%E5%85%A8%E5%AE%B6%E5%9C%A8%E7%A4%BC%E7%89%A9%E5%BA%97.png" loading="lazy" alt="Parallax background image 2"></div>
         <div id="parallax-3" class="sg-icon" style="width: 35%; bottom: 5%; left: 15%;"><img src="https://raw.githubusercontent.com/Eddie-CS/666/main/%E8%83%8C%E6%99%AF%E4%B8%89%E5%85%A8%E5%AE%B6%E5%9C%A8%E6%96%B0%E5%8A%A0%E5%9D%A1.png" loading="lazy" alt="Parallax background image 3"></div>
     </div>
 
-    <!-- Splash Screen: 图片已替换为 GitHub 仓库链接 -->
+    <!-- Splash Screen -->
     <div id="splash-screen" class="fixed inset-0 bg-secondary flex items-center justify-center z-[100]">
         <img id="splash-logo" src="https://raw.githubusercontent.com/Eddie-CS/666/main/logo%E6%97%A0R.png" alt="SINNKAWA® Logo" class="h-40">
         <p id="splash-text" class="absolute bottom-20 text-2xl font-bold text-primary opacity-0" data-i18n-key="splash_text"></p>
@@ -233,23 +329,21 @@
         </a>
     </div>
 
-    <!-- Header & Navigation: 图片已替换为 GitHub 仓库链接 -->
+    <!-- Header & Navigation -->
     <header class="sticky top-0 w-full bg-light/80 backdrop-blur-sm shadow-sm z-40 transition-all duration-200">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20 md:h-24">
-                <!-- Logo and Countdown Bubble -->
-                <div class="flex items-center gap-4">
-                    <a href="#" class="flex-shrink-0">
-                        <img src="https://raw.githubusercontent.com/Eddie-CS/666/main/logo%E6%97%A0R.png" alt="SINNKAWA® Logo" class="h-20 md:h-24">
-                    </a>
-                </div>
+                <!-- Logo -->
+                <a href="#" class="flex-shrink-0">
+                    <img src="https://raw.githubusercontent.com/Eddie-CS/666/main/logo%E6%97%A0R.png" alt="SINNKAWA® Logo" class="h-20 md:h-24">
+                </a>
 
                 <!-- Main Navigation -->
                 <nav class="hidden md:flex space-x-8" aria-label="Main Navigation">
                     <a href="#stores" class="text-dark hover:text-primary font-medium transition-all duration-200" data-i18n-key="nav_stores"></a>
-                    <a href="#about" class="text-dark hover:text-primary font-medium transition-all duration-200" data-i18n-key="nav_about"></a>
-                    <a href="#social" class="text-dark hover:text-primary font-medium transition-all duration-200" data-i18n-key="nav_social"></a>
-                    <a href="#contact" class="text-dark hover:text-primary font-medium transition-all duration-200" data-i18n-key="nav_contact"></a>
+                    <button id="news-nav-button" class="text-dark hover:text-primary font-medium transition-all duration-200" data-i18n-key="nav_news"></button>
+                    <a href="#characters" class="text-dark hover:text-primary font-medium transition-all duration-200" data-i18n-key="nav_characters"></a>
+                    <a href="#products" class="text-dark hover:text-primary font-medium transition-all duration-200" data-i18n-key="nav_products"></a>
                 </nav>
                 
                 <!-- Language and Mobile Menu Button -->
@@ -269,7 +363,7 @@
     </header>
 
     <main>
-        <!-- Hero Section: 图片已替换为 GitHub 仓库链接 -->
+        <!-- Hero Section -->
         <section id="hero" class="bg-light pt-10 md:pt-16 relative min-h-screen flex items-center justify-center overflow-hidden">
             <!-- Decorative Elements -->
             <div class="absolute top-20 left-10 w-20 h-20 bg-primary/20 rounded-full blur-xl animate-float"></div>
@@ -284,7 +378,6 @@
                         <p class="text-[clamp(1rem,2vw,1.25rem)] text-muted max-w-xl mx-auto lg:mx-0 mb-8" data-i18n-key="hero_subtitle"></p>
                         <div class="flex flex-col sm:flex-row justify-center lg:justify-start gap-4">
                             <a href="#stores" class="inline-block bg-primary hover:bg-primary-hover text-white font-semibold px-8 py-3 rounded-full transition-all duration-200 transform hover:scale-105 hover:shadow-lg" data-i18n-key="hero_cta_explore"></a>
-                            <a href="#about" class="inline-block bg-light hover:bg-gray-50 text-dark border border-light-border font-semibold px-8 py-3 rounded-full transition-all duration-200 transform hover:scale-105" data-i18n-key="hero_cta_story"></a>
                         </div>
                     </div>
                     <div class="lg:w-1/2 relative fade-in">
@@ -296,36 +389,96 @@
             </div>
         </section>
 
-        <!-- Social Media Section -->
-        <section id="social" class="py-20 bg-secondary relative overflow-hidden">
+        <!-- Characters Section -->
+        <section id="characters" class="py-20 bg-secondary relative overflow-hidden">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center mb-16 fade-in">
-                    <h2 class="text-[clamp(1.75rem,4vw,2.5rem)] font-display font-bold mb-4" data-i18n-key="social_title"></h2>
-                    <p class="text-muted max-w-2xl mx-auto" data-i18n-key="social_subtitle"></p>
+                    <h2 class="text-[clamp(1.75rem,4vw,2.5rem)] font-display font-bold mb-4" data-i18n-key="characters_title"></h2>
+                    <p class="text-muted max-w-2xl mx-auto" data-i18n-key="characters_subtitle"></p>
                 </div>
-                <!-- Mobile Horizontal Scroll Container -->
-                <div class="md:grid md:grid-cols-4 gap-6 fade-in">
-                    <div id="social-card-container" class="flex md:grid md:grid-cols-4 gap-6 overflow-x-auto md:overflow-visible no-scrollbar pb-4 cursor-grab">
-                        <!-- Social media cards are dynamically generated here -->
+                
+                <!-- Character Carousel -->
+                <div id="character-introduction" class="text-center mb-12 fade-in">
+                    <div class="swiper character-carousel relative px-12">
+                        <div class="swiper-wrapper" id="character-card-container">
+                            <!-- Character cards are dynamically generated here -->
+                        </div>
+                        <!-- Add Navigation -->
+                        <div class="swiper-button-next character-next"></div>
+                        <div class="swiper-button-prev character-prev"></div>
                     </div>
+                </div>
+                
+                <!-- Character Details -->
+                <div id="character-details" class="fade-in">
+                    <!-- Character detail content is dynamically inserted here -->
                 </div>
             </div>
         </section>
 
-        <!-- Latest News Section: 图片已替换为 GitHub 仓库链接 -->
-        <section id="latest-news" class="py-20 bg-light">
+        <!-- Products Section -->
+        <section id="products" class="py-20 bg-secondary relative overflow-hidden">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="bg-secondary rounded-2xl shadow-lg overflow-hidden lg:grid lg:grid-cols-2 lg:gap-4 items-center fade-in">
-                    <div class="p-8 lg:p-12">
-                        <h2 class="text-3xl font-bold font-display text-dark mb-3" data-i18n-key="news_title"></h2>
-                        <p class="text-muted mb-6" data-i18n-key="news_subtitle"></p>
-                        <div class="flex flex-col sm:flex-row gap-4">
-                            <a href="#stores" class="inline-block bg-accent hover:bg-accent-hover text-white font-semibold px-6 py-3 rounded-full transition-all duration-200 transform hover:scale-105" data-i18n-key="news_cta_unlock"></a>
-                            <a href="#stores" class="inline-block bg-light hover:bg-gray-50 text-dark border border-light-border font-semibold px-6 py-3 rounded-full transition-all duration-200 transform hover:scale-105" data-i18n-key="news_cta_menu"></a>
-                        </div>
+                <div class="products-section fade-in">
+                    <div class="text-center mb-16 relative z-10">
+                        <h2 class="text-[clamp(1.75rem,4vw,2.5rem)] font-display font-bold mb-4" data-i18n-key="products_title"></h2>
+                        <p class="text-muted max-w-2xl mx-auto text-lg" data-i18n-key="products_subtitle"></p>
                     </div>
-                    <div class="h-64 lg:h-full">
-                        <img src="https://raw.githubusercontent.com/Eddie-CS/666/main/Sinnkawa%20Cafe%20Logo%2020250623.pdf.png" alt="SINNKAWA® Themed Cafe Interior" class="w-full h-full object-cover" loading="lazy">
+                    
+                    <div class="products-grid">
+                        <!-- 产品1：毛绒玩具 -->
+                        <div class="product-card">
+                            <div class="product-icon">
+                                <i class="fa fa-paw"></i>
+                            </div>
+                            <h3 class="product-title" data-i18n-key="product_plush_title"></h3>
+                            <p class="product-desc" data-i18n-key="product_plush_desc"></p>
+                        </div>
+                        
+                        <!-- 产品2：时尚配饰 -->
+                        <div class="product-card">
+                            <div class="product-icon">
+                                <i class="fa fa-gift"></i>
+                            </div>
+                            <h3 class="product-title" data-i18n-key="product_fashion_title"></h3>
+                            <p class="product-desc" data-i18n-key="product_fashion_desc"></p>
+                        </div>
+                        
+                        <!-- 产品3：数码配件 -->
+                        <div class="product-card">
+                            <div class="product-icon">
+                                <i class="fa fa-mobile"></i>
+                            </div>
+                            <h3 class="product-title" data-i18n-key="product_digital_title"></h3>
+                            <p class="product-desc" data-i18n-key="product_digital_desc"></p>
+                        </div>
+                        
+                        <!-- 产品4：文具用品 -->
+                        <div class="product-card">
+                            <div class="product-icon">
+                                <i class="fa fa-book"></i>
+                            </div>
+                            <h3 class="product-title" data-i18n-key="product_stationery_title"></h3>
+                            <p class="product-desc" data-i18n-key="product_stationery_desc"></p>
+                        </div>
+                        
+                        <!-- 产品5：家居用品 -->
+                        <div class="product-card">
+                            <div class="product-icon">
+                                <i class="fa fa-home"></i>
+                            </div>
+                            <h3 class="product-title" data-i18n-key="product_home_title"></h3>
+                            <p class="product-desc" data-i18n-key="product_home_desc"></p>
+                        </div>
+                        
+                        <!-- 产品6：限定礼盒 -->
+                        <div class="product-card">
+                            <div class="product-icon">
+                                <i class="fa fa-gift"></i>
+                            </div>
+                            <h3 class="product-title" data-i18n-key="product_gift_title"></h3>
+                            <p class="product-desc" data-i18n-key="product_gift_desc"></p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -348,116 +501,33 @@
                 </div>
             </div>
         </section>
-
-        <!-- About Section: 图片已替换为 GitHub 仓库链接 -->
-        <section id="about" class="py-20 bg-light relative overflow-hidden">
-            <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                <div class="text-center mb-16 fade-in">
-                    <h2 class="text-[clamp(1.75rem,4vw,2.5rem)] font-display font-bold mb-4" data-i18n-key="about_title"></h2>
-                    <p class="text-muted max-w-2xl mx-auto" data-i18n-key="about_subtitle"></p>
-                </div>
-                <div class="flex flex-col lg:flex-row items-center gap-12 mb-20">
-                    <div class="lg:w-1/2 relative fade-in">
-                        <img src="https://raw.githubusercontent.com/Eddie-CS/666/main/%E8%83%8C%E6%99%AF%E4%B8%89%E5%85%A8%E5%AE%B6%E5%9C%A8%E6%96%B0%E5%8A%A0%E5%9D%A1.png" alt="SINNKAWA® family in Singapore" class="w-full max-w-md mx-auto rounded-3xl shadow-xl" loading="lazy">
-                    </div>
-                    <div class="lg:w-1/2 fade-in">
-                        <h3 class="text-2xl md:text-3xl font-display font-bold mb-6" data-i18n-key="about_story_title"></h3>
-                        <p class="text-muted mb-6 text-lg" data-i18n-key="about_story_desc"></p>
-                    </div>
-                </div>
-                <div class="fade-in">
-                    <h3 class="text-2xl font-bold mb-10 text-center" data-i18n-key="about_milestones_title"></h3>
-                    <!-- Horizontal Timeline -->
-                    <div id="milestones-container" class="timeline-container">
-                        <!-- Milestones will be dynamically inserted here -->
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section id="contact" class="py-20 bg-secondary relative overflow-hidden">
-            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="max-w-4xl mx-auto">
-                    <div class="text-center mb-16 fade-in">
-                        <h2 class="text-[clamp(1.75rem,4vw,2.5rem)] font-display font-bold mb-4" data-i18n-key="contact_title"></h2>
-                        <p class="text-muted max-w-2xl mx-auto" data-i18n-key="contact_subtitle"></p>
-                    </div>
-                    <div class="bg-light rounded-2xl shadow-lg overflow-hidden fade-in p-8 md:p-10">
-                        <form class='space-y-6' name='contact' method='POST' data-netlify="true" data-netlify-recaptcha="true">
-                            <input type="hidden" name="form-name" value="contact">
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <div>
-                                    <label for="name" class="block text-sm font-medium text-dark/80 mb-2" data-i18n-key="form_name"></label>
-                                    <input type="text" id="name" name="name" required class="w-full px-4 py-3 bg-secondary rounded-lg border border-light-border focus:outline-none focus:ring-2 focus:ring-primary transition-all duration-200">
-                                </div>
-                                <div>
-                                    <label for="email" class="block text-sm font-medium text-dark/80 mb-2" data-i18n-key="form_email"></label>
-                                    <input type="email" id="email" name="email" required class="w-full px-4 py-3 bg-secondary rounded-lg border border-light-border focus:outline-none focus:ring-2 focus:ring-primary transition-all duration-200">
-                                </div>
-                            </div>
-                            <div>
-                                <label for="subject" class="block text-sm font-medium text-dark/80 mb-2" data-i18n-key="form_subject"></label>
-                                <select id="subject" name="subject" required class="w-full px-4 py-3 bg-secondary rounded-lg border border-light-border focus:outline-none focus:ring-2 focus:ring-primary transition-all duration-200">
-                                    <option value="" disabled selected data-i18n-key="form_select_subject"></option>
-                                    <option value="store" data-i18n-key="form_subject_store"></option>
-                                    <option value="product" data-i18n-key="form_subject_product"></option>
-                                    <option value="collaboration" data-i18n-key="form_subject_collab"></option>
-                                    <option value="other" data-i18n-key="form_subject_other"></option>
-                                </select>
-                            </div>
-                            <div>
-                                <label for="message" class="block text-sm font-medium text-dark/80 mb-2" data-i18n-key="form_message"></label>
-                                <textarea id="message" name="message" rows="5" required class="w-full px-4 py-3 bg-secondary rounded-lg border border-light-border focus:outline-none focus:ring-2 focus:ring-primary transition-all duration-200"></textarea>
-                            </div>
-                            <div data-netlify-recaptcha="true"></div>
-                            <div class="text-center flex flex-col sm:flex-row justify-center items-center gap-4">
-                                <button type="submit" class="w-full sm:w-auto inline-block bg-primary hover:bg-primary-hover text-white font-semibold px-8 py-3 rounded-full transition-all duration-200 transform hover:scale-105">
-                                    <span data-i18n-key="form_submit"></span>
-                                </button>
-                                <a href="https://wa.me/6597759906" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto inline-flex items-center justify-center bg-green-500 hover:bg-green-600 text-white font-semibold px-8 py-3 rounded-full transition-all duration-200 transform hover:scale-105">
-                                    <i class="fa fa-whatsapp mr-2"></i>
-                                    <span data-i18n-key="contact_whatsapp_cta"></span>
-                                </a>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </section>
     </main>
 
-    <!-- Footer: 图片已替换为 GitHub 仓库链接 -->
+    <!-- Footer -->
     <footer class="bg-dark text-white pt-16 pb-8">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12 items-center">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
                 <!-- Column 1: Logo and Slogan -->
                 <div class="md:col-span-1">
                     <div class="mb-6"><img src="https://raw.githubusercontent.com/Eddie-CS/666/main/%E5%A4%A7%E5%A4%B4logo%E6%9C%89R.png" alt="SINNKAWA® Logo" class="h-32" loading="lazy"></div>
                     <p class="text-muted" data-i18n-key="footer_tagline"></p>
                 </div>
-                <!-- Column 2: Quick Links -->
+                <!-- Column 2: Quick Links & Hours -->
                 <div class="md:col-span-1">
                     <h4 class="text-lg font-semibold mb-6 text-light" data-i18n-key="footer_links"></h4>
                     <ul class="space-y-3">
-                        <li><a href="#about" class="text-muted hover:text-light transition-all duration-200" data-i18n-key="nav_about"></a></li>
                         <li><a href="#stores" class="text-muted hover:text-light transition-all duration-200" data-i18n-key="nav_stores"></a></li>
-                        <li><a href="#social" class="text-muted hover:text-light transition-all duration-200" data-i18n-key="nav_social"></a></li>
-                        <li><a href="#contact" class="text-muted hover:text-light transition-all duration-200" data-i18n-key="nav_contact"></a></li>
+                        <li><button id="news-footer-button" class="text-muted hover:text-light transition-all duration-200" data-i18n-key="nav_news"></button></li>
+                        <li><a href="#characters" class="text-muted hover:text-light transition-all duration-200" data-i18n-key="nav_characters"></a></li>
+                        <li><a href="#products" class="text-muted hover:text-light transition-all duration-200" data-i18n-key="nav_products"></a></li>
                     </ul>
                 </div>
-                <!-- Column 3: Opening Hours -->
+                <!-- Column 3: Social Media -->
                 <div class="md:col-span-1">
-                    <h4 class="text-lg font-semibold mb-6 text-light" data-i18n-key="hours"></h4>
-                    <ul class="space-y-3 text-muted">
-                        <li class="flex justify-between"><span data-i18n-key="nav_store_chinatown"></span><span>10:00-22:00</span></li>
-                        <li class="flex justify-between"><span data-i18n-key="nav_store_haji"></span><span>10:00-22:00</span></li>
-                        <li class="flex justify-between"><span data-i18n-key="nav_store_cafe"></span><span>12:00-20:00</span></li>
-                    </ul>
-                </div>
-                <!-- Column 4: Character Image -->
-                <div class="md:col-span-1 flex justify-center md:justify-end relative">
-                    <img src="https://raw.githubusercontent.com/Eddie-CS/666/main/Sinnkawa_footer.png" alt="SINNKAWA® holding a sign" class="w-32 h-auto" loading="lazy">
+                    <h4 class="text-lg font-semibold mb-6 text-light" data-i18n-key="social_title_footer"></h4>
+                    <div id="social-footer-container" class="flex gap-4">
+                         <!-- Social media icons are dynamically generated here -->
+                    </div>
                 </div>
             </div>
             <div class="border-t border-muted/20 pt-8 text-center text-muted">
@@ -488,6 +558,27 @@
         </div>
     </div>
 
+    <!-- Cafe News Modal -->
+    <div id="cafe-modal" class="fixed inset-0 z-[100] flex items-center justify-center hidden">
+        <div id="cafe-modal-backdrop" class="absolute inset-0 bg-black/60 opacity-0"></div>
+        <div id="cafe-modal-content" class="relative bg-light rounded-2xl shadow-xl w-11/12 max-w-4xl m-4 overflow-hidden transform scale-95 opacity-0">
+            <button id="close-cafe-modal-btn" class="absolute top-3 right-4 text-dark hover:text-primary text-3xl z-10">&times;</button>
+            <div class="lg:grid lg:grid-cols-2 lg:gap-4 items-center">
+                <div class="p-8 lg:p-12">
+                    <h2 class="text-3xl font-bold font-display text-dark mb-3" data-i18n-key="news_title"></h2>
+                    <p class="text-muted mb-6" data-i18n-key="news_subtitle"></p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="#stores" class="inline-block bg-accent hover:bg-accent-hover text-white font-semibold px-6 py-3 rounded-full transition-all duration-200 transform hover:scale-105" data-i18n-key="news_cta_unlock"></a>
+                        <a href="#stores" class="inline-block bg-light hover:bg-gray-50 text-dark border border-light-border font-semibold px-6 py-3 rounded-full transition-all duration-200 transform hover:scale-105" data-i18n-key="news_cta_menu"></a>
+                    </div>
+                </div>
+                <div class="h-64 lg:h-full">
+                    <img src="https://raw.githubusercontent.com/Eddie-CS/666/main/Sinnkawa%20Cafe%20Logo%2020250623.pdf.png" alt="SINNKAWA® Themed Cafe Interior" class="w-full h-full object-cover" loading="lazy">
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Mobile Bottom Navigation -->
     <nav class="md:hidden fixed bottom-0 left-0 right-0 bg-light/90 backdrop-blur-sm shadow-[0_-2px_10px_rgba(0,0,0,0.05)] z-50">
         <div class="container mx-auto px-4 h-16 flex justify-around items-center">
@@ -499,13 +590,13 @@
                 <i class="fa fa-map-o text-xl"></i>
                 <span class="text-xs mt-1" data-i18n-key="mobile_nav_explore">Explore</span>
             </a>
-            <a href="#" class="flex flex-col items-center text-muted hover:text-primary transition-colors opacity-50 cursor-not-allowed">
-                <i class="fa fa-shopping-bag text-xl"></i>
-                <span class="text-xs mt-1" data-i18n-key="mobile_nav_shop">Shop</span>
+            <a href="#characters" class="flex flex-col items-center text-muted hover:text-primary transition-colors">
+                <i class="fa fa-users text-xl"></i>
+                <span class="text-xs mt-1" data-i18n-key="nav_characters">Characters</span>
             </a>
-            <a href="#" class="flex flex-col items-center text-muted hover:text-primary transition-colors opacity-50 cursor-not-allowed">
-                <i class="fa fa-user-o text-xl"></i>
-                <span class="text-xs mt-1" data-i18n-key="mobile_nav_me">Me</span>
+            <a href="#products" class="flex flex-col items-center text-muted hover:text-primary transition-colors">
+                <i class="fa fa-shopping-bag text-xl"></i>
+                <span class="text-xs mt-1" data-i18n-key="nav_products">Products</span>
             </a>
         </div>
     </nav>
@@ -517,130 +608,152 @@
         
         const translations = {
             en: {
-                page_title: "SINNKAWA® | Your Cutest Singapore Adventure Starts Here!",
-                splash_text: "Get Ready for a Cuteness Overload!",
-                hero_title_main: "Explore Singapore with Cuteness On",
-                hero_title_sub: "Exclusive <span class='text-primary'>SINNKAWA®</span> moments await",
-                hero_subtitle: "Grab your passport to fun! Join the <span class='text-primary'>SINNKAWA®</span> Family and dive into a world of yummy treats, amazing sights, and endless adventures in the Lion City!",
-                hero_cta_explore: "Find Your Treasure!",
-                hero_cta_story: "Our Magical Story",
-                nav_stores: "Stores", nav_store_chinatown: "Chinatown Flagship", nav_store_haji: "Haji Lane Stores", nav_store_cafe: "SINNKAWA® Café", nav_about: "About Us", nav_social: "Social Media", nav_contact: "Contact",
-                social_title: "Join Our Cuteness Community!",
-                social_subtitle: "Be the first to know about secret drops, exclusive events, and get your daily dose of adorable SINNKAWA® adventures!",
-                social_xhs_name: "RED (Xiaohongshu)",
-                social_xhs_desc: "Explore Singapore with SINNKAWA®",
-                social_ig_desc: "SINNKAWA®'s travel photo wall",
-                social_tt_desc: "SINNKAWA®'s fun adventure videos",
-                social_wa_desc: "Chat directly with the SINNKAWA® team",
-                social_ig_name: "Instagram",
-                social_tt_name: "TikTok",
-                social_wa_name: "WhatsApp",
-                social_xhs_tooltip: "Your daily dose of cuteness!",
-                social_ig_tooltip: "Check out our travel photo wall!",
-                social_tt_tooltip: "Watch our fun adventure videos!",
-                social_wa_tooltip: "Chat with us directly!",
-                news_title: "Surprise! Our Dreamy Café Is Now Open!",
-                news_subtitle: "Step into a world of pure imagination! Our SINNKAWA® Café is officially brewing magic. Come for the dreamy desserts, stay for the cuddly vibes!",
-                news_cta_unlock: "Claim Your Opening Gift!",
-                news_cta_menu: "See the Magic Menu",
-                stores_title: "Find Your Happy Place",
-                stores_subtitle: "Each of our stores is a doorway to a different adventure. Come on in and discover the world of SINNKAWA®!",
-                store_chinatown_title: "Chinatown Flagship Store",
-                store_chinatown_desc: "Your adventure starts here! Our Chinatown flagship is a treasure trove packed with every single piece of SINNKAWA® merch you could ever dream of.",
-                store_cafe_title: "SINNKAWA® Café @ Chinatown",
-                store_cafe_desc: "Snap the perfect pic for your feed! Our themed café is a wonderland of yummy drinks, magical desserts, and endless photo ops. Every corner is cute!",
-                store_haji_62_name: "Soul Art @ 62 Haji Lane",
-                store_haji_62_desc: "Where art meets cute! This special store features one-of-a-kind SINNKAWA® artworks created with amazing local artists. A true collector's paradise!",
-                store_haji_22_name: "22 Haji Lane",
-                store_haji_22_desc: "Get it before it's gone! Tucked away in cool Haji Lane, this boutique is your go-to for super rare, limited-edition SINNKAWA® goodies.",
-                store_haji_68_name: "68 Haji Lane",
-                store_haji_68_desc: "Step into our world of black & white! This chic, photo-ready store has a unique vibe you won't find anywhere else. Strike a pose!",
-                store_haji_43_name: "43 Haji Lane",
-                store_haji_43_desc: "Discover exclusive collections and interactive displays at our newest Haji Lane location. Now open!",
-                view_on_map: "View on Map",
-                about_title: "About <span class='text-primary'>SINNKAWA®</span>",
-                about_subtitle: "Our brand story, philosophy, and culture",
-                about_story_title: "Our Story",
-                about_story_desc: "It all started with a spark of joy in sunny Singapore! SINNKAWA® is more than just a character; it's a family built on love and adventure. Our mission? To sprinkle a little happiness and warmth everywhere we go, sharing the amazing, colorful charm of Singapore with the world!",
-                about_milestones_title: "Our Magical Journey",
-                milestone_2020_title: "A Star is Born",
-                milestone_2021_title: "First Treasures",
-                milestone_2022_title: "First Home",
-                milestone_2023_title: "New Adventures",
-                milestone_2025_title: "Hello World!",
-                contact_title: "Get In Touch!",
-                contact_subtitle: "Got a brilliant idea, a question, or just want to say hi? We're all ears and love making new friends! Drop us a line.",
-                form_name: "Name", form_email: "Email", form_subject: "Subject", form_select_subject: "Please select...", form_subject_store: "Store Inquiry", form_subject_product: "Product Inquiry", form_subject_collab: "Collaboration", form_subject_other: "Feedback", form_message: "Message", form_submit: "Send Message",
-                contact_whatsapp_cta: "Chat on WhatsApp",
-                footer_tagline: "Singapore meet cuteness",
-                footer_links: "Quick Links",
-                hours: "Opening Hours",
-                footer_rights_bold: "©2025 SINGAPORE SINNKAWA PTE.LTD. All rights reserved.",
-                footer_rights_legal: "All content of this brand (SINNKAWA®), including images, characters, copy, designs, etc., is protected by copyright and trademark law.",
-                mobile_nav_home: "Home", mobile_nav_explore: "Explore", mobile_nav_shop: "Shop", mobile_nav_me: "Me",
+                translation: {
+                    page_title: "SINNKAWA® | Your Cutest Singapore Adventure Starts Here!",
+                    splash_text: "Get Ready for a Cuteness Overload!",
+                    hero_title_main: "Explore Singapore with Cuteness On",
+                    hero_title_sub: "Exclusive <span class='text-primary'>SINNKAWA®</span> moments await",
+                    hero_subtitle: "Grab your passport to fun! Join the <span class='text-primary'>SINNKAWA®</span> Family and dive into a world of yummy treats, amazing sights, and endless adventures in the Lion City!",
+                    hero_cta_explore: "Find Your Treasure!",
+                    characters_title: "Meet the SINNKAWA Family",
+                    characters_subtitle: "Each member of our family has a unique personality and story. Get to know them better!",
+                    
+                    // New Character Translations (EN)
+                    char_merlion_name: "Merlion",
+                    char_merlion_title: "👑 Star of Sinnkawa｜Linguistic Genius｜Beloved Icon",
+                    char_merlion_desc: `Born in the heart of Singapore, Merlion has the head of a lion, the body of a fish, and the spirit of a champion. With his crown and charm, he speaks eight languages and wins hearts with just a smile.\n\n🎵 Loves playing guitar and singing\n📣 You’ll always feel his warm welcome when stepping into any Sinnkawa store.\n\n> “Welcome! Let’s make today extra cute!”`,
+                    
+                    char_otata_name: "Otata",
+                    char_otata_title: "🐚 Ocean Explorer｜Surfer Girl｜Seafood Superfan",
+                    char_otata_desc: `Born of the sea breeze, Otata brings her bubbly courage and sweet smile to every splash of adventure. She’s always chasing the next wave — or seafood buffet.\n\n🏄‍♀️ Excellent swimmer and diver\n🌺 Her signature drink “Otata Passion Pop” is full of fizz and fun!\n\n> “Escape the ordinary. Let’s dive into something wild!”`,
+                    
+                    char_shizora_name: "Shizora",
+                    char_shizora_title: "👜 Shiny Collector｜Quiet Type｜Secret Shopaholic",
+                    char_shizora_desc: `Don’t be fooled by her quiet vibe — Shizora has a sixth sense for sparkly things and limited drops. She’s your go-to girl for finding treasures and keeping secrets.\n\n👛 Expert at hunting rare finds\n🌙 Believes that: “The shinier, the better. The smaller, the cuter.”\n\n> “I’m not shy. I’m just on a solo sparkle quest.”`,
+
+                    char_dayi_name: "Dayi",
+                    char_dayi_title: "☀️ Sunny Sportster｜All-Round Athlete｜Joy Generator",
+                    char_dayi_desc: `Dayi is a ball of sunshine on the move — always running, jumping, glowing. Her motto? Stay active, stay happy!\n\n🎽 Loves every sport under the sun: skating, badminton, basketball and more\n🍓 Her minty fizzy drink packs the same refreshment she brings to the team\n\n> “Move your body, and the bad vibes can’t catch up!”`,
+
+                    nav_stores: "Stores", 
+                    nav_news: "Latest News",
+                    nav_characters: "Characters",
+                    nav_products: "Products",
+                    products_title: "Our Product Collection",
+                    products_subtitle: "Discover the wonderful world of SINNKAWA® merchandise",
+                    product_plush_title: "Plush Toys",
+                    product_plush_desc: "Super soft and cuddly SINNKAWA® characters to keep you company wherever you go",
+                    product_fashion_title: "Fashion Accessories",
+                    product_fashion_desc: "Stylish bags, hats and accessories featuring your favorite SINNKAWA® characters",
+                    product_digital_title: "Digital Accessories",
+                    product_digital_desc: "Cute phone cases, chargers and more to protect your devices in style",
+                    product_stationery_title: "Stationery",
+                    product_stationery_desc: "Notebooks, pens and school supplies to make studying fun and colorful",
+                    product_home_title: "Home Goods",
+                    product_home_desc: "Decorative items, cushions and household products to add cuteness to your space",
+                    product_gift_title: "Limited Edition Gifts",
+                    product_gift_desc: "Special gift sets and exclusive collections perfect for any SINNKAWA® fan",
+                    news_title: "Surprise! Our Dreamy Café Is Now Open!",
+                    news_subtitle: "Step into a world of pure imagination! Our SINNKAWA® Café is officially brewing magic. Come for the dreamy desserts, stay for the cuddly vibes!",
+                    news_cta_unlock: "Claim Your Opening Gift!",
+                    news_cta_menu: "See the Magic Menu",
+                    stores_title: "Find Your Happy Place",
+                    stores_subtitle: "Each of our stores is a doorway to a different adventure. Come on in and discover the world of SINNKAWA®!",
+                    store_chinatown_title: "Chinatown Flagship Store",
+                    store_chinatown_desc: "Your adventure starts here! Our Chinatown flagship is a treasure trove packed with every single piece of SINNKAWA® merch you could ever dream of.",
+                    store_cafe_title: "SINNKAWA® Café @ Chinatown",
+                    store_cafe_desc: "Snap the perfect pic for your feed! Our themed café is a wonderland of yummy drinks, magical desserts, and endless photo ops. Every corner is cute!",
+                    store_haji_62_name: "Soul Art @ 62 Haji Lane",
+                    store_haji_62_desc: "Where art meets cute! This special store features one-of-a-kind SINNKAWA® artworks created with amazing local artists.",
+                    store_haji_22_name: "22 Haji Lane",
+                    store_haji_22_desc: "Get it before it's gone! Tucked away in cool Haji Lane, this boutique is your go-to for super rare, limited-edition SINNKAWA® goodies.",
+                    store_haji_68_name: "68 Haji Lane",
+                    store_haji_68_desc: "Step into our world of black & white! This chic, photo-ready store has a unique vibe you won't find anywhere else. Strike a pose!",
+                    store_haji_43_name: "43 Haji Lane",
+                    store_haji_43_desc: "Discover exclusive collections and interactive displays at our newest Haji Lane location. Now open!",
+                    view_on_map: "View on Map",
+                    form_subject_other: "Feedback",
+                    footer_tagline: "Singapore meet cuteness",
+                    footer_links: "Quick Links",
+                    social_title_footer: "Follow Us",
+                    footer_rights_bold: "©2025 SINGAPORE SINNKAWA PTE.LTD. All rights reserved.",
+                    footer_rights_legal: "All content of this brand (SINNKAWA®), including images, characters, copy, designs, etc., is protected by copyright and trademark law.",
+                    mobile_nav_home: "Home", mobile_nav_explore: "Explore", mobile_nav_shop: "Shop", mobile_nav_me: "Me",
+                }
             },
             zh: {
-                page_title: "SINNKAWA® | 你的新加坡超萌冒险之旅！",
-                splash_text: "准备好！一大波可爱正在靠近！",
-                hero_title_main: "跟着<span class='text-primary'>SINNKAWA®</span>玩转新加坡，萌力全开",
-                hero_title_sub: "<span class='text-primary'>SINNKAWA®</span>出没请注意！",
-                hero_subtitle: "快带上你的快乐护照！加入<span class='text-primary'>SINNKAWA®</span>大家庭，一头扎进狮城的美食、美景和无尽的冒险里吧！",
-                hero_cta_explore: "寻找你的宝藏！",
-                hero_cta_story: "我们的奇妙物语",
-                nav_stores: "门店", nav_store_chinatown: "牛车水旗舰店", nav_store_haji: "哈芝巷门店", nav_store_cafe: "SINNKAWA® 主题咖啡厅", nav_about: "品牌介绍", nav_social: "社交媒体", nav_contact: "联系我们",
-                social_title: "加入我们的可爱社区！",
-                social_subtitle: "第一时间抢先知道秘密新品、独家活动，还能收获你每日份的<span class='text-primary'>SINNKAWA®</span>可爱日常！",
-                social_xhs_name: "RED (小红书)",
-                social_xhs_desc: "跟随<span class='text-primary'>SINNKAWA®</span>探索新加坡美食与文化",
-                social_ig_desc: "<span class='text-primary'>SINNKAWA®</span>的环球旅行照片墙",
-                social_tt_desc: "<span class='text-primary'>SINNKAWA®</span>的趣味冒险短视频",
-                social_wa_desc: "与<span class='text-primary'>SINNKAWA®</span>团队直接交流",
-                social_ig_name: "Instagram",
-                social_tt_name: "TikTok",
-                social_wa_name: "WhatsApp",
-                social_xhs_tooltip: "你的每日份可爱补给站！",
-                social_ig_tooltip: "来看看我们的环球旅行照片墙！",
-                social_tt_tooltip: "观看我们有趣的冒险短视频！",
-                social_wa_tooltip: "直接与我们聊天！",
-                news_title: "惊喜！我们的梦幻咖啡厅开业啦！",
-                news_subtitle: "闯入一个纯粹的想象力世界！我们的<span class='text-primary'>SINNKAWA®</span>咖啡厅正在酿造魔法。为梦幻甜点而来，为治愈氛围而留！",
-                news_cta_unlock: "领取开业限定礼！",
-                news_cta_menu: "解锁魔法菜单",
-                stores_title: "寻找你的快乐源地",
-                stores_subtitle: "我们的每一家店，都是一扇通往不同冒险的传送门。快进来，亲身体验<span class='text-primary'>SINNKAWA®</span>的奇妙世界！",
-                store_chinatown_title: "牛车水旗舰店",
-                store_chinatown_desc: "你的冒险从这里开始！我们的牛车水旗舰店是一个巨大的宝库，装满了你梦寐以求的每一款<span class='text-primary'>SINNKAWA®</span>周边！",
-                store_cafe_title: "<span class='text-primary'>SINNKAWA®</span> Café @ 牛车水",
-                store_cafe_desc: "朋友圈的点赞收割机！我们的主题咖啡厅是一个遍布着美味饮品、魔法甜点和无数拍照点的仙境。每个角落都萌到犯规！",
-                store_haji_62_name: "Soul Art @ 62 哈芝巷",
-                store_haji_62_desc: "当艺术与可爱相遇！这家特别的店里，展示着由本地艺术家创作的、独一无二的<span class='text-primary'>SINNKAWA®</span>艺术品。真正的收藏家天堂！",
-                store_haji_22_name: "22 哈芝巷",
-                store_haji_22_desc: "手慢无！藏在超酷的哈芝巷里，这家精品店是你找到稀有、限量版<span class='text-primary'>SINNKAWA®</span>好物的秘密基地。",
-                store_haji_68_name: "68 哈芝巷",
-                store_haji_68_desc: "踏入我们的黑白纪元！这家时髦又上镜的店，拥有别处找不到的独特氛围。快来摆个pose！",
-                store_haji_43_name: "43 哈芝巷",
-                store_haji_43_desc: "在我们最新的哈芝巷分店探索独家系列和互动展示。现已开业！",
-                view_on_map: "在地图上查看",
-                about_title: "关于 <span class='text-primary'>SINNKAWA®</span>",
-                about_subtitle: "我们的品牌故事、理念和文化",
-                about_story_title: "我们的故事",
-                about_story_desc: "一切都始于阳光明媚的新加坡，一个关于快乐的火花！<span class='text-primary'>SINNKAWA®</span>不只是一个角色，它是一个由爱与冒险组成的大家庭。我们的使命？就是把快乐和温暖的魔法撒到每个角落，与全世界分享新加坡五彩斑斓的奇妙魅力！",
-                about_milestones_title: "我们的魔法旅程",
-                milestone_2020_title: "新星诞生",
-                milestone_2021_title: "首批宝藏",
-                milestone_2022_title: "第一个家",
-                milestone_2023_title: "全新冒险",
-                milestone_2025_title: "你好，世界！",
-                contact_title: "快来联系我们！",
-                contact_subtitle: "有绝妙的点子、好奇的问题，或者只是想来打个招呼？我们随时洗耳恭听，最喜欢交新朋友啦！快给我们留言吧。",
-                form_name: "姓名", form_email: "邮箱", form_subject: "主题", form_select_subject: "请选择...", form_subject_store: "门店咨询", form_subject_product: "产品咨询", form_subject_collab: "合作洽谈", form_subject_other: "意见反馈", form_message: "留言", form_submit: "发送留言",
-                contact_whatsapp_cta: "立即取得联系",
-                footer_tagline: "Singapore meet cuteness",
-                footer_links: "快速链接",
-                hours: "营业时间",
-                footer_rights_bold: "©2025 新加坡 SINNKAWA 私人有限公司. 保留所有权利。",
-                footer_rights_legal: "本品牌（<span class='text-primary'>SINNKAWA®</span>）所有内容（图像、角色、文案、设计等）均依法受版权与商标法保护。",
-                mobile_nav_home: "首页", mobile_nav_explore: "探索", mobile_nav_shop: "商城", mobile_nav_me: "我的",
+                translation: {
+                    page_title: "SINNKAWA® | 你的新加坡超萌冒险之旅！",
+                    splash_text: "准备好！一大波可爱正在靠近！",
+                    hero_title_main: "跟着<span class='text-primary'>SINNKAWA®</span>玩转新加坡，萌力全开",
+                    hero_title_sub: "<span class='text-primary'>SINNKAWA®</span>出没请注意！",
+                    hero_subtitle: "快带上你的快乐护照！加入<span class='text-primary'>SINNKAWA®</span>大家庭，一头扎进狮城的美食、美景和无尽的冒险里吧！",
+                    hero_cta_explore: "寻找你的宝藏！",
+                    characters_title: "认识SINNKAWA家族",
+                    characters_subtitle: "家族中的每个成员都有独特的个性和故事。来更好地了解他们吧！",
+
+                    // New Character Translations (ZH)
+                    char_merlion_name: "莫里奥 Merlion",
+                    char_merlion_title: "👑 Sinnkawa王国的超人气店长｜语言天才｜全民偶像",
+                    char_merlion_desc: `在新加坡的心脏诞生，莫里奥拥有狮子的头、鱼的身体和一颗永不服输的心。戴着皇冠走天下，不仅能说八国语言，还能用笑容征服全世界。\n\n🎵 喜欢弹吉他、唱歌\n📣 在Sinnkawa门店里，总能第一时间感受到他的温暖问候！\n\n> “欢迎光临，今天也是可爱的一天！”`,
+                    
+                    char_otata_name: "奥塔塔 Otata",
+                    char_otata_title: "🐚 热爱大海的冒险家｜冲浪高手｜海鲜狂热粉",
+                    char_otata_desc: `Otata是海风长大的女孩，带着咸咸的勇气和甜甜的笑容，把探险精神带进每一杯汽泡饮里！热爱挑战、永远在路上。\n\n🏄‍♀️ 擅长游泳、潜水\n🌺 热门饮品《奥塔塔的热情汽泡》就是她的最爱！\n\n> “想逃离平淡日常？和我一起跳进海里吧！”`,
+
+                    char_shizora_name: "施佐拉 Shizora",
+                    char_shizora_title: "👜 闪亮收集癖｜静静系少女｜隐藏系购物狂",
+                    char_shizora_desc: `安安静静的她，拥有最疯狂的购物清单。她喜爱收集每一件限定新品、每一颗发光的小饰品，是店铺最容易“被种草”的那一位。\n\n👛 擅长发现限量好物\n🌙 她的购物哲学是：“越小越可爱，越闪越快乐。”\n\n> “我不是孤僻，只是在和自己约会。”`,
+
+                    char_dayi_name: "黛一 Dayi",
+                    char_dayi_title: "☀️ 阳光能量担当｜运动万事通｜自带快乐气场",
+                    char_dayi_desc: `黛一是个停不下来的元气少女，每天都在奔跑、挥汗、发光。她相信：动起来，烦恼就追不上！\n\n🎽 擅长各类运动：滑板、羽球、篮球都拿手\n🍓 她的专属汽水《黛一的薄荷果泡泡》像她本人一样，清爽有力！\n\n> “动一动，坏心情就掉队啦！”`,
+
+                    nav_stores: "探索门店",
+                    nav_news: "最新消息",
+                    nav_characters: "家族成员",
+                    nav_products: "产品系列",
+                    products_title: "我们的产品系列",
+                    products_subtitle: "探索SINNKAWA®的奇妙周边世界",
+                    product_plush_title: "毛绒玩具",
+                    product_plush_desc: "超级柔软可爱的SINNKAWA®角色玩偶，无论你走到哪里都能陪伴着你",
+                    product_fashion_title: "时尚配饰",
+                    product_fashion_desc: "时尚的包包、帽子和配饰，印有你最爱的SINNKAWA®角色",
+                    product_digital_title: "数码配件",
+                    product_digital_desc: "可爱的手机壳、充电器等，让你的设备既安全又有型",
+                    product_stationery_title: "文具用品",
+                    product_stationery_desc: "笔记本、笔和学习用品，让学习变得有趣又多彩",
+                    product_home_title: "家居用品",
+                    product_home_desc: "装饰物品、靠垫和家居产品，为你的空间增添可爱气息",
+                    product_gift_title: "限定礼盒",
+                    product_gift_desc: "特别礼品套装和独家系列，是送给SINNKAWA®粉丝的完美礼物",
+                    news_title: "惊喜！我们的梦幻咖啡厅开业啦！",
+                    news_subtitle: "闯入一个纯粹的想象力世界！我们的<span class='text-primary'>SINNKAWA®</span>咖啡厅正在酿造魔法。为梦幻甜点而来，为治愈氛围而留！",
+                    news_cta_unlock: "领取开业限定礼！",
+                    news_cta_menu: "解锁魔法菜单",
+                    stores_title: "寻找你的快乐源地",
+                    stores_subtitle: "我们的每一家店，都是一扇通往不同冒险的传送门。快进来，亲身体验<span class='text-primary'>SINNKAWA®</span>的奇妙世界！",
+                    store_chinatown_title: "牛车水旗舰店",
+                    store_chinatown_desc: "你的冒险从这里开始！我们的牛车水旗舰店是一个巨大的宝库，装满了你梦寐以求的每一款<span class='text-primary'>SINNKAWA®</span>周边！",
+                    store_cafe_title: "<span class='text-primary'>SINNKAWA®</span> Café @ 牛车水",
+                    store_cafe_desc: "朋友圈的点赞收割机！我们的主题咖啡厅是一个遍布着美味饮品、魔法甜点和无数拍照点的仙境。每个角落都萌到犯规！",
+                    store_haji_62_name: "Soul Art @ 62 哈芝巷",
+                    store_haji_62_desc: "当艺术与可爱相遇！这家特别的店里，展示着由本地艺术家创作的、独一无二的<span class='text-primary'>SINNKAWA®</span>艺术品。",
+                    store_haji_22_name: "22 哈芝巷",
+                    store_haji_22_desc: "手慢无！藏在超酷的哈芝巷里，这家精品店是你找到稀有、限量版<span class='text-primary'>SINNKAWA®</span>好物的秘密基地。",
+                    store_haji_68_name: "68 哈芝巷",
+                    store_haji_68_desc: "踏入我们的黑白纪元！这家时髦又上镜的店，拥有别处找不到的独特氛围。快来摆个pose！",
+                    store_haji_43_name: "43 哈芝巷",
+                    store_haji_43_desc: "在我们最新的哈芝巷分店探索独家系列和互动展示。现已开业！",
+                    view_on_map: "在地图上查看",
+                    form_subject_other: "意见反馈",
+                    footer_tagline: "Singapore meet cuteness",
+                    footer_links: "快速链接",
+                    social_title_footer: "关注我们",
+                    footer_rights_bold: "©2025 新加坡 SINNKAWA 私人有限公司. 保留所有权利。",
+                    footer_rights_legal: "本品牌（<span class='text-primary'>SINNKAWA®</span>）所有内容（图像、角色、文案、设计等）均依法受版权与商标法保护。",
+                    mobile_nav_home: "首页", mobile_nav_explore: "探索", mobile_nav_shop: "商城", mobile_nav_me: "我的",
+                }
             }
         };
         const storeData = [
@@ -651,23 +764,23 @@
             { id: 'haji68', titleKey: 'store_haji_68_name', descKey: 'store_haji_68_desc', imgSrc: 'https://raw.githubusercontent.com/Eddie-CS/666/main/Sinnkawa_Gift_Store_68_BW_Theme..png', mapLink: 'https://maps.app.goo.gl/cPchyEaSGGsMjbg99' },
             { id: 'haji43', titleKey: 'store_haji_43_name', descKey: 'store_haji_43_desc', imgSrc: 'https://raw.githubusercontent.com/Eddie-CS/666/main/Sinnkawa_43_Haji_Lane_Megastore_Experience_Zone.png', mapLink: '#' }
         ];
-        const milestoneData = [
-            { year: '2020', titleKey: 'milestone_2020_title' },
-            { year: '2021', titleKey: 'milestone_2021_title' },
-            { year: '2022', titleKey: 'milestone_2022_title' },
-            { year: '2023', titleKey: 'milestone_2023_title' },
-            { year: '2025', titleKey: 'milestone_2025_title', isAccent: true },
+        // Updated Character Data with real images
+        const characterData = [
+            { id: 'merlion', nameKey: 'char_merlion_name', titleKey: 'char_merlion_title', descKey: 'char_merlion_desc', imgSrc: 'https://raw.githubusercontent.com/Eddie-CS/666/main/char_merlion.png' },
+            { id: 'otata', nameKey: 'char_otata_name', titleKey: 'char_otata_title', descKey: 'char_otata_desc', imgSrc: 'https://raw.githubusercontent.com/Eddie-CS/666/main/char_otata.png' },
+            { id: 'shizora', nameKey: 'char_shizora_name', titleKey: 'char_shizora_title', descKey: 'char_shizora_desc', imgSrc: 'https://raw.githubusercontent.com/Eddie-CS/666/main/char_shizora.png' },
+            { id: 'dayi', nameKey: 'char_dayi_name', titleKey: 'char_dayi_title', descKey: 'char_dayi_desc', imgSrc: 'https://raw.githubusercontent.com/Eddie-CS/666/main/char_dayi.png' }
         ];
         const socialData = [
-            { href: "https://www.xiaohongshu.com/user/profile/664f0844000000003030e90", icon: `<i class="fa fa-book text-4xl mb-4 text-[#FE2C55]"></i>`, nameKey: "social_xhs_name", descKey: "social_xhs_desc", tooltipKey: "social_xhs_tooltip" },
-            { href: "https://www.instagram.com/sinnkawa_official?igsh=c2l2Njhqc3FmMGc4", icon: `<i class="fa fa-instagram text-4xl mb-4 text-[#E1306C]"></i>`, nameKey: "social_ig_name", descKey: "social_ig_desc", tooltipKey: "social_ig_tooltip" },
-            { href: "https://www.tiktok.com/@sinnkawa_singapore", icon: `<img src="https://raw.githubusercontent.com/Eddie-CS/666/main/tiktok.png" alt="TikTok Logo" class="w-10 h-10 mb-4" loading="lazy">`, nameKey: "social_tt_name", descKey: "social_tt_desc", tooltipKey: "social_tt_tooltip" },
-            { href: "https://wa.me/6597759906", icon: `<i class="fa fa-whatsapp text-4xl mb-4 text-[#25D366]"></i>`, nameKey: "social_wa_name", descKey: "social_wa_desc", tooltipKey: "social_wa_tooltip" }
+            { href: "https://www.xiaohongshu.com/user/profile/664f08440000000000003030e90", icon: `<i class="fa fa-book text-2xl"></i>`, color: "text-[#FE2C55]" },
+            { href: "https://www.instagram.com/sinnkawa_official?igsh=c2l2Njhqc3FmMGc4", icon: `<i class="fa fa-instagram text-2xl"></i>`, color: "text-[#E1306C]" },
+            { href: "https://www.tiktok.com/@sinnkawa_singapore", icon: `<img src="https://raw.githubusercontent.com/Eddie-CS/666/main/tiktok.png" alt="TikTok Logo" class="w-6 h-6" loading="lazy">`, color: "text-dark" },
+            { href: "https://wa.me/6597759906", icon: `<i class="fa fa-whatsapp text-2xl"></i>`, color: "text-[#25D366]" }
         ];
 
         function initApp() {
             i18next.init({
-                resources: { en: { translation: translations.en }, zh: { translation: translations.zh } },
+                resources: translations,
                 fallbackLng: 'en',
                 lng: localStorage.getItem('sinnkawa-lang') || 'en'
             }).then(() => {
@@ -690,9 +803,11 @@
 
             initSplash();
             initScrollBehaviors();
-            initMobileMenu();
             initStoreCarousel();
+            initCharacterCarousel();
             initStoreModal();
+            initCafeModal();
+            initCharacterDetails();
         }
         
         function updateAllContent() {
@@ -705,20 +820,22 @@
                 const key = el.getAttribute('data-i18n-key');
                 const translation = i18next.t(key);
                 if (translation !== undefined) {
-                    if (el.tagName === 'INPUT' && el.hasAttribute('placeholder')) {
-                        el.placeholder = translation;
-                    } else {
-                        el.innerHTML = translation;
-                    }
+                    el.innerHTML = translation;
                 }
             });
         }
         
         function updateDynamicContent() {
             populateStoreCards();
-            populateSocialCards();
-            populateMilestones();
-            if (swiper) swiper.update();
+            populateCharacterCards();
+            populateSocialFooter();
+            if (storeSwiper) storeSwiper.update();
+            if (characterSwiper) characterSwiper.update();
+            // Update character details with current language
+            const activeCharId = document.querySelector('.avatar-item.active')?.getAttribute('data-character');
+            if (activeCharId) {
+                showCharacterDetail(activeCharId);
+            }
         }
 
         function initSplash() {
@@ -759,25 +876,9 @@
             }
         }
 
-        function initMobileMenu() {
-            const mobileMenuButton = document.getElementById('mobile-menu-button');
-            const mobileMenu = document.getElementById('mobile-menu');
-            if(mobileMenuButton) {
-                mobileMenuButton.addEventListener('click', () => {
-                    mobileMenu.classList.toggle('hidden');
-                });
-            }
-            document.querySelectorAll('.mobile-dropdown-button').forEach(button => {
-                button.addEventListener('click', () => {
-                    button.nextElementSibling.classList.toggle('hidden');
-                    button.querySelector('.fa-chevron-down').classList.toggle('rotate-180');
-                });
-            });
-        }
-
-        let swiper;
+        let storeSwiper;
         function initStoreCarousel() {
-            swiper = new Swiper('.store-carousel', {
+            storeSwiper = new Swiper('.store-carousel', {
                 loop: true,
                 grabCursor: true,
                 slidesPerView: 1,
@@ -790,6 +891,24 @@
                 pagination: { el: '.swiper-pagination', clickable: true },
                 navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
                 breakpoints: { 640: { slidesPerView: 2 }, 1024: { slidesPerView: 3 } }
+            });
+        }
+
+        let characterSwiper;
+        function initCharacterCarousel() {
+            characterSwiper = new Swiper('.character-carousel', {
+                loop: true,
+                grabCursor: true,
+                slidesPerView: 2.5, 
+                spaceBetween: 10,
+                navigation: {
+                    nextEl: '.character-next',
+                    prevEl: '.character-prev',
+                },
+                breakpoints: {
+                    640: { slidesPerView: 4, spaceBetween: 20 },
+                    1024: { slidesPerView: 4, spaceBetween: 30 },
+                }
             });
         }
 
@@ -814,27 +933,112 @@
             });
             container.innerHTML = cardsHTML;
         }
-        
-        function populateSocialCards() {
-            const container = document.getElementById('social-card-container');
+
+        function populateCharacterCards() {
+            const container = document.getElementById('character-card-container');
             if (!container) return;
             let cardsHTML = '';
-            socialData.forEach(platform => {
+            characterData.forEach(char => {
                 cardsHTML += `
-                    <a href="${platform.href}" target="_blank" rel="noopener noreferrer" class="relative flex-shrink-0 w-64 md:w-auto group bg-light rounded-2xl p-6 text-center transition-all duration-300 transform hover:-translate-y-2 hover:shadow-xl border border-light-border hover:border-primary/50 flex flex-col items-center justify-center">
-                        <div class="absolute -top-12 left-1/2 -translate-x-1/2 w-max bg-dark text-white text-xs rounded-md px-3 py-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-                            <span data-i18n-key="${platform.tooltipKey}"></span>
-                            <div class="absolute top-full left-1/2 -translate-x-1/2 w-0 h-0 border-x-4 border-x-transparent border-t-4 border-t-dark"></div>
+                    <div class="swiper-slide">
+                        <div class="avatar-item text-center cursor-pointer" data-character="${char.id}">
+                            <img src="${char.imgSrc}" alt="" class="w-24 h-24 mx-auto rounded-full shadow-lg mb-4 object-cover border-4 border-white transition-all duration-300" loading="lazy">
+                            <h4 class="font-bold text-dark" data-i18n-key="${char.nameKey}"></h4>
                         </div>
-                        <div class="group-hover:animate-icon-bounce">
-                            ${platform.icon}
-                        </div>
-                        <h3 class="font-bold text-lg text-dark" data-i18n-key="${platform.nameKey}"></h3>
-                        <p class="text-sm text-muted mt-2" data-i18n-key="${platform.descKey}"></p>
-                    </a>
+                    </div>
                 `;
             });
             container.innerHTML = cardsHTML;
+            
+            // Set first character as active by default
+            setTimeout(() => {
+                const firstAvatar = document.querySelector('.avatar-item');
+                if (firstAvatar) {
+                    firstAvatar.classList.add('active');
+                    const firstCharId = firstAvatar.getAttribute('data-character');
+                    if (firstCharId) {
+                        showCharacterDetail(firstCharId);
+                    }
+                }
+            }, 100);
+            
+            // Add click event to avatar items
+            document.querySelectorAll('.avatar-item').forEach(item => {
+                item.addEventListener('click', () => {
+                    // Remove active class from all avatars
+                    document.querySelectorAll('.avatar-item').forEach(avatar => {
+                        avatar.classList.remove('active');
+                    });
+                    // Add active class to clicked avatar
+                    item.classList.add('active');
+                    // Show corresponding character detail
+                    const charId = item.getAttribute('data-character');
+                    showCharacterDetail(charId);
+                    
+                    // Scroll to character details section
+                    document.getElementById('character-details').scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                });
+            });
+        }
+
+        // Updated function to include character title
+        function initCharacterDetails() {
+            const detailsContainer = document.getElementById('character-details');
+            if (!detailsContainer) return;
+            
+            detailsContainer.innerHTML = `
+                <div class="character-detail active" id="detail-container">
+                    <div class="flex flex-col md:flex-row items-center gap-8">
+                        <div class="w-full md:w-1/3">
+                            <img id="detail-avatar" src="" alt="" class="w-40 h-40 mx-auto md:mx-0 rounded-full shadow-lg object-cover border-4 border-primary">
+                        </div>
+                        <div class="w-full md:w-2/3 text-center md:text-left">
+                            <h2 id="detail-name" class="text-2xl font-bold text-primary mb-2"></h2>
+                            <p id="detail-title" class="text-sm font-semibold text-muted mb-4"></p>
+                            <div id="detail-content" class="text-muted leading-relaxed whitespace-pre-line"></div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Updated function to show character title and handle multiline descriptions
+        function showCharacterDetail(characterId) {
+            const character = characterData.find(char => char.id === characterId);
+            if (!character) return;
+            
+            const detailsContainer = document.getElementById('detail-container');
+            if (!detailsContainer) return;
+            
+            // Update detail elements with character data
+            document.getElementById('detail-avatar').src = character.imgSrc;
+            document.getElementById('detail-avatar').alt = i18next.t(character.nameKey);
+            document.getElementById('detail-name').innerHTML = i18next.t(character.nameKey);
+            document.getElementById('detail-title').innerHTML = i18next.t(character.titleKey);
+            document.getElementById('detail-content').innerHTML = i18next.t(character.descKey);
+            
+            // Add animation
+            detailsContainer.classList.remove('active');
+            setTimeout(() => {
+                detailsContainer.classList.add('active');
+            }, 10);
+        }
+
+        function populateSocialFooter() {
+            const container = document.getElementById('social-footer-container');
+            if (!container) return;
+            let iconsHTML = '';
+            socialData.forEach(platform => {
+                iconsHTML += `
+                    <a href="${platform.href}" target="_blank" rel="noopener noreferrer" class="transition-transform hover:scale-110 ${platform.color}">
+                        ${platform.icon}
+                    </a>
+                `;
+            });
+            container.innerHTML = iconsHTML;
         }
 
         function initStoreModal() {
@@ -866,8 +1070,6 @@
                 updateStaticContent();
                 modal.classList.remove('hidden');
                 setTimeout(() => {
-                    modalBackdrop.classList.remove('opacity-0');
-                    modalContent.classList.remove('scale-95', 'opacity-0');
                     modalBackdrop.classList.add('opacity-100');
                     modalContent.classList.add('scale-100', 'opacity-100');
                 }, 10);
@@ -877,8 +1079,6 @@
                 if (!modal) return;
                 modalBackdrop.classList.remove('opacity-100');
                 modalContent.classList.remove('scale-100', 'opacity-100');
-                modalBackdrop.classList.add('opacity-0');
-                modalContent.classList.add('scale-95', 'opacity-0');
                 setTimeout(() => modal.classList.add('hidden'), 300);
             }
 
@@ -887,22 +1087,32 @@
             if(feedbackLink) feedbackLink.addEventListener('click', closeModal);
         }
 
-        function populateMilestones() {
-            const container = document.getElementById('milestones-container');
-            if (!container) return;
-            let milestonesHTML = '';
-            milestoneData.forEach(item => {
-                milestonesHTML += `
-                    <div class="timeline-item">
-                        <div class="timeline-dot ${item.isAccent ? 'is-accent' : ''}"></div>
-                        <div class="timeline-content">
-                            <div class="timeline-year">${item.year}</div>
-                            <div class="timeline-desc" data-i18n-key="${item.titleKey}"></div>
-                        </div>
-                    </div>
-                `;
-            });
-            container.innerHTML = milestonesHTML;
+        function initCafeModal() {
+            const modal = document.getElementById('cafe-modal');
+            const openTriggers = document.querySelectorAll('#news-nav-button, #news-footer-button, #news-mobile-button');
+            const closeModalBtn = document.getElementById('close-cafe-modal-btn');
+            const modalBackdrop = document.getElementById('cafe-modal-backdrop');
+            const modalContent = document.getElementById('cafe-modal-content');
+
+            function open() {
+                if (!modal) return;
+                modal.classList.remove('hidden');
+                setTimeout(() => {
+                    modalBackdrop.classList.add('opacity-100');
+                    modalContent.classList.add('scale-100', 'opacity-100');
+                }, 10);
+            }
+
+            function close() {
+                if (!modal) return;
+                modalBackdrop.classList.remove('opacity-100');
+                modalContent.classList.remove('scale-100', 'opacity-100');
+                setTimeout(() => modal.classList.add('hidden'), 300);
+            }
+
+            openTriggers.forEach(btn => btn.addEventListener('click', open));
+            if(closeModalBtn) closeModalBtn.addEventListener('click', close);
+            if(modalBackdrop) modalBackdrop.addEventListener('click', close);
         }
 
         initApp();
