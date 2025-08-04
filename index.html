@@ -9,8 +9,8 @@
     <meta name="description" content="Explore Singapore with SINNKAWA®, the adorable blue friend! Discover our stores, themed cafe, exclusive merchandise, and the vibrant culture of the Lion City.">
     <meta name="keywords" content="SINNKAWA, Singapore, travel, gifts, character, IP, Chinatown, Haji Lane, cafe">
     <meta name="author" content="SINNKAWA®">
-    <!-- Favicon -->
-    <link rel="icon" href="assets/favicon.png" type="image/png">
+    <!-- Favicon: 已替换为 GitHub 仓库链接 -->
+    <link rel="icon" href="https://raw.githubusercontent.com/Eddie-CS/666/main/favicon.png" type="image/png">
 
     <!-- Stylesheets -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
@@ -68,6 +68,18 @@
             20%, 80% { transform: translate3d(2px, 0, 0) rotate(1deg); }
             30%, 50%, 70% { transform: translate3d(-3px, 0, 0) rotate(-2deg); }
             40%, 60% { transform: translate3d(3px, 0, 0) rotate(2deg); }
+        }
+        /* Social Card Icon Bounce Animation */
+        @keyframes icon-bounce {
+          0%, 100% {
+            transform: translateY(0) scale(1);
+          }
+          50% {
+            transform: translateY(-8px) scale(1.1);
+          }
+        }
+        .animate-icon-bounce {
+            animation: icon-bounce 0.6s ease-in-out;
         }
         #splash-screen {
             transition: opacity 0.7s ease-out, transform 0.7s ease-in-out;
@@ -198,16 +210,16 @@
 
 <body class="bg-secondary text-dark font-sans antialiased pb-20 md:pb-0">
     
-    <!-- Parallax Background -->
+    <!-- Parallax Background: 图片已替换为 GitHub 仓库链接 -->
     <div class="parallax-bg hidden md:block">
-        <div id="parallax-1" class="sg-icon" style="width: 30%; top: 10%; left: 5%;"><img src="assets/parallax-bg-1.webp" loading="lazy" alt="Parallax background image 1"></div>
-        <div id="parallax-2" class="sg-icon" style="width: 25%; top: 50%; right: 10%;"><img src="assets/parallax-bg-2.webp" loading="lazy" alt="Parallax background image 2"></div>
-        <div id="parallax-3" class="sg-icon" style="width: 35%; bottom: 5%; left: 15%;"><img src="assets/parallax-bg-3.webp" loading="lazy" alt="Parallax background image 3"></div>
+        <div id="parallax-1" class="sg-icon" style="width: 30%; top: 10%; left: 5%;"><img src="https://raw.githubusercontent.com/Eddie-CS/666/main/%E8%83%8C%E6%99%AF%E4%B8%80%E5%85%A8%E5%AE%B6%E5%8F%88%E5%9C%A8%E7%A4%BC%E7%89%A9%E5%BA%97%E9%97%A8%E5%8F%A3.png" loading="lazy" alt="Parallax background image 1"></div>
+        <div id="parallax-2" class="sg-icon" style="width: 25%; top: 50%; right: 10%;"><img src="https://raw.githubusercontent.com/Eddie-CS/666/main/%E8%83%8C%E6%99%AF%E4%BA%8C%E5%85%A8%E5%AE%B6%E5%9C%A8%E7%A4%BC%E7%89%A9%E5%BA%97.png" loading="lazy" alt="Parallax background image 2"></div>
+        <div id="parallax-3" class="sg-icon" style="width: 35%; bottom: 5%; left: 15%;"><img src="https://raw.githubusercontent.com/Eddie-CS/666/main/%E8%83%8C%E6%99%AF%E4%B8%89%E5%85%A8%E5%AE%B6%E5%9C%A8%E6%96%B0%E5%8A%A0%E5%9D%A1.png" loading="lazy" alt="Parallax background image 3"></div>
     </div>
 
-    <!-- Splash Screen -->
+    <!-- Splash Screen: 图片已替换为 GitHub 仓库链接 -->
     <div id="splash-screen" class="fixed inset-0 bg-secondary flex items-center justify-center z-[100]">
-        <img id="splash-logo" src="assets/logo-main.webp" alt="SINNKAWA® Logo" class="h-40" loading="lazy">
+        <img id="splash-logo" src="https://raw.githubusercontent.com/Eddie-CS/666/main/logo%E6%97%A0R.png" alt="SINNKAWA® Logo" class="h-40">
         <p id="splash-text" class="absolute bottom-20 text-2xl font-bold text-primary opacity-0" data-i18n-key="splash_text"></p>
     </div>
 
@@ -221,20 +233,15 @@
         </a>
     </div>
 
-    <!-- Header & Navigation -->
+    <!-- Header & Navigation: 图片已替换为 GitHub 仓库链接 -->
     <header class="sticky top-0 w-full bg-light/80 backdrop-blur-sm shadow-sm z-40 transition-all duration-200">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20 md:h-24">
                 <!-- Logo and Countdown Bubble -->
                 <div class="flex items-center gap-4">
                     <a href="#" class="flex-shrink-0">
-                        <img src="assets/logo-header.webp" alt="SINNKAWA® Logo" class="h-20 md:h-24" loading="lazy">
+                        <img src="https://raw.githubusercontent.com/Eddie-CS/666/main/logo%E6%97%A0R.png" alt="SINNKAWA® Logo" class="h-20 md:h-24">
                     </a>
-                    <div id="header-countdown-bubble" class="hidden md:block bg-primary/10 text-primary px-3 py-1 rounded-full text-xs font-medium animate-pulse-slow">
-                        <span data-i18n-key="top_countdown_label"></span>
-                        <span class="header-days"></span><span data-i18n-key="time_days_short"></span>
-                        <span class="header-hours"></span><span data-i18n-key="time_hours_short"></span>
-                    </div>
                 </div>
 
                 <!-- Main Navigation -->
@@ -262,7 +269,7 @@
     </header>
 
     <main>
-        <!-- Hero Section -->
+        <!-- Hero Section: 图片已替换为 GitHub 仓库链接 -->
         <section id="hero" class="bg-light pt-10 md:pt-16 relative min-h-screen flex items-center justify-center overflow-hidden">
             <!-- Decorative Elements -->
             <div class="absolute top-20 left-10 w-20 h-20 bg-primary/20 rounded-full blur-xl animate-float"></div>
@@ -282,29 +289,7 @@
                     </div>
                     <div class="lg:w-1/2 relative fade-in">
                         <div class="relative z-10 animate-float">
-                            <img src="assets/sinnkawa-family-hero.webp" alt="SINNKAWA® family photo" class="w-full max-w-lg mx-auto rounded-3xl" loading="lazy">
-                        </div>
-                    </div>
-                </div>
-                <!-- Pre-launch Countdown Section -->
-                <div id="hero-countdown" class="text-center mt-16 fade-in">
-                    <h3 class="text-2xl font-bold text-dark mb-4" data-i18n-key="hero_badge"></h3>
-                    <div class="flex justify-center items-center gap-4 text-dark">
-                        <div class="text-center bg-light/50 p-4 rounded-lg shadow-sm w-24">
-                            <div class="text-4xl font-bold hero-days">00</div>
-                            <div class="text-sm text-muted" data-i18n-key="time_days_full"></div>
-                        </div>
-                        <div class="text-center bg-light/50 p-4 rounded-lg shadow-sm w-24">
-                            <div class="text-4xl font-bold hero-hours">00</div>
-                            <div class="text-sm text-muted" data-i18n-key="time_hours_full"></div>
-                        </div>
-                        <div class="text-center bg-light/50 p-4 rounded-lg shadow-sm w-24">
-                            <div class="text-4xl font-bold hero-minutes">00</div>
-                            <div class="text-sm text-muted" data-i18n-key="time_minutes_full"></div>
-                        </div>
-                        <div class="text-center bg-light/50 p-4 rounded-lg shadow-sm w-24">
-                            <div class="text-4xl font-bold hero-seconds">00</div>
-                            <div class="text-sm text-muted" data-i18n-key="time_seconds_full"></div>
+                            <img src="https://raw.githubusercontent.com/Eddie-CS/666/main/Sinnkawa_family_pic.png" alt="SINNKAWA® family photo" class="w-full max-w-lg mx-auto rounded-3xl" loading="lazy">
                         </div>
                     </div>
                 </div>
@@ -320,33 +305,14 @@
                 </div>
                 <!-- Mobile Horizontal Scroll Container -->
                 <div class="md:grid md:grid-cols-4 gap-6 fade-in">
-                    <div class="flex md:grid md:grid-cols-4 gap-6 overflow-x-auto md:overflow-visible no-scrollbar pb-4">
-                        <a href="https://www.xiaohongshu.com/user/profile/664f08440000000003030e90" target="_blank" rel="noopener noreferrer" class="flex-shrink-0 w-64 md:w-auto group bg-light rounded-2xl p-6 text-center transition-all duration-300 transform hover:-translate-y-2 hover:shadow-xl border border-light-border hover:border-primary/50">
-                            <i class="fa fa-book text-4xl mb-4 text-[#FE2C55]"></i>
-                            <h3 class="font-bold text-lg text-dark" data-i18n-key="social_xhs_name"></h3>
-                            <p class="text-sm text-muted mt-2" data-i18n-key="social_xhs_desc"></p>
-                        </a>
-                        <a href="https://www.instagram.com/sinnkawa_official?igsh=c2l2Njhqc3FmMGc4" target="_blank" rel="noopener noreferrer" class="flex-shrink-0 w-64 md:w-auto group bg-light rounded-2xl p-6 text-center transition-all duration-300 transform hover:-translate-y-2 hover:shadow-xl border border-light-border hover:border-primary/50">
-                            <i class="fa fa-instagram text-4xl mb-4 text-[#E1306C]"></i>
-                            <h3 class="font-bold text-lg text-dark">Instagram</h3>
-                            <p class="text-sm text-muted mt-2" data-i18n-key="social_ig_desc"></p>
-                        </a>
-                        <a href="https://www.tiktok.com/@sinnkawa_singapore" target="_blank" rel="noopener noreferrer" class="flex-shrink-0 w-64 md:w-auto group bg-light rounded-2xl p-6 text-center transition-all duration-300 transform hover:-translate-y-2 hover:shadow-xl border border-light-border hover:border-primary/50 flex flex-col items-center justify-center">
-                             <img src="assets/tiktok-icon.svg" alt="TikTok Logo" class="w-10 h-10 mb-4" loading="lazy">
-                            <h3 class="font-bold text-lg text-dark">TikTok</h3>
-                            <p class="text-sm text-muted mt-2" data-i18n-key="social_tt_desc"></p>
-                        </a>
-                        <a href="https://wa.me/6597759906" target="_blank" rel="noopener noreferrer" class="flex-shrink-0 w-64 md:w-auto group bg-light rounded-2xl p-6 text-center transition-all duration-300 transform hover:-translate-y-2 hover:shadow-xl border border-light-border hover:border-primary/50">
-                            <i class="fa fa-whatsapp text-4xl mb-4 text-[#25D366]"></i>
-                            <h3 class="font-bold text-lg text-dark">WhatsApp</h3>
-                            <p class="text-sm text-muted mt-2" data-i18n-key="social_wa_desc"></p>
-                        </a>
+                    <div id="social-card-container" class="flex md:grid md:grid-cols-4 gap-6 overflow-x-auto md:overflow-visible no-scrollbar pb-4 cursor-grab">
+                        <!-- Social media cards are dynamically generated here -->
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Latest News Section -->
+        <!-- Latest News Section: 图片已替换为 GitHub 仓库链接 -->
         <section id="latest-news" class="py-20 bg-light">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="bg-secondary rounded-2xl shadow-lg overflow-hidden lg:grid lg:grid-cols-2 lg:gap-4 items-center fade-in">
@@ -359,7 +325,7 @@
                         </div>
                     </div>
                     <div class="h-64 lg:h-full">
-                        <img src="assets/cafe-news-banner.webp" alt="SINNKAWA® Themed Cafe Interior" class="w-full h-full object-cover" loading="lazy">
+                        <img src="https://raw.githubusercontent.com/Eddie-CS/666/main/Sinnkawa%20Cafe%20Logo%2020250623.pdf.png" alt="SINNKAWA® Themed Cafe Interior" class="w-full h-full object-cover" loading="lazy">
                     </div>
                 </div>
             </div>
@@ -383,7 +349,7 @@
             </div>
         </section>
 
-        <!-- About Section -->
+        <!-- About Section: 图片已替换为 GitHub 仓库链接 -->
         <section id="about" class="py-20 bg-light relative overflow-hidden">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <div class="text-center mb-16 fade-in">
@@ -392,7 +358,7 @@
                 </div>
                 <div class="flex flex-col lg:flex-row items-center gap-12 mb-20">
                     <div class="lg:w-1/2 relative fade-in">
-                        <img src="assets/about-story-image.webp" alt="SINNKAWA® family in Singapore" class="w-full max-w-md mx-auto rounded-3xl shadow-xl" loading="lazy">
+                        <img src="https://raw.githubusercontent.com/Eddie-CS/666/main/%E8%83%8C%E6%99%AF%E4%B8%89%E5%85%A8%E5%AE%B6%E5%9C%A8%E6%96%B0%E5%8A%A0%E5%9D%A1.png" alt="SINNKAWA® family in Singapore" class="w-full max-w-md mx-auto rounded-3xl shadow-xl" loading="lazy">
                     </div>
                     <div class="lg:w-1/2 fade-in">
                         <h3 class="text-2xl md:text-3xl font-display font-bold mb-6" data-i18n-key="about_story_title"></h3>
@@ -461,13 +427,13 @@
         </section>
     </main>
 
-    <!-- Footer -->
+    <!-- Footer: 图片已替换为 GitHub 仓库链接 -->
     <footer class="bg-dark text-white pt-16 pb-8">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12 items-center">
                 <!-- Column 1: Logo and Slogan -->
                 <div class="md:col-span-1">
-                    <div class="mb-6"><img src="assets/logo-footer-white.webp" alt="SINNKAWA® Logo" class="h-32" loading="lazy"></div>
+                    <div class="mb-6"><img src="https://raw.githubusercontent.com/Eddie-CS/666/main/%E5%A4%A7%E5%A4%B4logo%E6%9C%89R.png" alt="SINNKAWA® Logo" class="h-32" loading="lazy"></div>
                     <p class="text-muted" data-i18n-key="footer_tagline"></p>
                 </div>
                 <!-- Column 2: Quick Links -->
@@ -491,7 +457,7 @@
                 </div>
                 <!-- Column 4: Character Image -->
                 <div class="md:col-span-1 flex justify-center md:justify-end relative">
-                    <img src="assets/sinnkawa-footer-character.webp" alt="SINNKAWA® holding a sign" class="w-32 h-auto" loading="lazy">
+                    <img src="https://raw.githubusercontent.com/Eddie-CS/666/main/Sinnkawa_footer.png" alt="SINNKAWA® holding a sign" class="w-32 h-auto" loading="lazy">
                 </div>
             </div>
             <div class="border-t border-muted/20 pt-8 text-center text-muted">
@@ -553,13 +519,9 @@
             en: {
                 page_title: "SINNKAWA® | Your Cutest Singapore Adventure Starts Here!",
                 splash_text: "Get Ready for a Cuteness Overload!",
-                top_countdown_label: "Launching in: ",
-                time_days_short: "d ", time_hours_short: "h",
-                time_days_full: "Days", time_hours_full: "Hours", time_minutes_full: "Minutes", time_seconds_full: "Seconds",
                 hero_title_main: "Explore Singapore with Cuteness On",
                 hero_title_sub: "Exclusive <span class='text-primary'>SINNKAWA®</span> moments await",
                 hero_subtitle: "Grab your passport to fun! Join the <span class='text-primary'>SINNKAWA®</span> Family and dive into a world of yummy treats, amazing sights, and endless adventures in the Lion City!",
-                hero_badge: "Get Ready! The World of <span class='text-primary'>SINNKAWA®</span> is Coming!",
                 hero_cta_explore: "Find Your Treasure!",
                 hero_cta_story: "Our Magical Story",
                 nav_stores: "Stores", nav_store_chinatown: "Chinatown Flagship", nav_store_haji: "Haji Lane Stores", nav_store_cafe: "SINNKAWA® Café", nav_about: "About Us", nav_social: "Social Media", nav_contact: "Contact",
@@ -570,6 +532,13 @@
                 social_ig_desc: "SINNKAWA®'s travel photo wall",
                 social_tt_desc: "SINNKAWA®'s fun adventure videos",
                 social_wa_desc: "Chat directly with the SINNKAWA® team",
+                social_ig_name: "Instagram",
+                social_tt_name: "TikTok",
+                social_wa_name: "WhatsApp",
+                social_xhs_tooltip: "Your daily dose of cuteness!",
+                social_ig_tooltip: "Check out our travel photo wall!",
+                social_tt_tooltip: "Watch our fun adventure videos!",
+                social_wa_tooltip: "Chat with us directly!",
                 news_title: "Surprise! Our Dreamy Café Is Now Open!",
                 news_subtitle: "Step into a world of pure imagination! Our SINNKAWA® Café is officially brewing magic. Come for the dreamy desserts, stay for the cuddly vibes!",
                 news_cta_unlock: "Claim Your Opening Gift!",
@@ -613,13 +582,9 @@
             zh: {
                 page_title: "SINNKAWA® | 你的新加坡超萌冒险之旅！",
                 splash_text: "准备好！一大波可爱正在靠近！",
-                top_countdown_label: "上线倒计时: ",
-                time_days_short: "天 ", time_hours_short: "时",
-                time_days_full: "天", time_hours_full: "小时", time_minutes_full: "分钟", time_seconds_full: "秒",
                 hero_title_main: "跟着<span class='text-primary'>SINNKAWA®</span>玩转新加坡，萌力全开",
                 hero_title_sub: "<span class='text-primary'>SINNKAWA®</span>出没请注意！",
                 hero_subtitle: "快带上你的快乐护照！加入<span class='text-primary'>SINNKAWA®</span>大家庭，一头扎进狮城的美食、美景和无尽的冒险里吧！",
-                hero_badge: "准备好了吗？<span class='text-primary'>SINNKAWA®</span>的奇妙世界即将开启！",
                 hero_cta_explore: "寻找你的宝藏！",
                 hero_cta_story: "我们的奇妙物语",
                 nav_stores: "门店", nav_store_chinatown: "牛车水旗舰店", nav_store_haji: "哈芝巷门店", nav_store_cafe: "SINNKAWA® 主题咖啡厅", nav_about: "品牌介绍", nav_social: "社交媒体", nav_contact: "联系我们",
@@ -630,6 +595,13 @@
                 social_ig_desc: "<span class='text-primary'>SINNKAWA®</span>的环球旅行照片墙",
                 social_tt_desc: "<span class='text-primary'>SINNKAWA®</span>的趣味冒险短视频",
                 social_wa_desc: "与<span class='text-primary'>SINNKAWA®</span>团队直接交流",
+                social_ig_name: "Instagram",
+                social_tt_name: "TikTok",
+                social_wa_name: "WhatsApp",
+                social_xhs_tooltip: "你的每日份可爱补给站！",
+                social_ig_tooltip: "来看看我们的环球旅行照片墙！",
+                social_tt_tooltip: "观看我们有趣的冒险短视频！",
+                social_wa_tooltip: "直接与我们聊天！",
                 news_title: "惊喜！我们的梦幻咖啡厅开业啦！",
                 news_subtitle: "闯入一个纯粹的想象力世界！我们的<span class='text-primary'>SINNKAWA®</span>咖啡厅正在酿造魔法。为梦幻甜点而来，为治愈氛围而留！",
                 news_cta_unlock: "领取开业限定礼！",
@@ -672,12 +644,12 @@
             }
         };
         const storeData = [
-            { id: 'chinatown', titleKey: 'store_chinatown_title', descKey: 'store_chinatown_desc', imgSrc: 'assets/store-chinatown.webp', mapLink: 'https://maps.app.goo.gl/AuDRqswjxYYgBVFg8' },
-            { id: 'cafe', titleKey: 'store_cafe_title', descKey: 'store_cafe_desc', imgSrc: 'assets/store-cafe.webp', mapLink: 'https://maps.app.goo.gl/AuDRqswjxYYgBVFg8' },
-            { id: 'haji62', titleKey: 'store_haji_62_name', descKey: 'store_haji_62_desc', imgSrc: 'assets/store-haji-62.webp', mapLink: 'https://maps.app.goo.gl/QHbdCKU81UJwMuX27' },
-            { id: 'haji22', titleKey: 'store_haji_22_name', descKey: 'store_haji_22_desc', imgSrc: 'assets/store-haji-22.webp', mapLink: 'https://maps.app.goo.gl/NgZPfmMp2egFZhAQ7' },
-            { id: 'haji68', titleKey: 'store_haji_68_name', descKey: 'store_haji_68_desc', imgSrc: 'assets/store-haji-68.webp', mapLink: 'https://maps.app.goo.gl/cPchyEaSGGsMjbg99' },
-            { id: 'haji43', titleKey: 'store_haji_43_name', descKey: 'store_haji_43_desc', imgSrc: 'assets/store-haji-43.webp', mapLink: '#' }
+            { id: 'chinatown', titleKey: 'store_chinatown_title', descKey: 'store_chinatown_desc', imgSrc: 'https://raw.githubusercontent.com/Eddie-CS/666/main/Sinnkawa_Gift_Store_Chinatown.png', mapLink: 'https://maps.app.goo.gl/AuDRqswjxYYgBVFg8' },
+            { id: 'cafe', titleKey: 'store_cafe_title', descKey: 'store_cafe_desc', imgSrc: 'https://raw.githubusercontent.com/Eddie-CS/666/main/Sinnkawa%20Cafe%20Logo%2020250623.pdf.png', mapLink: 'https://maps.app.goo.gl/AuDRqswjxYYgBVFg8' },
+            { id: 'haji62', titleKey: 'store_haji_62_name', descKey: 'store_haji_62_desc', imgSrc: 'https://raw.githubusercontent.com/Eddie-CS/666/main/Soul_Art_Art_IP_62_Haji.png', mapLink: 'https://maps.app.goo.gl/QHbdCKU81UJwMuX27' },
+            { id: 'haji22', titleKey: 'store_haji_22_name', descKey: 'store_haji_22_desc', imgSrc: 'https://raw.githubusercontent.com/Eddie-CS/666/main/Sinnkawa_Gift_Store_22_Haji_Lane.png', mapLink: 'https://maps.app.goo.gl/NgZPfmMp2egFZhAQ7' },
+            { id: 'haji68', titleKey: 'store_haji_68_name', descKey: 'store_haji_68_desc', imgSrc: 'https://raw.githubusercontent.com/Eddie-CS/666/main/Sinnkawa_Gift_Store_68_BW_Theme..png', mapLink: 'https://maps.app.goo.gl/cPchyEaSGGsMjbg99' },
+            { id: 'haji43', titleKey: 'store_haji_43_name', descKey: 'store_haji_43_desc', imgSrc: 'https://raw.githubusercontent.com/Eddie-CS/666/main/Sinnkawa_43_Haji_Lane_Megastore_Experience_Zone.png', mapLink: '#' }
         ];
         const milestoneData = [
             { year: '2020', titleKey: 'milestone_2020_title' },
@@ -685,6 +657,12 @@
             { year: '2022', titleKey: 'milestone_2022_title' },
             { year: '2023', titleKey: 'milestone_2023_title' },
             { year: '2025', titleKey: 'milestone_2025_title', isAccent: true },
+        ];
+        const socialData = [
+            { href: "https://www.xiaohongshu.com/user/profile/664f0844000000003030e90", icon: `<i class="fa fa-book text-4xl mb-4 text-[#FE2C55]"></i>`, nameKey: "social_xhs_name", descKey: "social_xhs_desc", tooltipKey: "social_xhs_tooltip" },
+            { href: "https://www.instagram.com/sinnkawa_official?igsh=c2l2Njhqc3FmMGc4", icon: `<i class="fa fa-instagram text-4xl mb-4 text-[#E1306C]"></i>`, nameKey: "social_ig_name", descKey: "social_ig_desc", tooltipKey: "social_ig_tooltip" },
+            { href: "https://www.tiktok.com/@sinnkawa_singapore", icon: `<img src="https://raw.githubusercontent.com/Eddie-CS/666/main/tiktok.png" alt="TikTok Logo" class="w-10 h-10 mb-4" loading="lazy">`, nameKey: "social_tt_name", descKey: "social_tt_desc", tooltipKey: "social_tt_tooltip" },
+            { href: "https://wa.me/6597759906", icon: `<i class="fa fa-whatsapp text-4xl mb-4 text-[#25D366]"></i>`, nameKey: "social_wa_name", descKey: "social_wa_desc", tooltipKey: "social_wa_tooltip" }
         ];
 
         function initApp() {
@@ -715,7 +693,6 @@
             initMobileMenu();
             initStoreCarousel();
             initStoreModal();
-            initCountdown();
         }
         
         function updateAllContent() {
@@ -739,6 +716,7 @@
         
         function updateDynamicContent() {
             populateStoreCards();
+            populateSocialCards();
             populateMilestones();
             if (swiper) swiper.update();
         }
@@ -835,7 +813,28 @@
                     </div>`;
             });
             container.innerHTML = cardsHTML;
-            updateStaticContent();
+        }
+        
+        function populateSocialCards() {
+            const container = document.getElementById('social-card-container');
+            if (!container) return;
+            let cardsHTML = '';
+            socialData.forEach(platform => {
+                cardsHTML += `
+                    <a href="${platform.href}" target="_blank" rel="noopener noreferrer" class="relative flex-shrink-0 w-64 md:w-auto group bg-light rounded-2xl p-6 text-center transition-all duration-300 transform hover:-translate-y-2 hover:shadow-xl border border-light-border hover:border-primary/50 flex flex-col items-center justify-center">
+                        <div class="absolute -top-12 left-1/2 -translate-x-1/2 w-max bg-dark text-white text-xs rounded-md px-3 py-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+                            <span data-i18n-key="${platform.tooltipKey}"></span>
+                            <div class="absolute top-full left-1/2 -translate-x-1/2 w-0 h-0 border-x-4 border-x-transparent border-t-4 border-t-dark"></div>
+                        </div>
+                        <div class="group-hover:animate-icon-bounce">
+                            ${platform.icon}
+                        </div>
+                        <h3 class="font-bold text-lg text-dark" data-i18n-key="${platform.nameKey}"></h3>
+                        <p class="text-sm text-muted mt-2" data-i18n-key="${platform.descKey}"></p>
+                    </a>
+                `;
+            });
+            container.innerHTML = cardsHTML;
         }
 
         function initStoreModal() {
@@ -845,7 +844,6 @@
             const closeModalBtn = document.getElementById('close-modal-btn');
             const feedbackLink = document.getElementById('modal-feedback-link');
 
-            // FIX: Use event delegation on a static parent element
             const storesContainer = document.querySelector('#stores');
             if (storesContainer) {
                 storesContainer.addEventListener('click', function(e) {
@@ -905,35 +903,6 @@
                 `;
             });
             container.innerHTML = milestonesHTML;
-            updateStaticContent();
-        }
-
-        function initCountdown() {
-            const countdownDate = new Date("2025-08-20T23:59:59").getTime();
-            const format = (num) => num.toString().padStart(2, '0');
-
-            function update() {
-                const now = new Date().getTime();
-                const distance = countdownDate - now;
-
-                if (distance < 0) {
-                    document.getElementById('hero-countdown')?.classList.add('hidden');
-                    document.getElementById('header-countdown-bubble')?.classList.add('hidden');
-                    return;
-                }
-
-                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-                document.querySelectorAll('.header-days, .hero-days').forEach(el => el.textContent = format(days));
-                document.querySelectorAll('.header-hours, .hero-hours').forEach(el => el.textContent = format(hours));
-                document.querySelectorAll('.hero-minutes').forEach(el => el.textContent = format(minutes));
-                document.querySelectorAll('.hero-seconds').forEach(el => el.textContent = format(seconds));
-            }
-            setInterval(update, 1000);
-            update();
         }
 
         initApp();
