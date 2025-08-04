@@ -1,0 +1,21 @@
+/* Additional responsive tweaks for various devices */
+/* Prevent horizontal scrolling on small screens */
+body {
+    overflow-x: hidden;
+}
+/* Keep header below countdown bar on wider screens */
+@media (min-width: 768px) {
+    header.sticky {
+        top: 2.5rem;
+    }
+}
+@media (max-width: 767px) {
+    header.sticky {
+        top: 0;
+    }
+}
+/* Fine-tune grid spacing on small devices */
+@media (max-width: 640px) {
+    .gap-6 { gap: 1.5rem; }
+}
+
