@@ -523,13 +523,14 @@
                         <li><button id="news-footer-button" class="text-muted hover:text-light transition-all duration-200" data-i18n-key="nav_news"></button></li>
                         <li><a href="#characters" class="text-muted hover:text-light transition-all duration-200" data-i18n-key="nav_characters"></a></li>
                         <li><a href="#products" class="text-muted hover:text-light transition-all duration-200" data-i18n-key="nav_products"></a></li>
+                        <li><a href="#contact" class="text-primary hover:text-primary-hover transition-all duration-200" data-i18n-key="nav_contact"></a></li>
                     </ul>
                 </div>
                 <!-- Column 3: Social Media -->
                 <div class="md:col-span-1">
                     <h4 class="text-lg font-semibold mb-6 text-light" data-i18n-key="social_title_footer"></h4>
-                    <div id="social-footer-container" class="flex gap-4">
-                         <!-- Social media icons are dynamically generated here -->
+                    <div id="social-footer-container" class="flex flex-col gap-3">
+                         <!-- Social media links are dynamically generated here -->
                     </div>
                 </div>
             </div>
@@ -636,10 +637,11 @@
                     char_dayi_title: "☀️ Sunny Sportster｜All-Round Athlete｜Joy Generator",
                     char_dayi_desc: `Dayi is a ball of sunshine on the move — always running, jumping, glowing. Her motto? Stay active, stay happy!\n\n🎽 Loves every sport under the sun: skating, badminton, basketball and more\n🍓 Her minty fizzy drink packs the same refreshment she brings to the team\n\n> “Move your body, and the bad vibes can’t catch up!”`,
 
-                    nav_stores: "Stores", 
+                    nav_stores: "Stores",
                     nav_news: "Latest News",
                     nav_characters: "Characters",
                     nav_products: "Products",
+                    nav_contact: "Contact Us",
                     products_title: "Our Product Collection",
                     products_subtitle: "Discover the wonderful world of <span class='text-primary'>SINNKAWA®</span> merchandise",
                     product_plush_title: "Plush Toys",
@@ -712,6 +714,7 @@
                     nav_news: "最新消息",
                     nav_characters: "家族成员",
                     nav_products: "产品系列",
+                    nav_contact: "联系我们",
                     products_title: "我们的产品系列",
                     products_subtitle: "探索<span class='text-primary'>SINNKAWA®</span>的奇妙周边世界",
                     product_plush_title: "毛绒玩具",
@@ -770,10 +773,10 @@
             { id: 'dayi', nameKey: 'char_dayi_name', titleKey: 'char_dayi_title', descKey: 'char_dayi_desc', imgSrc: 'https://raw.githubusercontent.com/Eddie-CS/666/main/char_dayi.png' }
         ];
         const socialData = [
-            { href: "https://wa.me/6597759906", icon: `<img src="https://raw.githubusercontent.com/Eddie-CS/666/main/WA.png" alt="WhatsApp" class="w-40 h-40">` },
-            { href: "https://www.xiaohongshu.com/user/profile/664f08440000000003030e90?xsec_token=YBRqAoXrpd8BnbO2cGTwZHw24jB3u5iigY3BzJh94q3Ms=&xsec_source=app_share&xhsshare=CopyLink&appuid=5a8ded9f4eacab3148139220&apptime=1753039735&share_id=c2b6eba803514ef8b0dbe61670f159f9", icon: `<img src="https://raw.githubusercontent.com/Eddie-CS/666/main/XHS.png" alt="Xiaohongshu" class="w-40 h-40">` },
-            { href: "https://www.douyin.com/@sinnkawasingapore", icon: `<img src="https://raw.githubusercontent.com/Eddie-CS/666/main/Tiktok.png" alt="Douyin" class="w-40 h-40">` },
-            { href: "https://www.instagram.com/sinnkawa_official/?igsh=c2l2Njhqc3FmMGc4#", icon: `<img src="https://raw.githubusercontent.com/Eddie-CS/666/main/3.png" alt="Instagram" class="w-40 h-40">` }
+            { href: "https://wa.me/6597759906", en: "WhatsApp", zh: "WhatsApp" },
+            { href: "https://www.xiaohongshu.com/user/profile/664f08440000000003030e90?xsec_token=YBRqAoXrpd8BnbO2cGTwZHw24jB3u5iigY3BzJh94q3Ms=&xsec_source=app_share&xhsshare=CopyLink&appuid=5a8ded9f4eacab3148139220&apptime=1753039735&share_id=c2b6eba803514ef8b0dbe61670f159f9", en: "RED", zh: "小红书" },
+            { href: "https://www.douyin.com/@sinnkawasingapore", en: "Douyin", zh: "抖音" },
+            { href: "https://www.instagram.com/sinnkawa_official/?igsh=c2l2Njhqc3FmMGc4#", en: "Instagram", zh: "Instagram" }
         ];
 
         function initApp() {
@@ -1028,15 +1031,16 @@
         function populateSocialFooter() {
             const container = document.getElementById('social-footer-container');
             if (!container) return;
-            let iconsHTML = '';
+            let linksHTML = '';
             socialData.forEach(platform => {
-                iconsHTML += `
-                    <a href="${platform.href}" target="_blank" rel="noopener noreferrer" class="transition-transform hover:scale-110">
-                        ${platform.icon}
+                linksHTML += `
+                    <a href="${platform.href}" target="_blank" rel="noopener noreferrer" class="text-primary hover:text-primary-hover transition-colors">
+                        <span class="en">${platform.en}</span>
+                        <span class="zh">${platform.zh}</span>
                     </a>
                 `;
             });
-            container.innerHTML = iconsHTML;
+            container.innerHTML = linksHTML;
         }
 
         function initStoreModal() {
