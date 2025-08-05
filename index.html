@@ -607,7 +607,7 @@
                     <p class="text-muted mb-6" data-i18n-key="news_subtitle"></p>
                     <div class="flex flex-col sm:flex-row gap-4">
                         <a href="#stores" class="inline-block bg-accent hover:bg-accent-hover text-white font-semibold px-6 py-3 rounded-full transition-all duration-200 transform hover:scale-105" data-i18n-key="news_cta_unlock"></a>
-                        <a href="#stores" class="inline-block bg-light hover:bg-gray-50 text-dark border border-light-border font-semibold px-6 py-3 rounded-full transition-all duration-200 transform hover:scale-105" data-i18n-key="news_cta_menu"></a>
+                        <a id="cafe-menu-button" href="#stores" class="inline-block bg-light hover:bg-gray-50 text-dark border border-light-border font-semibold px-6 py-3 rounded-full transition-all duration-200 transform hover:scale-105" data-i18n-key="news_cta_menu"></a>
                     </div>
                 </div>
                 <div class="h-64 lg:h-full">
@@ -858,6 +858,17 @@
                     el.innerHTML = translation;
                 }
             });
+
+            const menuBtn = document.getElementById('cafe-menu-button');
+            if (menuBtn) {
+                if (i18next.language === 'en') {
+                    menuBtn.href = 'Merlion%20Cafe%20Menu%20EN%2020250701%20Print_00.png';
+                    menuBtn.setAttribute('target', '_blank');
+                } else {
+                    menuBtn.href = '#stores';
+                    menuBtn.removeAttribute('target');
+                }
+            }
         }
         
         function updateDynamicContent() {
