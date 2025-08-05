@@ -46,6 +46,7 @@
             .animate-bounce-slow { animation: bounce 3s infinite; }
             .animate-pulse-slow { animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
             .animate-shake { animation: shake 2.5s cubic-bezier(.36,.07,.19,.97) both infinite; }
+            .animate-flash { animation: flash 1.2s linear infinite; }
             .fade-in {
                 opacity: 0;
                 transform: translateY(20px);
@@ -71,6 +72,10 @@
             20%, 80% { transform: translate3d(2px, 0, 0) rotate(1deg); }
             30%, 50%, 70% { transform: translate3d(-3px, 0, 0) rotate(-2deg); }
             40%, 60% { transform: translate3d(3px, 0, 0) rotate(2deg); }
+        }
+        @keyframes flash {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
         }
         /* Social Card Icon Bounce Animation */
         @keyframes icon-bounce {
@@ -1145,5 +1150,9 @@
         initApp();
     });
     </script>
+    <!-- Coming Soon Bubble -->
+    <div id="launch-bubble" class="fixed bottom-4 left-1/2 transform -translate-x-1/2 sm:bottom-8 sm:right-8 sm:left-auto sm:translate-x-0 bg-white/80 text-primary text-center px-4 py-3 rounded-full shadow-lg z-50 animate-shake animate-flash max-w-xs sm:max-w-sm">
+        <p class="text-xs sm:text-sm md:text-base font-semibold">SINNKAWA®官网即将上线，敬请期待！<br>Official SINNKAWA® website coming soon, stay tuned!</p>
+    </div>
 </body>
-</ht
+</html>
