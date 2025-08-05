@@ -46,6 +46,8 @@
             .animate-bounce-slow { animation: bounce 3s infinite; }
             .animate-pulse-slow { animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
             .animate-shake { animation: shake 2.5s cubic-bezier(.36,.07,.19,.97) both infinite; }
+            .animate-flash { animation: flash 1.5s ease-in-out infinite; }
+            .animate-shake-flash { animation: shake 2.5s cubic-bezier(.36,.07,.19,.97) 0s 2 both, flash 1.5s ease-in-out 0s 2 both; }
             .fade-in {
                 opacity: 0;
                 transform: translateY(20px);
@@ -71,6 +73,10 @@
             20%, 80% { transform: translate3d(2px, 0, 0) rotate(1deg); }
             30%, 50%, 70% { transform: translate3d(-3px, 0, 0) rotate(-2deg); }
             40%, 60% { transform: translate3d(3px, 0, 0) rotate(2deg); }
+        }
+        @keyframes flash {
+            0%, 100% { box-shadow: 0 0 0 rgba(255,255,255,0.2); }
+            50% { box-shadow: 0 0 20px rgba(255,255,255,0.8); }
         }
         /* Social Card Icon Bounce Animation */
         @keyframes icon-bounce {
@@ -414,6 +420,13 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            <!-- Coming Soon Bubble -->
+            <div id="coming-soon-bubble" class="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-primary text-light rounded-full px-4 py-2 shadow-lg z-20 text-center w-11/12 sm:w-auto max-w-md animate-shake-flash">
+                <p class="text-xs sm:text-sm md:text-base leading-snug">
+                    正式的SINNKAWA®官网即将上线，敬请期待！<br>
+                    Official SINNKAWA® website coming soon, stay tuned!
+                </p>
             </div>
         </section>
 
@@ -1145,5 +1158,6 @@
         initApp();
     });
     </script>
+
 </body>
-</ht
+</html>
