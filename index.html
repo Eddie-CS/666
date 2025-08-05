@@ -122,6 +122,31 @@
             opacity: 0.08;
             transition: transform 0.3s ease-out;
         }
+        /* Hero background images */
+        #hero {
+            background-image: url('BGGREEN.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        @media (min-width: 768px) {
+            #hero {
+                background-image: url('GREEN.png');
+            }
+        }
+
+        /* Glass overlay */
+        #hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            z-index: 5;
+            pointer-events: none;
+        }
         .swiper-button-next, .swiper-button-prev {
             color: #89d6d5;
         }
